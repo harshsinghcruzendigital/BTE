@@ -1,0 +1,636 @@
+{
+  "site": {
+    "name": "Bio Trend Energy",
+    "legalName": "Bio Trend Energy Pvt. Ltd.",
+    "titlePrefix": "Bio Trend Energy",
+    "logo": {
+      "src": "/assets/bio-trend-logo.png",
+      "alt": "Bio Trend Energy"
+    },
+    "navigation": [
+      {
+        "label": "Home",
+        "path": "/",
+        "tone": "dark"
+      },
+      {
+        "label": "Solutions",
+        "path": "/solutions",
+        "tone": "light"
+      },
+      {
+        "label": "Process",
+        "path": "/process",
+        "tone": "light"
+      },
+      {
+        "label": "Impact",
+        "path": "/impact",
+        "tone": "dark"
+      },
+      {
+        "label": "Projects",
+        "path": "/projects",
+        "tone": "light"
+      },
+      {
+        "label": "Blog",
+        "path": "/blog",
+        "tone": "light"
+      },
+      {
+        "label": "Contact",
+        "path": "/contact",
+        "tone": "dark"
+      }
+    ],
+    "socialLinks": [
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com"
+      },
+      {
+        "label": "Twitter",
+        "href": "https://twitter.com"
+      },
+      {
+        "label": "YouTube",
+        "href": "https://youtube.com"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com"
+      }
+    ],
+    "footerPolicies": [
+      {
+        "label": "Privacy Policy",
+        "href": "#privacy"
+      },
+      {
+        "label": "Terms & Conditions",
+        "href": "#terms"
+      },
+      {
+        "label": "Cookie Settings",
+        "href": "#cookies"
+      }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Biomass fuel systems for cleaner Industry",
+    "title": "Turning waste into clean energy",
+    "description": "Bio Trend Energy converts agricultural and industrial waste streams into dependable renewable fuel for businesses ready to reduce waste and emissions.",
+    "buttonPrimary": "Explore Solutions",
+    "buttonSecondary": "See Workflow",
+    "image": "/assets/hero-bioenergy.jpg",
+    "videoLink": "/assets/bte-video-17-02-2026.mp4"
+  },
+  "home": {
+    "stats": [
+      {
+        "value": "150K+",
+        "label": "Tons of Biomass Processed"
+      },
+      {
+        "value": "85%",
+        "label": "Net CO2 Reduction vs Coal"
+      },
+      {
+        "value": "120+",
+        "label": "Industrial Plants Transformed"
+      }
+    ],
+    "advantageSection": {
+      "eyebrow": "Advantage",
+      "title": "Engineered for Industrial Resilience",
+      "copy": "Why modern operations are transitioning their solid fuel systems to Bio Trend Energy.",
+      "cards": [
+        {
+          "title": "High Thermal Yield",
+          "text": "Our proprietary manufacturing processes create highly compressed pellets with thermal output matching industrial grade coal."
+        },
+        {
+          "title": "Secure Sourcing Loops",
+          "text": "Year-round supply guarantees. We aggregate crop residues directly from verified agricultural chains to ensure fuel stock stability."
+        },
+        {
+          "title": "Clean Compliance",
+          "text": "Transition seamlessly. Lower your carbon footprint and fulfill regional air quality mandates without sacrificing boiler throughput."
+        }
+      ]
+    },
+    "exploreSection": {
+      "eyebrow": "Explore",
+      "title": "Understand Our Operations",
+      "copy": "Navigate directly to the core aspects of our clean energy supply systems.",
+      "cardCopy": "Open a dedicated page to examine our process, metrics, and implementations.",
+      "ctaPrefix": "Open "
+    }
+  },
+  "pages": {
+    "solutions": {
+      "intro": {
+        "eyebrow": "Solutions",
+        "title": "Cleaner fuel, built around real operating needs.",
+        "copy": "The offering is structured around reliable biomass supply, industrial fuel replacement, and practical transition support for operations that need measurable value."
+      },
+      "offerings": [
+        {
+          "title": "Biomass Pellets",
+          "text": "Consistent renewable fuel made from agricultural residue and industrial biomass streams."
+        },
+        {
+          "title": "Waste to Energy",
+          "text": "A practical route for turning low-value waste into cleaner heat and power inputs."
+        },
+        {
+          "title": "Industrial Transition",
+          "text": "Fuel planning, supply support, and implementation guidance for energy-intensive operations."
+        }
+      ],
+      "technicalDetails": {
+        "eyebrow": "Technical Details",
+        "title": "Fuel Specifications & Quality Metrics",
+        "copy": "We test every batch to ensure consistent heat output, minimal ash residue, and optimal density for industrial use.",
+        "columns": [
+          "Parameters",
+          "Premium Wood Pellets",
+          "Agri-Residue Pellets",
+          "Biomass Briquettes"
+        ],
+        "rows": [
+          [
+            "Calorific Value",
+            "4,500 - 4,800 kcal/kg",
+            "3,900 - 4,200 kcal/kg",
+            "3,800 - 4,100 kcal/kg"
+          ],
+          [
+            "Moisture Content",
+            "< 7.0%",
+            "< 8.5%",
+            "< 10.0%"
+          ],
+          [
+            "Ash Content",
+            "< 0.8%",
+            "< 3.0%",
+            "< 4.0%"
+          ],
+          [
+            "Sulfur Content",
+            "< 0.02%",
+            "< 0.05%",
+            "< 0.06%"
+          ],
+          [
+            "Bulk Density",
+            "> 650 kg/m3",
+            "> 600 kg/m3",
+            "> 550 kg/m3"
+          ],
+          [
+            "Diameter",
+            "6 mm & 8 mm",
+            "8 mm & 10 mm",
+            "50 mm - 90 mm"
+          ]
+        ]
+      }
+    },
+    "process": {
+      "intro": {
+        "eyebrow": "Workflow",
+        "title": "From residue to fuel without losing operational discipline.",
+        "copy": "The process is direct: source responsibly, process consistently, and deliver fuel that can be evaluated by quality, availability, and environmental value."
+      },
+      "overview": {
+        "image": {
+          "src": "/assets/biomass-pellets.jpg",
+          "alt": "Biomass pellets prepared for renewable fuel production"
+        },
+        "eyebrow": "Workflow",
+        "title": "Built for disciplined supply, not one-off experiments.",
+        "copy": "A strong biomass program depends on feedstock control, reliable processing, and clear delivery expectations.",
+        "steps": [
+          "Source verified biomass",
+          "Sort and prepare feedstock",
+          "Process into reliable fuel",
+          "Deliver for industrial use"
+        ]
+      },
+      "timeline": {
+        "eyebrow": "Production Flow",
+        "title": "Step-by-Step Processing Excellence",
+        "copy": "Explore the details of how raw materials are refined into industrial-grade clean energy.",
+        "steps": [
+          {
+            "num": "01",
+            "title": "Sourcing & Quality Auditing",
+            "text": "We partner with local agricultural cooperatives to source crop residue and raw biomass. Every incoming feedstock batch undergoes strict moisture and contamination audits to ensure processing compliance."
+          },
+          {
+            "num": "02",
+            "title": "Drying & Size Reduction",
+            "text": "Feedstock is dried in rotary dryers using waste process heat until moisture falls below 10%. It is then pulverized in hammer mills to achieve uniform particle size before pelletization."
+          },
+          {
+            "num": "03",
+            "title": "High-Pressure Pelletization",
+            "text": "The prepared raw meal is extruded under extreme pressure and temperature in industrial ring die pellet mills. Natural lignins in the biomass melt and bind the fibers, eliminating the need for chemical additives."
+          },
+          {
+            "num": "04",
+            "title": "Cooling & Dust Screening",
+            "text": "Hot pellets are cooled in counter-flow coolers to lock in durability. They are then screened to remove fines and dust, which are recycled back into the processing loop to ensure zero material waste."
+          },
+          {
+            "num": "05",
+            "title": "Secure Packaging & Shipping",
+            "text": "Completed pellets are packed in moisture-resistant jumbo bags or dispatched in bulk tankers to industrial clients, backed by real-time delivery tracking and batch reports."
+          }
+        ]
+      }
+    },
+    "impact": {
+      "intro": {
+        "eyebrow": "Impact",
+        "title": "Waste reduction and energy transition can share the same supply chain.",
+        "copy": "Bio Trend Energy sits between waste generators and energy users, creating a circular path where residue becomes a useful industrial input instead of a disposal problem."
+      },
+      "overview": {
+        "eyebrow": "Impact",
+        "title": "Designed to turn waste into measured industrial value.",
+        "copy": "The result is less disposal friction, cleaner energy inputs, and a more practical path toward lower-emission operations.",
+        "cards": [
+          {
+            "value": "90%",
+            "label": "SO2 Emission Reduction compared to traditional fossil coal"
+          },
+          {
+            "value": "1.8x",
+            "label": "CO2 Offset Factor per ton of biomass fuel consumed"
+          }
+        ]
+      },
+      "calculator": {
+        "eyebrow": "Carbon Calculator",
+        "title": "Estimate Your Transition Impact",
+        "copy": "Drag the slider below to see how many tons of coal fuel replacement changes emissions.",
+        "labelPrefix": "Coal Replaced:",
+        "labelSuffix": "Tons / month",
+        "results": {
+          "co2Label": "CO2 Emissions Saved / year",
+          "treesLabel": "Mature Trees Planted Equivalent"
+        },
+        "range": {
+          "min": 10,
+          "max": 2000,
+          "step": 10,
+          "defaultValue": 100
+        }
+      }
+    },
+    "projects": {
+      "intro": {
+        "eyebrow": "Projects",
+        "title": "Proven execution, delivering reliable energy transitions.",
+        "copy": "Explore how Bio Trend Energy has partnered with leading industries to successfully design, supply, and run sustainable biomass projects."
+      },
+      "items": [
+        {
+          "title": "STERLING TEXTILES BOILER RETROFIT",
+          "desc": "Full combustion system modification and long-term pellet supply contract implementation. Replaced local brown coal with 8mm agri-pellets.",
+          "location": "Haryana Industrial Zone",
+          "stats": "Saved 14,000 Tons of CO2 annually",
+          "status": "Active - 4 Years Ongoing",
+          "img": "/assets/project-waste-to-energy.jpg"
+        },
+        {
+          "title": "GREEN VALLEY FOOD PROCESSING HUB",
+          "desc": "Boiler conversion for processing steam generators using agricultural waste streams. Sourced directly from local regional farmers.",
+          "location": "Punjab Agricultural Belt",
+          "stats": "Eliminated crop residue burning across 35 villages",
+          "status": "Active - 2 Years Ongoing",
+          "img": "/assets/project-biogas.jpg"
+        },
+        {
+          "title": "ECO-HUB INDUSTRIAL STEAM CLUSTER",
+          "desc": "Shared energy microgrid supplying steam generated from organic waste to a cluster of twenty-five light chemical manufacturing facilities.",
+          "location": "Gujarat Corridor",
+          "stats": "40% reduction in average fuel expenses vs diesel",
+          "status": "Commissioned & Live",
+          "img": "/assets/project-biochar.jpg"
+        }
+      ]
+    },
+    "contact": {
+      "intro": {
+        "eyebrow": "Contact",
+        "title": "Ready to turn waste streams into cleaner energy inputs?",
+        "copy": "Use this page to reach the team for supply, implementation, or project review discussions."
+      },
+      "panel": {
+        "eyebrow": "Get in Touch",
+        "title": "Start with a direct conversation.",
+        "copy": "Our engineering and logistics teams are ready to evaluate your conversion requirements and feedstock compatibility.",
+        "generalInquiriesLabel": "General Inquiries:",
+        "generalInquiriesEmail": "info@biotrendenergy.com",
+        "officeAddressLabel": "Office Address:",
+        "officeAddressLines": [
+          "Bio Trend Energy Pvt. Ltd.",
+          "Level 4, Sector 62, Noida, UP, India"
+        ]
+      }
+    }
+  },
+  "forms": {
+    "contact": {
+      "successTitle": "Message Sent Successfully!",
+      "successMessageTemplate": "Thank you for reaching out, {name}. An energy expert from our team will contact you within 24 hours.",
+      "submitLabel": "Submit Request",
+      "resetLabel": "Send Another Message",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "Enter your name"
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "you@company.com"
+        },
+        "org": {
+          "label": "Organization",
+          "placeholder": "Your company name"
+        },
+        "interest": {
+          "label": "Topic of Interest",
+          "options": [
+            "Sourcing Supply",
+            "Boiler Retrofit",
+            "Waste Disposal",
+            "General"
+          ]
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Describe your energy requirements..."
+        }
+      }
+    },
+    "projectModal": {
+      "title": "Start a Project",
+      "copy": "Send your converter requirements or feedstock compatibilities to our technical team.",
+      "successTitle": "Message Sent Successfully!",
+      "successMessageTemplate": "Thank you for reaching out, {name}. An energy expert from our team will contact you within 24 hours.",
+      "submitLabel": "Submit Request",
+      "closeLabel": "Close Window",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "John Doe"
+        },
+        "email": {
+          "label": "Business Email",
+          "placeholder": "john@organization.com"
+        },
+        "org": {
+          "label": "Organization",
+          "placeholder": "Acme Industrial Corp"
+        },
+        "interest": {
+          "label": "Area of Interest",
+          "options": [
+            "Sourcing Biomass Supply",
+            "Feedstock Compatibility Review",
+            "Boiler/Equipment Conversion",
+            "Logistics & Operations Support"
+          ]
+        },
+        "message": {
+          "label": "Project Description",
+          "placeholder": "Briefly describe your feedstock, boilers, or volume requirements..."
+        }
+      }
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "copy": "Subscribe to receive technical guides and operational insights on biomass fuel systems.",
+      "placeholder": "Enter business email",
+      "successMessage": "Subscribed successfully! Thank you."
+    }
+  },
+  "footer": {
+    "description": "Transforming biomass waste into clean energy for a healthier planet and a more resilient future.",
+    "quickLinksTitle": "Quick Links",
+    "solutionsTitle": "Our Solutions",
+    "resourcesTitle": "Resources",
+    "contactTitle": "Get in Touch",
+    "phone": "+91 98765 43210",
+    "email": "info@biotrendenergy.com",
+    "office": "Gurugram, Haryana, India",
+    "copyright": "Copyright 2026 Bio Trend Energy. All rights reserved.",
+    "policies": [
+      {
+        "label": "Privacy Policy",
+        "href": "#home"
+      },
+      {
+        "label": "Terms of Use",
+        "href": "#home"
+      }
+    ],
+    "quickLinks": [],
+    "solutionsLinks": [],
+    "resourceLinks": [],
+    "socialLinks": []
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Driving the Transition Towards a Cleaner, Greener Future",
+    "description": "Bio Trend Energy is at the forefront of clean-energy innovation. We design, build and operate advanced bioenergy systems that convert biomass waste into renewable energy.",
+    "story": "Our approach combines engineering excellence with local insight. Every project is developed around resource efficiency, measurable impact and long-term operational reliability.",
+    "bullets": [
+      "Innovative, tailored solutions",
+      "Proven conversion technology",
+      "Environmental responsibility",
+      "Customer-centric delivery"
+    ],
+    "image": "/assets/leaf-dew.jpg",
+    "noteYears": "8 years",
+    "noteText": "of purposeful growth",
+    "missionTitle": "Our Mission",
+    "missionText": "Deliver sustainable bioenergy solutions that empower communities, protect the environment and drive economic growth.",
+    "visionTitle": "Our Vision",
+    "visionText": "A world where waste is a resource and clean energy is accessible to all."
+  },
+  "solutions": {
+    "eyebrow": "What we do",
+    "title": "Our Solutions",
+    "description": "End-to-end bioenergy solutions built around your resources, requirements and long-term goals.",
+    "items": [
+      {
+        "title": "Biomass Power Plants",
+        "description": "High-efficiency biomass power plants for reliable and renewable energy.",
+        "icon": {}
+      },
+      {
+        "title": "Waste to Energy",
+        "description": "Converting agricultural and industrial waste into clean energy.",
+        "icon": {}
+      },
+      {
+        "title": "Biogas Solutions",
+        "description": "Advanced biogas systems for industry, communities and agriculture.",
+        "icon": {}
+      },
+      {
+        "title": "Biochar Production",
+        "description": "Turning biomass into biochar for soil health and carbon capture.",
+        "icon": {}
+      },
+      {
+        "title": "Energy Consulting",
+        "description": "Expert consulting for feasibility, design and project implementation.",
+        "icon": {}
+      },
+      {
+        "title": "Operation & Maintenance",
+        "description": "Reliable operational performance and long-term plant care.",
+        "icon": {}
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "Our Process",
+    "description": "A proven process that converts waste into clean energy, built for consistent performance from source to supply.",
+    "badgeTitle": "Zero waste mindset",
+    "badgeText": "Maximum value from every resource",
+    "image": "/assets/biomass-process.jpg",
+    "steps": [
+      {
+        "title": "Feedstock Collection",
+        "description": "We source biomass waste from agriculture, industries and forestry.",
+        "icon": {}
+      },
+      {
+        "title": "Processing",
+        "description": "The biomass is sorted, dried and processed to ensure maximum efficiency.",
+        "icon": {}
+      },
+      {
+        "title": "Conversion",
+        "description": "Advanced technology converts biomass into clean, usable energy.",
+        "icon": {}
+      },
+      {
+        "title": "Energy Generation",
+        "description": "Reliable renewable energy is generated for industries and communities.",
+        "icon": {}
+      },
+      {
+        "title": "By-Products",
+        "description": "Valuable by-products such as biochar and organic fertilizer are produced.",
+        "icon": {}
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "title": "Proven execution, delivering reliable energy transitions.",
+    "description": "Explore how Bio Trend Energy has partnered with leading industries to successfully design, supply, and run sustainable biomass projects.",
+    "summaryValue": "50+",
+    "summaryText": "projects delivered across India",
+    "items": [
+      {
+        "title": "STERLING TEXTILES BOILER RETROFIT",
+        "description": "Full combustion system modification and long-term pellet supply contract implementation. Replaced local brown coal with 8mm agri-pellets.",
+        "location": "Haryana Industrial Zone",
+        "capacity": "Saved 14,000 Tons of CO2 annually",
+        "category": "Biomass Power",
+        "image": "/assets/project-waste-to-energy.jpg",
+        "imagePosition": "50% 50%",
+        "fallbackImage": "/assets/biomass-process.jpg"
+      },
+      {
+        "title": "GREEN VALLEY FOOD PROCESSING HUB",
+        "description": "Boiler conversion for processing steam generators using agricultural waste streams. Sourced directly from local regional farmers.",
+        "location": "Punjab Agricultural Belt",
+        "capacity": "Eliminated crop residue burning across 35 villages",
+        "category": "Waste to Energy",
+        "image": "/assets/project-biogas.jpg",
+        "imagePosition": "50% 58%",
+        "fallbackImage": "/assets/project-waste-to-energy.jpg"
+      },
+      {
+        "title": "ECO-HUB INDUSTRIAL STEAM CLUSTER",
+        "description": "Shared energy microgrid supplying steam generated from organic waste to a cluster of twenty-five light chemical manufacturing facilities.",
+        "location": "Gujarat Corridor",
+        "capacity": "40% reduction in average fuel expenses vs diesel",
+        "category": "Biogas",
+        "image": "/assets/project-biochar.jpg",
+        "imagePosition": "50% 55%",
+        "fallbackImage": "/assets/project-biogas.jpg"
+      }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Measurable change",
+    "title": "Our Impact",
+    "description": "Creating a positive impact on the environment, economy and society with every project we deliver.",
+    "image": "/assets/wind-impact.jpg",
+    "sdgTitle": "Sustainable Development Goals",
+    "sdgText": "Contributing to a cleaner environment and resilient communities.",
+    "items": [
+      {
+        "label": "CO2 Emissions Reduced",
+        "value": "250K+",
+        "detail": "Tons Annually",
+        "icon": {}
+      },
+      {
+        "label": "Renewable Energy Generated",
+        "value": "180+",
+        "detail": "GWh Annually",
+        "icon": {}
+      },
+      {
+        "label": "Waste Processed",
+        "value": "120K+",
+        "detail": "Tons Annually",
+        "icon": {}
+      },
+      {
+        "label": "Jobs Created",
+        "value": "350+",
+        "detail": "Direct & Indirect",
+        "icon": {}
+      }
+    ]
+  },
+  "seo": {
+    "metaTitle": "Bio Trend Energy — Advanced Biomass Fuel Systems",
+    "metaDescription": "Converting organic & agricultural waste streams into dependable clean industrial renewable energy.",
+    "keywords": "biomass, bioenergy, briquetting, renewable fuel, industrial decarbonization, sustainability",
+    "ogImage": "/assets/hero-bioenergy.jpg"
+  },
+  "testimonials": [
+    {
+      "quote": "Bio Trend replaced our imported coal with biomass briquettes in under four months. Fuel costs dropped and our boiler runs cleaner than ever.",
+      "name": "Rajesh Menon",
+      "role": "Plant Head, Meridian Textiles"
+    },
+    {
+      "quote": "Their team handled everything — feasibility, permits, commissioning. The community biogas plant now powers 300 homes reliably.",
+      "name": "Anita Deshpande",
+      "role": "Director, Grameen Energy Trust"
+    },
+    {
+      "quote": "The ESG reporting alone was worth it. We finally have audit-ready carbon numbers our board trusts, backed by real infrastructure.",
+      "name": "Vikram Rao",
+      "role": "Sustainability Lead, NorthStar Foods"
+    }
+  ]
+}
