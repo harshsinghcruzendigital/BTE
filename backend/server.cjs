@@ -1250,8 +1250,11 @@ async function start() {
   await ensureStorage();
   await loadSessions();
   const server = http.createServer(requestHandler);
-  server.listen(PORT, "127.0.0.1", () => {
-    console.log(`Backend running on http://127.0.0.1:${PORT}`);
+  // Bind to 0.0.0.0 so hosting platforms (Render, Railway, Fly) can route
+  // external traffic to the server. Override with HOST if needed.
+  const HOST = process.env.HOST || "0.0.0.0";
+  server.listen(PORT, HOST, () => {
+    console.log(`Backend running on http://${HOST}:${PORT}`);
     console.log(`CORS allowed origins: ${ALLOWED_ORIGINS.join(", ") || "(none)"}`);
   });
 }
