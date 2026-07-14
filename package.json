@@ -1,0 +1,29 @@
+{
+  "name": "bio-trend-energy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "backend": "node backend/server.cjs",
+    "backend:watch": "node --watch backend/server.cjs",
+    "dev:all": "concurrently -n frontend,backend -c blue,green \"npm:dev\" \"npm:backend\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "qa:visual": "node scripts/visual-check.mjs"
+  },
+  "dependencies": {
+    "@fontsource/poppins": "^5.1.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "concurrently": "^9.1.0",
+    "playwright-core": "^1.55.0",
+    "vite": "^8.1.4"
+  }
+}

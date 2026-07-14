@@ -1,0 +1,11 @@
+node_modules/
+dist/
+source-assets/
+qa-*.png
+*-review.png
+vite*.log
+.DS_Store
+
+# Runtime session tokens — never commit
+backend/data/sessions.json
+
