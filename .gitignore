@@ -6,6 +6,7 @@ qa-*.png
 vite*.log
 .DS_Store
 
-# Runtime session tokens — never commit
-backend/data/sessions.json
+# Runtime backend data (regenerated on server start) — never commit.
+# Keeps session tokens, password hashes and captured leads out of the repo.
+backend/data/
 
