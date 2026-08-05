@@ -1,0 +1,14 @@
+backend
+data
+scripts
+node_modules
+dist
+.claude
+.git
+.gitignore
+README.md
+CVS
+.svn
+.hg
+.git
+.DS_Store

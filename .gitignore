@@ -10,3 +10,5 @@ vite*.log
 # Keeps session tokens, password hashes and captured leads out of the repo.
 backend/data/
 
+
+.vercel

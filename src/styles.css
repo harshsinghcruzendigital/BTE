@@ -323,9 +323,8 @@ p {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 38px 0 26px;
-  background: var(--brand-primary-darker);
-  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 100%, 0 100%);
+  padding: 0 24px 0 26px;
+  background: transparent;
   border-radius: 999px 0 0 999px;
 }
 
@@ -345,7 +344,8 @@ p {
 }
 
 .nav-brand-wrap .brand img {
-  filter: brightness(0) invert(1);
+  /* Use the logo's original brand colors */
+  filter: none;
 }
 
 .desktop-nav {
@@ -2236,6 +2236,15 @@ p {
     --header-height: 68px;
   }
 
+  .hero-background-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+  }
+
   .section {
     padding: 88px 0;
   }
@@ -2337,13 +2346,24 @@ p {
 
   .hero-section {
     min-height: auto;
-    padding-top: calc(var(--header-height) + 80px);
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(var(--header-height) + 16px);
+  }
+
+  .hero-video-bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    z-index: 1;
   }
 
   .hero-grid {
     min-height: 0;
     grid-template-columns: 1fr;
     gap: 48px;
+    padding-top: 24px;
   }
 
   .hero-copy {
@@ -2541,12 +2561,12 @@ p {
   }
 
   .hero-section {
-    padding-top: calc(var(--header-height) + 60px);
+    padding-top: calc(var(--header-height) + 16px);
     padding-bottom: 22px;
   }
 
   .hero-grid {
-    gap: 38px;
+    gap: 24px;
   }
 
   .hero-copy h1 {
