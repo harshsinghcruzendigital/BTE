@@ -669,6 +669,18 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
     }
   };
 
+  const toggleFullscreen = () => {
+    if (videoRef.current) {
+      if (videoRef.current.requestFullscreen) {
+        videoRef.current.requestFullscreen();
+      } else if (videoRef.current.webkitRequestFullscreen) {
+        videoRef.current.webkitRequestFullscreen();
+      } else if (videoRef.current.msRequestFullscreen) {
+        videoRef.current.msRequestFullscreen();
+      }
+    }
+  };
+
   return (
     <section id="home" className="new-hero-section">
       {/* Background vector graphics */}
@@ -680,14 +692,7 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
       </div>
 
       <div className="new-hero-decor-leaf" aria-hidden="true">
-        <svg className="svg-decor-leaf-element" viewBox="0 0 200 200" fill="none" stroke="rgba(0, 138, 90, 0.05)" strokeWidth="1.5">
-          <path d="M100,180 Q100,100 130,20" />
-          <path d="M100,140 Q80,120 100,100 Q120,120 100,140" fill="rgba(0, 138, 90, 0.01)" />
-          <path d="M108,110 Q140,100 120,80 Q98,90 108,110" fill="rgba(0, 138, 90, 0.01)" />
-          <path d="M92,120 Q60,110 80,90 Q102,100 92,120" fill="rgba(0, 138, 90, 0.01)" />
-          <path d="M115,75 Q150,70 130,50 Q108,55 115,75" fill="rgba(0, 138, 90, 0.01)" />
-          <path d="M85,85 Q50,75 70,55 Q92,65 85,85" fill="rgba(0, 138, 90, 0.01)" />
-        </svg>
+        <img src="/assets/decor-leaf.jpg" alt="Botanical leaf decoration" />
       </div>
 
       {/* 1. Full-Width Video */}
@@ -714,6 +719,9 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
           <div className="controls-right">
             <button type="button" className="control-btn-mute" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            </button>
+            <button type="button" className="control-btn-mute" onClick={toggleFullscreen} aria-label="Fullscreen">
+              <Maximize2 size={16} />
             </button>
           </div>
         </div>
