@@ -3728,9 +3728,9 @@ p {
   max-width: none;
   margin: -94px 0 64px 0;
   width: 100%;
-  height: 46vh;
-  min-height: 380px;
-  max-height: 520px;
+  height: 115vh;
+  min-height: 950px;
+  max-height: 1300px;
   border-radius: 0;
   overflow: hidden;
   box-shadow: none;
@@ -4093,10 +4093,9 @@ p {
 @media (max-width: 990px) {
   .new-hero-video-container {
     width: 100%;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    aspect-ratio: 16 / 8;
+    height: 80vh;
+    min-height: 500px;
+    max-height: 800px;
     margin-bottom: 48px;
     border-radius: 0;
   }
@@ -4118,12 +4117,11 @@ p {
   }
   .new-hero-video-container {
     width: 100%;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    aspect-ratio: 16 / 9;
-    border-radius: 0;
+    height: 80vh;
+    min-height: 450px;
+    max-height: 700px;
     margin-bottom: 36px;
+    border-radius: 0;
   }
   .new-hero-video-controls {
     bottom: 16px;
