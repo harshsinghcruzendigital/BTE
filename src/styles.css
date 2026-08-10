@@ -3681,7 +3681,7 @@ p {
 .new-hero-section {
   position: relative;
   background: var(--bg-offwhite);
-  padding-top: calc(var(--header-height) + 24px);
+  padding-top: 94px;
   padding-bottom: 96px;
   overflow: hidden;
 }
@@ -3721,15 +3721,15 @@ p {
 /* 1. Video block container */
 .new-hero-video-container {
   position: relative;
-  max-width: 1400px;
-  margin: 0 auto 64px auto;
-  width: calc(100% - 48px);
+  max-width: none;
+  margin: 0 0 64px 0;
+  width: 100%;
   height: 46vh;
   min-height: 380px;
   max-height: 520px;
-  border-radius: 28px;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(16, 42, 46, 0.08);
+  box-shadow: none;
   background: #000000;
   z-index: 2;
 }
@@ -4086,12 +4086,13 @@ p {
 /* Responsive Media Queries */
 @media (max-width: 990px) {
   .new-hero-video-container {
-    width: calc(100% - 32px);
+    width: 100%;
     height: auto;
     min-height: 0;
     max-height: none;
     aspect-ratio: 16 / 8;
     margin-bottom: 48px;
+    border-radius: 0;
   }
   .new-hero-two-column {
     grid-template-columns: 1fr;
@@ -4106,16 +4107,16 @@ p {
 
 @media (max-width: 620px) {
   .new-hero-section {
-    padding-top: calc(var(--header-height) + 12px);
+    padding-top: 94px;
     padding-bottom: 64px;
   }
   .new-hero-video-container {
-    width: calc(100% - 24px);
+    width: 100%;
     height: auto;
     min-height: 0;
     max-height: none;
     aspect-ratio: 16 / 9;
-    border-radius: 20px;
+    border-radius: 0;
     margin-bottom: 36px;
   }
   .new-hero-video-controls {
