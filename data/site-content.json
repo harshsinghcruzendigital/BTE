@@ -78,13 +78,13 @@
     ]
   },
   "hero": {
-    "eyebrow": "Biomass fuel systems for cleaner Industry",
-    "title": "Turning waste into clean energy",
-    "description": "Bio Trend Energy converts agricultural and industrial waste streams into dependable renewable fuel for businesses ready to reduce waste and emissions.",
-    "buttonPrimary": "Explore Solutions",
-    "buttonSecondary": "See Workflow",
+    "eyebrow": "MEASURABLE ESG & CARBON REDUCTION",
+    "title": "Powering tomorrow with Net-Zero Fuels",
+    "description": "Transforming agricultural residue into clean, renewable energy and building a greener, healthier planet for generations to come.",
+    "buttonPrimary": "Start a Project",
+    "buttonSecondary": "Explore Solutions",
     "image": "/assets/hero-bioenergy.jpg",
-    "videoLink": "/assets/bte-video-17-02-2026.mp4"
+    "videoLink": "/assets/bio-trend-film.mp4"
   },
   "home": {
     "stats": [

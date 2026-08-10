@@ -68,7 +68,8 @@ import {
   Volume2,
   VolumeX,
   Maximize2,
-  Minimize2
+  Minimize2,
+  Pause
 } from 'lucide-react';
 import {
   contactDetails as defaultContactDetails,
@@ -645,67 +646,22 @@ function SectionIntro({ eyebrow, title, description, align = 'left' }) {
   );
 }
 
-const heroVideoWindows = [
-  { start: 0, end: 5 },
-  { start: 23, end: 32 },
-  { start: 38, end: 42 },
-  { start: 50, end: 58 },
-  { start: 70, end: 78 },
-  { start: 86, end: 90 },
-  { start: 126, end: 152 }
-];
-const heroUiFadeSeconds = 0.9;
-
-const getHeroUiPhase = (time) => {
-  const activeWindow = heroVideoWindows.find(({ start, end }) => time >= start && time <= end);
-  if (activeWindow) {
-    const fadeOutProgress = Math.min(1, Math.max(0, (time - activeWindow.start) / heroUiFadeSeconds));
-    return fadeOutProgress >= 1 ? 'hidden' : 'exiting';
-  }
-  const previousWindow = [...heroVideoWindows]
-    .reverse()
-    .find(({ end }) => Number.isFinite(end) && time > end);
-  if (previousWindow && time - previousWindow.end < heroUiFadeSeconds) {
-    return 'entering';
-  }
-  return 'visible';
-};
-
-const heroMessageCycles = [
-  {
-    eyebrow: "BIOMASS FUEL SYSTEMS FOR CLEANER INDUSTRY",
-    titleStart: "Turning waste into clean energy ",
-    titleHighlight: "Sustainable Tomorrow",
-    description: "Bio Trend Energy converts agricultural and industrial waste streams into dependable renewable fuel for businesses ready to reduce waste and emissions."
-  },
-  {
-    eyebrow: "DECARBONIZING INDUSTRIAL OPERATIONS",
-    titleStart: "Building fuel from unused ",
-    titleHighlight: "Biomass Briquettes",
-    description: "Empowering heavy industries across India to replace imported coal and fossil fuels with high-density, eco-friendly biomass energy solutions."
-  },
-  {
-    eyebrow: "MEASURABLE ESG & CARBON REDUCTION",
-    titleStart: "Powering tomorrow with ",
-    titleHighlight: "Net-Zero Fuels",
-    description: "Over 150,000 tons of agricultural residue transformed annually into clean green power, generating 85% lower carbon footprint."
-  },
-  {
-    eyebrow: "50+ ENTERPRISE INSTALLATIONS ACROSS INDIA",
-    titleStart: "Reliable bioenergy for a ",
-    titleHighlight: "Greener Economy",
-    description: "Join India's leading industrial plants switching to dependable, scalable biomass power systems designed for uninterrupted performance."
-  }
-];
-
 function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
   const videoRef = useRef(null);
-  const [heroUiPhase, setHeroUiPhase] = useState("hidden");
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [messageIndex, setMessageIndex] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHoveringMuteArea, setIsHoveringMuteArea] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -715,176 +671,169 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
   };
 
   const toggleFullScreen = () => {
-    const heroElem = document.getElementById('hero');
-    if (!document.fullscreenElement) {
-      (heroElem || document.documentElement).requestFullscreen?.().catch(() => {});
-      setIsFullScreen(true);
-    } else {
-      document.exitFullscreen?.().catch(() => {});
-      setIsFullScreen(false);
+    if (videoRef.current) {
+      if (!document.fullscreenElement) {
+        videoRef.current.requestFullscreen?.().catch(() => {});
+        setIsFullScreen(true);
+      } else {
+        document.exitFullscreen?.().catch(() => {});
+        setIsFullScreen(false);
+      }
     }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 120);
-    };
     const handleFsChange = () => {
       setIsFullScreen(!!document.fullscreenElement);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('fullscreenchange', handleFsChange);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('fullscreenchange', handleFsChange);
     };
   }, []);
 
-  const syncHeroVisibility = (event) => {
-    const time = event.currentTarget.currentTime || 0;
-    setHeroUiPhase(getHeroUiPhase(time));
-  };
-
-  useEffect(() => {
-    let frameId;
-    let lastPhase = "hidden";
-
-    const watchVideoTime = () => {
-      if (videoRef.current) {
-        const nextPhase = getHeroUiPhase(videoRef.current.currentTime || 0);
-        if (nextPhase !== lastPhase) {
-          if ((nextPhase === "visible" || nextPhase === "entering") && (lastPhase === "hidden" || lastPhase === "exiting")) {
-            setMessageIndex((prev) => (prev + 1) % heroMessageCycles.length);
-          }
-          lastPhase = nextPhase;
-          setHeroUiPhase(nextPhase);
-        }
-      }
-      frameId = window.requestAnimationFrame(watchVideoTime);
-    };
-
-    frameId = window.requestAnimationFrame(watchVideoTime);
-    return () => window.cancelAnimationFrame(frameId);
-  }, []);
-
-  const activeMessage = heroMessageCycles[messageIndex] || heroMessageCycles[0];
-
   return (
-    <section id="home" className={`hero-section hero-ui-${heroUiPhase}`}>
-      <div className="hero-video-bg" aria-hidden="true">
+    <section id="home" className="new-hero-section">
+      {/* Background vector graphics */}
+      <div className="new-hero-decor-lines" aria-hidden="true">
+        <svg className="svg-decor-lines" viewBox="0 0 100 100" fill="none" preserveAspectRatio="none">
+          <path d="M-10,110 C20,90 10,40 50,30 C80,20 90,-10 110,-20" stroke="rgba(0,138,90,0.03)" strokeWidth="0.5" />
+          <path d="M-20,100 C15,80 5,30 45,20 C75,10 85,-20 105,-30" stroke="rgba(0,138,90,0.02)" strokeWidth="0.5" />
+        </svg>
+      </div>
+
+      <div className="new-hero-decor-leaf" aria-hidden="true">
+        <svg className="svg-decor-leaf-element" viewBox="0 0 200 200" fill="none" stroke="rgba(0, 138, 90, 0.05)" strokeWidth="1.5">
+          <path d="M100,180 Q100,100 130,20" />
+          <path d="M100,140 Q80,120 100,100 Q120,120 100,140" fill="rgba(0, 138, 90, 0.01)" />
+          <path d="M108,110 Q140,100 120,80 Q98,90 108,110" fill="rgba(0, 138, 90, 0.01)" />
+          <path d="M92,120 Q60,110 80,90 Q102,100 92,120" fill="rgba(0, 138, 90, 0.01)" />
+          <path d="M115,75 Q150,70 130,50 Q108,55 115,75" fill="rgba(0, 138, 90, 0.01)" />
+          <path d="M85,85 Q50,75 70,55 Q92,65 85,85" fill="rgba(0, 138, 90, 0.01)" />
+        </svg>
+      </div>
+
+      {/* 1. Full-Width Video */}
+      <div className="new-hero-video-container" data-reveal>
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="hero-background-video"
-          onLoadedMetadata={syncHeroVisibility}
-          onPlay={syncHeroVisibility}
-          onSeeked={syncHeroVisibility}
-          onTimeUpdate={syncHeroVisibility}
+          className="new-hero-video"
         >
           <source src="/assets/bio-trend-film.mp4" type="video/mp4" />
         </video>
-        <div className={`hero-video-overlay hero-overlay-${heroUiPhase}`} />
-      </div>
-
-      <div className="hero-grid page-shell">
-        <div className="hero-copy" data-reveal>
-          <div className="eyebrow">
-            <span className="eyebrow-dot" />
-            {activeMessage.eyebrow}
-          </div>
-          <h1>
-            {activeMessage.titleStart}
-            <span>{activeMessage.titleHighlight}</span>
-          </h1>
-          <p>{activeMessage.description}</p>
-          <div className="hero-actions">
-            <button
-              type="button"
-              className="button button--primary-glow"
-              onClick={onOpenProjectModal}
-            >
-              Start a Project <ArrowRight size={17} />
+        
+        {/* Minimal controls overlay */}
+        <div className="new-hero-video-controls">
+          <div className="controls-left">
+            <button type="button" className="control-btn" onClick={togglePlay} aria-label={isPlaying ? "Pause Video" : "Play Video"}>
+              {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
+              <span>Play Video</span>
             </button>
-            <AppLink className="button button--glass" to="/solutions" onNavigate={onNavigate}>
-              Explore Solutions
-            </AppLink>
           </div>
-          <div className="hero-proof">
-            <div className="proof-avatars" aria-hidden="true">
-              <span>BT</span><span>CE</span><span>RE</span>
-            </div>
-            <p><strong>50+ successful projects</strong> delivered across India</p>
-          </div>
-        </div>
-
-        <div className="hero-showcase-bar" data-reveal>
-          <div className="showcase-thumb-card" onClick={onVideoOpen} role="button" tabIndex={0} aria-label="Watch Bio Trend Energy film">
-            <img src={heroData.image} alt="Modern bioenergy facility in green fields" />
-            <div className="showcase-thumb-play">
-              <Play size={15} fill="currentColor" />
-            </div>
-            <div className="showcase-thumb-text">
-              <strong>Watch Our Story</strong>
-              <small>03:20 min documentary</small>
-            </div>
-          </div>
-
-          <div className="showcase-metrics">
-            <div className="showcase-metric-item">
-              <strong><CountUp value="150K+" /></strong>
-              <span>Tons Biomass Processed</span>
-            </div>
-            <div className="showcase-metric-divider" />
-            <div className="showcase-metric-item">
-              <strong><CountUp value="85%" /></strong>
-              <span>Net CO2 Reduction</span>
-            </div>
-            <div className="showcase-metric-divider" />
-            <div className="showcase-metric-item">
-              <strong><CountUp value="120+" /></strong>
-              <span>Industrial Plants</span>
-            </div>
+          <div className="controls-right">
+            <button type="button" className="control-btn" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+              {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+            </button>
+            <button type="button" className="control-btn" onClick={toggleFullScreen} aria-label="Fullscreen">
+              {isFullScreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="stats-card page-shell" data-reveal>
-        {defaultStats.map(({ value, label, icon: Icon }) => (
-          <div className="stat" key={label}>
-            <span className="stat-icon"><Icon size={21} /></span>
-            <span><strong><CountUp value={value} /></strong><small>{label}</small></span>
+      {/* 2. Content + Impact Statistics */}
+      <div className="new-hero-content-wrapper page-shell" data-reveal>
+        <div className="new-hero-two-column">
+          {/* Left: Headline & Actions */}
+          <div className="content-left">
+            <div className="new-esg-label">
+              <Leaf size={12} className="esg-leaf-icon" />
+              <span>MEASURABLE ESG & CARBON REDUCTION</span>
+            </div>
+            <h1 className="new-hero-headline">
+              Powering tomorrow <br />
+              <span className="green-highlight">with Net-Zero Fuels</span>
+            </h1>
+            <p className="new-hero-description">
+              Transforming agricultural residue into clean, renewable energy and building a greener, healthier planet for generations to come.
+            </p>
+            <div className="new-hero-actions">
+              <button
+                type="button"
+                className="new-btn new-btn-primary"
+                onClick={onOpenProjectModal}
+              >
+                Start a Project <ArrowRight size={16} />
+              </button>
+              <AppLink className="new-btn new-btn-secondary" to="/solutions" onNavigate={onNavigate}>
+                Explore Solutions
+              </AppLink>
+            </div>
+            <div className="new-hero-proof">
+              <div className="proof-avatars">
+                <span className="avatar">BT</span>
+                <span className="avatar">CE</span>
+                <span className="avatar">RE</span>
+                <span className="avatar">IN</span>
+              </div>
+              <p className="proof-text">
+                <span className="bold-green">50+</span> successful projects delivered across India
+              </p>
+            </div>
           </div>
-        ))}
-      </div>
 
-      <div
-        className="hero-mute-zone"
-        onMouseEnter={() => setIsHoveringMuteArea(true)}
-        onMouseLeave={() => setIsHoveringMuteArea(false)}
-        style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}
-      >
-        <button
-          type="button"
-          className={`hero-mute-toggle ${isScrolled && !isHoveringMuteArea ? 'hero-mute-hidden' : 'hero-mute-visible'}`}
-          onClick={onVideoOpen}
-          aria-label="Watch Full Screen Story"
-          title="Watch Full Screen Story"
-        >
-          <Maximize2 size={18} />
-        </button>
-
-        <button
-          type="button"
-          className={`hero-mute-toggle ${isScrolled && !isHoveringMuteArea ? 'hero-mute-hidden' : 'hero-mute-visible'}`}
-          onClick={toggleMute}
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-          title={isMuted ? "Unmute video" : "Mute video"}
-        >
-          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-        </button>
+          {/* Right: Statistics Card */}
+          <div className="content-right">
+            <div className="new-stats-card">
+              <div className="stats-grid">
+                {/* Stat 1 */}
+                <div className="stat-grid-item">
+                  <div className="stat-icon-wrapper">
+                    <Leaf size={20} />
+                  </div>
+                  <div className="stat-data">
+                    <h3>150K+</h3>
+                    <p>Tons Biomass Processed</p>
+                  </div>
+                </div>
+                {/* Stat 2 */}
+                <div className="stat-grid-item">
+                  <div className="stat-icon-wrapper">
+                    <Globe2 size={20} />
+                  </div>
+                  <div className="stat-data">
+                    <h3>85%</h3>
+                    <p>Net CO₂ Reduction</p>
+                  </div>
+                </div>
+                {/* Stat 3 */}
+                <div className="stat-grid-item">
+                  <div className="stat-icon-wrapper">
+                    <Factory size={20} />
+                  </div>
+                  <div className="stat-data">
+                    <h3>120+</h3>
+                    <p>Industrial Plants</p>
+                  </div>
+                </div>
+                {/* Stat 4 */}
+                <div className="stat-grid-item">
+                  <div className="stat-icon-wrapper">
+                    <Zap size={20} />
+                  </div>
+                  <div className="stat-data">
+                    <h3>50+</h3>
+                    <p>Projects Across India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

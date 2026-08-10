@@ -78,23 +78,21 @@
     ]
   },
   "hero": {
-    "eyebrow": "Biomass fuel systems for cleaner Industry",
+    "eyebrow": "MEASURABLE ESG & CARBON REDUCTION",
     "messages": [
-      "Turning waste into clean energy",
-      "Building fuel from unused biomass",
-      "Powering tomorrow, sustainably"
+      "Powering tomorrow with Net-Zero Fuels"
     ],
-    "copy": "Bio Trend Energy converts agricultural and industrial waste streams into dependable renewable fuel for businesses ready to reduce waste and emissions.",
+    "copy": "Transforming agricultural residue into clean, renewable energy and building a greener, healthier planet for generations to come.",
     "primaryAction": {
+      "label": "Start a Project",
+      "path": "#"
+    },
+    "secondaryAction": {
       "label": "Explore Solutions",
       "path": "/solutions"
     },
-    "secondaryAction": {
-      "label": "See Workflow",
-      "path": "/process"
-    },
-    "fullscreenLabel": "Full Video",
-    "videoSource": "/assets/bte-video-17-02-2026.mp4",
+    "fullscreenLabel": "Play Video",
+    "videoSource": "/assets/bio-trend-film.mp4",
     "videoSources": {
       "mp4": "/assets/bte-video-17-02-2026.mp4",
       "mov": "/assets/bte-video-17-02-2026.mov"
