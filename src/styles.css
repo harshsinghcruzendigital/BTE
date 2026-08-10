@@ -3681,7 +3681,7 @@ p {
 .new-hero-section {
   position: relative;
   background: var(--bg-offwhite);
-  padding-top: 94px;
+  padding-top: 0;
   padding-bottom: 96px;
   overflow: hidden;
 }
@@ -4107,7 +4107,7 @@ p {
 
 @media (max-width: 620px) {
   .new-hero-section {
-    padding-top: 94px;
+    padding-top: 0;
     padding-bottom: 64px;
   }
   .new-hero-video-container {
