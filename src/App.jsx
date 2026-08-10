@@ -650,7 +650,6 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [isFullScreen, setIsFullScreen] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -669,28 +668,6 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
       setIsMuted(videoRef.current.muted);
     }
   };
-
-  const toggleFullScreen = () => {
-    if (videoRef.current) {
-      if (!document.fullscreenElement) {
-        videoRef.current.requestFullscreen?.().catch(() => {});
-        setIsFullScreen(true);
-      } else {
-        document.exitFullscreen?.().catch(() => {});
-        setIsFullScreen(false);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const handleFsChange = () => {
-      setIsFullScreen(!!document.fullscreenElement);
-    };
-    document.addEventListener('fullscreenchange', handleFsChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFsChange);
-    };
-  }, []);
 
   return (
     <section id="home" className="new-hero-section">
@@ -729,17 +706,14 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
         {/* Minimal controls overlay */}
         <div className="new-hero-video-controls">
           <div className="controls-left">
-            <button type="button" className="control-btn" onClick={togglePlay} aria-label={isPlaying ? "Pause Video" : "Play Video"}>
+            <button type="button" className="new-play-circle" onClick={togglePlay} aria-label={isPlaying ? "Pause" : "Play"}>
               {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
-              <span>Play Video</span>
             </button>
+            <span className="new-play-label" onClick={togglePlay}>{isPlaying ? "Pause Video" : "Play Video"}</span>
           </div>
           <div className="controls-right">
-            <button type="button" className="control-btn" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
-              {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-            </button>
-            <button type="button" className="control-btn" onClick={toggleFullScreen} aria-label="Fullscreen">
-              {isFullScreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+            <button type="button" className="control-btn-mute" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+              {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
           </div>
         </div>
@@ -758,6 +732,11 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
               Powering tomorrow <br />
               <span className="green-highlight">with Net-Zero Fuels</span>
             </h1>
+            <div className="new-headline-divider">
+              <span className="divider-line" />
+              <Leaf size={12} className="divider-leaf" />
+              <span className="divider-line" />
+            </div>
             <p className="new-hero-description">
               Transforming agricultural residue into clean, renewable energy and building a greener, healthier planet for generations to come.
             </p>
@@ -775,10 +754,10 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
             </div>
             <div className="new-hero-proof">
               <div className="proof-avatars">
-                <span className="avatar">BT</span>
-                <span className="avatar">CE</span>
-                <span className="avatar">RE</span>
-                <span className="avatar">IN</span>
+                <img src="/assets/avatar-1.jpg" alt="Sustainability Manager" className="avatar-img" />
+                <img src="/assets/avatar-2.jpg" alt="Energy Engineer" className="avatar-img" />
+                <img src="/assets/avatar-3.jpg" alt="Clean Energy Analyst" className="avatar-img" />
+                <img src="/assets/avatar-4.jpg" alt="Operations Director" className="avatar-img" />
               </div>
               <p className="proof-text">
                 <span className="bold-green">50+</span> successful projects delivered across India
