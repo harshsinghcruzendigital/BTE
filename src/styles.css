@@ -4087,6 +4087,9 @@ p {
 @media (max-width: 990px) {
   .new-hero-video-container {
     width: calc(100% - 32px);
+    height: auto;
+    min-height: 0;
+    max-height: none;
     aspect-ratio: 16 / 8;
     margin-bottom: 48px;
   }
@@ -4108,6 +4111,9 @@ p {
   }
   .new-hero-video-container {
     width: calc(100% - 24px);
+    height: auto;
+    min-height: 0;
+    max-height: none;
     aspect-ratio: 16 / 9;
     border-radius: 20px;
     margin-bottom: 36px;
