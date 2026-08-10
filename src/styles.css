@@ -291,7 +291,7 @@ p {
 .site-header {
   position: fixed;
   z-index: 1000;
-  top: 0;
+  top: 16px;
   right: 0;
   left: 0;
   height: 80px;
@@ -315,8 +315,7 @@ p {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(228, 234, 230, 0.8);
-  border-top: none;
-  border-radius: 0 0 24px 24px;
+  border-radius: 20px;
   box-shadow: 0 8px 32px rgba(16, 42, 46, 0.04);
   overflow: hidden;
   padding-right: 14px;
@@ -394,11 +393,13 @@ p {
 
 .nav-active-bar {
   position: absolute;
-  bottom: 18px;
-  width: 24px;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
   height: 3px;
   border-radius: 3px;
-  background: var(--brand-primary-darker);
+  background: var(--primary-green, #008A5A);
 }
 
 .nav-actions {
@@ -3883,7 +3884,7 @@ p {
   align-items: center;
   gap: 12px;
   margin: 18px 0 26px 0;
-  max-width: 520px;
+  max-width: 180px;
   width: 100%;
 }
 
