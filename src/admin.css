@@ -1258,6 +1258,27 @@
   transform: translateY(-2px);
 }
 
+.s-swatch-btn.active {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.28), inset 0 0 0 1px #10b981 !important;
+  position: relative;
+}
+
+.s-active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .s-swatch-btn strong {
   font-size: 0.95rem;
   color: var(--s-text);

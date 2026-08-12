@@ -2035,6 +2035,15 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     }
   }, [settingsData]);
 
+  const getCurrentPresetName = () => {
+    const p = (settingsData?.design?.palettes?.[themeMode]?.primary || '').toLowerCase();
+    if (p === '#10b981' || p === '#059669') return 'emerald';
+    if (p === '#0891b2' || p === '#06b6d4') return 'ocean';
+    if (p === '#d97706' || p === '#f59e0b') return 'ochre';
+    if (p === '#334155' || p === '#3b82f6') return 'charcoal';
+    return 'custom';
+  };
+
   const loadAnalytics = async () => {
     const data = await apiFetch('/api/analytics');
     if (data) {
@@ -3959,8 +3968,11 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     <span className="s-badge">Instant Palette</span>
                   </div>
                   <div className="s-presets-swatch-list">
-                    <button type="button" onClick={() => handleApplyPreset('emerald')} className="s-swatch-btn emerald">
-                      <strong>Emerald Forest</strong>
+                    <button type="button" onClick={() => handleApplyPreset('emerald')} className={`s-swatch-btn emerald ${getCurrentPresetName() === 'emerald' ? 'active' : ''}`}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <strong>Emerald Forest</strong>
+                        {getCurrentPresetName() === 'emerald' && <span className="s-active-badge">✓ Active</span>}
+                      </div>
                       <span>Organic Bioenergy Green</span>
                       <div className="s-swatch-bars">
                         <div className="s-swatch-bar" style={{ background: '#10b981' }} />
@@ -3969,8 +3981,11 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       </div>
                     </button>
 
-                    <button type="button" onClick={() => handleApplyPreset('ocean')} className="s-swatch-btn ocean">
-                      <strong>Ocean Recycling</strong>
+                    <button type="button" onClick={() => handleApplyPreset('ocean')} className={`s-swatch-btn ocean ${getCurrentPresetName() === 'ocean' ? 'active' : ''}`}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <strong>Ocean Recycling</strong>
+                        {getCurrentPresetName() === 'ocean' && <span className="s-active-badge">✓ Active</span>}
+                      </div>
                       <span>Clean-Tech Teal & Cyan</span>
                       <div className="s-swatch-bars">
                         <div className="s-swatch-bar" style={{ background: '#0891b2' }} />
@@ -3979,8 +3994,11 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       </div>
                     </button>
 
-                    <button type="button" onClick={() => handleApplyPreset('ochre')} className="s-swatch-btn ochre">
-                      <strong>Earthy Ochre</strong>
+                    <button type="button" onClick={() => handleApplyPreset('ochre')} className={`s-swatch-btn ochre ${getCurrentPresetName() === 'ochre' ? 'active' : ''}`}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <strong>Earthy Ochre</strong>
+                        {getCurrentPresetName() === 'ochre' && <span className="s-active-badge">✓ Active</span>}
+                      </div>
                       <span>Warm Soil & Clay Gold</span>
                       <div className="s-swatch-bars">
                         <div className="s-swatch-bar" style={{ background: '#d97706' }} />
@@ -3989,8 +4007,11 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       </div>
                     </button>
 
-                    <button type="button" onClick={() => handleApplyPreset('charcoal')} className="s-swatch-btn charcoal">
-                      <strong>Charcoal Slate</strong>
+                    <button type="button" onClick={() => handleApplyPreset('charcoal')} className={`s-swatch-btn charcoal ${getCurrentPresetName() === 'charcoal' ? 'active' : ''}`}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <strong>Charcoal Slate</strong>
+                        {getCurrentPresetName() === 'charcoal' && <span className="s-active-badge">✓ Active</span>}
+                      </div>
                       <span>Minimalist Cyber Slate</span>
                       <div className="s-swatch-bars">
                         <div className="s-swatch-bar" style={{ background: '#3b82f6' }} />
@@ -4074,7 +4095,12 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     };
                     return (
                       <div className="s-palette-field" key={key}>
-                        <span className="s-palette-label">{colorFriendlyNames[key] || key}</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                          <span className="s-palette-label">{colorFriendlyNames[key] || key}</span>
+                          <span style={{ fontSize: '0.72rem', background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600, fontFamily: 'monospace' }}>
+                            Active: {settingsData.design.palettes[themeMode][key] || '#10b981'}
+                          </span>
+                        </div>
                         <div className="s-color-picker-wrap">
                           <input
                             type="color"
@@ -5430,6 +5456,13 @@ export default function App() {
       // Semantic aliases used across the navbar, buttons, badges and gradient
       // accents so every one of those pulls from the same generated ramp.
       root.style.setProperty('--brand-primary', primary);
+      root.style.setProperty('--brand-blue', primary);
+      root.style.setProperty('--brand-blue-deep', primary);
+      root.style.setProperty('--brand-teal', secondary || ramp[600]);
+      root.style.setProperty('--brand-cyan', secondary || ramp[500]);
+      root.style.setProperty('--green', primary);
+      root.style.setProperty('--lime', secondary || ramp[600]);
+      root.style.setProperty('--navy', ink);
       root.style.setProperty('--brand-primary-dark', ramp[900]);
       root.style.setProperty('--brand-primary-darker', ramp[950]);
       root.style.setProperty('--brand-accent', secondary || ramp[700]);
