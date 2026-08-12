@@ -2210,21 +2210,30 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     }
   };
 
-  const handleSaveSettings = async () => {
+  const handleSaveAll = async () => {
     setIsSaving(true);
+    if (siteData) {
+      localStorage.setItem('bte_site_content', JSON.stringify(siteData));
+    }
     if (settingsData) {
       localStorage.setItem('bte_site_settings', JSON.stringify(settingsData));
     }
-    const result = await apiFetch('/api/settings', {
-      method: 'PUT',
-      body: JSON.stringify(settingsData)
-    });
+
+    await Promise.all([
+      apiFetch('/api/content', { method: 'PUT', body: JSON.stringify(siteData) }),
+      apiFetch('/api/settings', { method: 'PUT', body: JSON.stringify(settingsData) })
+    ]);
+
     setTimeout(() => {
       setIsSaving(false);
-      flashStatus('Theme tokens saved & set as default!');
+      flashStatus('All site content & theme colors saved as default!');
       const previewFrame = document.getElementById('sitePreviewFrame');
       if (previewFrame) previewFrame.contentWindow?.location.reload();
     }, 450);
+  };
+
+  const handleSaveSettings = async () => {
+    return handleSaveAll();
   };
 
   const handleResetSettings = async () => {
@@ -2718,7 +2727,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
             <button
               type="button"
-              onClick={handleSaveContent}
+              onClick={handleSaveAll}
               disabled={isSaving}
               className="s-btn s-btn-primary s-btn-sm"
             >
@@ -4097,7 +4106,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
                 <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
                   <button type="button" onClick={handleResetSettings} className="s-btn s-btn-ghost">Reset Theme</button>
-                  <button type="button" onClick={handleSaveSettings} disabled={isSaving} className="s-btn s-btn-primary">
+                  <button type="button" onClick={handleSaveAll} disabled={isSaving} className="s-btn s-btn-primary">
                     <Sparkles size={15} />
                     <span>{isSaving ? 'Applying...' : 'Save & Publish Theme'}</span>
                   </button>
@@ -5420,16 +5429,14 @@ export default function App() {
 
       // Semantic aliases used across the navbar, buttons, badges and gradient
       // accents so every one of those pulls from the same generated ramp.
-      root.style.setProperty('--brand-primary', ramp[900]);
-      root.style.setProperty('--brand-primary-dark', ramp[950]);
-      root.style.setProperty('--brand-primary-darker', ramp[800]);
+      root.style.setProperty('--brand-primary', primary);
+      root.style.setProperty('--brand-primary-dark', ramp[900]);
+      root.style.setProperty('--brand-primary-darker', ramp[950]);
       root.style.setProperty('--brand-accent', secondary || ramp[700]);
-      // Darker step of the same accent hue, used wherever the accent is text
-      // on a light surface so a custom palette cannot drop below AA contrast.
       root.style.setProperty('--brand-accent-ink', secondaryRamp[800] || ramp[800]);
       root.style.setProperty('--brand-accent-soft', secondaryRamp[200] || ramp[200]);
-      root.style.setProperty('--brand-gradient-start', secondaryRamp[500] || ramp[500]);
-      root.style.setProperty('--brand-gradient-end', ramp[700]);
+      root.style.setProperty('--brand-gradient-start', secondary || ramp[500]);
+      root.style.setProperty('--brand-gradient-end', primary);
       root.style.setProperty('--brand-tint', ramp[100]);
       root.style.setProperty('--brand-tint-strong', ramp[200]);
       root.style.setProperty('--brand-glow', ramp.glow);
