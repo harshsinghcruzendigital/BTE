@@ -5449,9 +5449,15 @@ export default function App() {
       const secondaryRamp = generateShadeRamp(secondary);
 
       root.style.setProperty('--canvas', pageBg);
+      root.style.setProperty('--bg-offwhite', pageBg);
       root.style.setProperty('--paper', surface);
+      root.style.setProperty('--card-bg', surface);
       root.style.setProperty('--ink', ink);
+      root.style.setProperty('--dark-navy', ink);
+      root.style.setProperty('--heading-text', ink);
       root.style.setProperty('--ink-soft', inkSoft);
+      root.style.setProperty('--muted-text', inkSoft);
+      root.style.setProperty('--text-muted', inkSoft);
       root.style.setProperty('--line', line);
 
       root.style.setProperty('--brand-950', ramp[950]);
