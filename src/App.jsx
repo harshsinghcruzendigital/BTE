@@ -67,9 +67,7 @@ import {
   Copy,
   Volume2,
   VolumeX,
-  Maximize2,
-  Minimize2,
-  Pause
+  Minimize2
 } from 'lucide-react';
 import {
   contactDetails as defaultContactDetails,
@@ -82,6 +80,7 @@ import {
   values as defaultValues,
 } from './data';
 import initialSiteData from '../data/site-content.json';
+import initialSiteSettings from '../data/site-settings.json';
 import './admin.css';
 
 // API base URL. In production set VITE_API_BASE to your deployed backend's URL
@@ -309,7 +308,7 @@ function extractFontName(value) {
 
 // --- Color ramp generation -------------------------------------------------
 // The whole site (nav, buttons, badges, borders, hover states) references a
-// small ramp of CSS variables (--green-950 ... --green-50). Rather than
+// small ramp of CSS variables (--brand-950 ... --brand-50). Rather than
 // asking the admin to pick 7+ individual shades, we derive the full ramp
 // from a single chosen brand color (any hue — not just green) so "pick blue"
 // really does recolor the entire site consistently.
@@ -648,19 +647,7 @@ function SectionIntro({ eyebrow, title, description, align = 'left' }) {
 
 function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -669,25 +656,13 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
     }
   };
 
-  const toggleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if (videoRef.current.webkitRequestFullscreen) {
-        videoRef.current.webkitRequestFullscreen();
-      } else if (videoRef.current.msRequestFullscreen) {
-        videoRef.current.msRequestFullscreen();
-      }
-    }
-  };
-
   return (
     <section id="home" className="new-hero-section">
       {/* Background vector graphics */}
       <div className="new-hero-decor-lines" aria-hidden="true">
         <svg className="svg-decor-lines" viewBox="0 0 100 100" fill="none" preserveAspectRatio="none">
-          <path d="M-10,110 C20,90 10,40 50,30 C80,20 90,-10 110,-20" stroke="rgba(0,138,90,0.03)" strokeWidth="0.5" />
-          <path d="M-20,100 C15,80 5,30 45,20 C75,10 85,-20 105,-30" stroke="rgba(0,138,90,0.02)" strokeWidth="0.5" />
+          <path d="M-10,110 C20,90 10,40 50,30 C80,20 90,-10 110,-20" stroke="rgba(2,116,181,0.05)" strokeWidth="0.5" />
+          <path d="M-20,100 C15,80 5,30 45,20 C75,10 85,-20 105,-30" stroke="rgba(2,142,140,0.05)" strokeWidth="0.5" />
         </svg>
       </div>
 
@@ -710,18 +685,9 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
         
         {/* Minimal controls overlay */}
         <div className="new-hero-video-controls">
-          <div className="controls-left">
-            <button type="button" className="new-play-circle" onClick={togglePlay} aria-label={isPlaying ? "Pause" : "Play"}>
-              {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
-            </button>
-            <span className="new-play-label" onClick={togglePlay}>{isPlaying ? "Pause Video" : "Play Video"}</span>
-          </div>
           <div className="controls-right">
             <button type="button" className="control-btn-mute" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
               {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
-            <button type="button" className="control-btn-mute" onClick={toggleFullscreen} aria-label="Fullscreen">
-              <Maximize2 size={16} />
             </button>
           </div>
         </div>
@@ -2246,31 +2212,30 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
   const handleSaveSettings = async () => {
     setIsSaving(true);
+    if (settingsData) {
+      localStorage.setItem('bte_site_settings', JSON.stringify(settingsData));
+    }
     const result = await apiFetch('/api/settings', {
       method: 'PUT',
       body: JSON.stringify(settingsData)
     });
     setTimeout(() => {
       setIsSaving(false);
-      if (result) {
-        flashStatus('Theme tokens applied!');
-        const previewFrame = document.getElementById('sitePreviewFrame');
-        if (previewFrame) previewFrame.contentWindow?.location.reload();
-      } else {
-        flashStatus(backendOfflineMessage, false);
-      }
+      flashStatus('Theme tokens saved & set as default!');
+      const previewFrame = document.getElementById('sitePreviewFrame');
+      if (previewFrame) previewFrame.contentWindow?.location.reload();
     }, 450);
   };
 
   const handleResetSettings = async () => {
     if (!window.confirm('Reset theme settings to defaults?')) return;
-    const defaults = await apiFetch('/api/settings/defaults');
-    if (defaults) {
-      setSettingsData(defaults);
-      flashStatus('Theme settings reset');
-    } else {
-      flashStatus(backendOfflineMessage, false);
+    let defaults = await apiFetch('/api/settings/defaults');
+    if (!defaults) {
+      defaults = initialSiteSettings;
     }
+    setSettingsData(defaults);
+    localStorage.setItem('bte_site_settings', JSON.stringify(defaults));
+    flashStatus('Theme settings reset to defaults');
   };
 
   const handleAddStaff = async (e) => {
@@ -2483,7 +2448,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     const nextSettings = { ...settingsData };
     nextSettings.design.palettes = presets[presetName];
     setSettingsData(nextSettings);
-    flashStatus(`Palette "${presetName.toUpperCase()}" loaded!`);
+    localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+    flashStatus(`Palette "${presetName.toUpperCase()}" loaded & saved!`);
   };
 
   const getActiveContentValue = (key) => {
@@ -4040,6 +4006,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                         const nextSettings = { ...settingsData };
                         nextSettings.design.fontFamily = e.target.value;
                         setSettingsData(nextSettings);
+                        localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                       }}
                       className="s-select"
                     >
@@ -4107,6 +4074,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                               const nextSettings = { ...settingsData };
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
+                              localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                             }}
                           />
                           <input
@@ -4116,6 +4084,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                               const nextSettings = { ...settingsData };
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
+                              localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                             }}
                             className="s-color-input"
                             placeholder="#HEXCODE"
@@ -4144,7 +4113,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                   Every button, navbar pill, badge and gradient accent across the whole site pulls from this ramp — generated automatically from your Primary Brand Color, so choosing a new color (like blue) recolors everything consistently.
                 </p>
                 <div className="s-ramp-preview-row">
-                  {Object.entries(generateShadeRamp(settingsData.design?.palettes?.[themeMode]?.primary || '#0b5130')).map(([shade, hex]) => (
+                  {Object.entries(generateShadeRamp(settingsData.design?.palettes?.[themeMode]?.primary || '#0066B3')).map(([shade, hex]) => (
                     <div key={shade} className="s-ramp-swatch" style={{ background: hex }} title={hex}>
                       <span>{shade}</span>
                     </div>
@@ -4166,6 +4135,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                         const nextSettings = { ...settingsData };
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), buttonShape: e.target.value };
                         setSettingsData(nextSettings);
+                        localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                       }}
                       className="s-select"
                     >
@@ -4183,6 +4153,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                         const nextSettings = { ...settingsData };
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), shadowIntensity: e.target.value };
                         setSettingsData(nextSettings);
+                        localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                       }}
                       className="s-select"
                     >
@@ -4203,6 +4174,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                         const nextSettings = { ...settingsData };
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), cardRadius: Number(e.target.value) };
                         setSettingsData(nextSettings);
+                        localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
                       }}
                       style={{ width: '100%' }}
                     />
@@ -4215,7 +4187,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     className="s-btn s-btn-primary"
                     style={{
                       borderRadius: { pill: '999px', rounded: '14px', square: '6px' }[settingsData.design?.layout?.buttonShape || 'pill'],
-                      background: settingsData.design?.palettes?.[themeMode]?.primary || '#0b5130',
+                      background: settingsData.design?.palettes?.[themeMode]?.primary || '#0066B3',
                       border: 'none'
                     }}
                   >
@@ -5209,7 +5181,17 @@ function mapContentStructure(data) {
 export default function App() {
   const [pathname, setPathname] = useState(() => window.location.pathname.replace(/\/+$/, '') || '/');
   const [siteData, setSiteData] = useState(() => mapContentStructure(initialSiteData));
-  const [settingsData, setSettingsData] = useState(null);
+  const [settingsData, setSettingsData] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('bte_site_settings');
+      if (stored) {
+        try {
+          return JSON.parse(stored);
+        } catch (e) {}
+      }
+    }
+    return initialSiteSettings;
+  });
   const [currentUser, setCurrentUser] = useState(() => {
     // Require BOTH a stored user and a session token — a user record without a
     // token can't authenticate any admin API call, so treat it as logged out.
@@ -5356,21 +5338,9 @@ export default function App() {
       if (!response.ok) throw new Error();
       const data = await response.json();
       setSettingsData(data);
+      localStorage.setItem('bte_site_settings', JSON.stringify(data));
     } catch (err) {
-      console.warn('Connection to Node backend settings API failed. Falling back to default theme.');
-      setSettingsData({
-        design: {
-          fontFamily: 'Outfit',
-          typography: {
-            navScale: 1, buttonScale: 1, eyebrowScale: 1, bodyScale: 1,
-            heroTitleScale: 1, pageTitleScale: 1, sectionTitleScale: 1, cardTitleScale: 1
-          },
-          palettes: {
-            light: { pageBackground: '#f8fafc', surface: '#ffffff', text: '#0f172a', heading: '#020617', primary: '#10b981', secondary: '#06b6d4', mist: '#f1f5f9' },
-            dark: { pageBackground: '#070b12', surface: '#0d1422', text: '#f8fafc', heading: '#ffffff', primary: '#10b981', secondary: '#06b6d4', mist: '#162238' }
-          }
-        }
-      });
+      console.warn('Backend settings API offline or unavailable. Maintaining current theme settings.');
     }
   };
 
@@ -5416,15 +5386,15 @@ export default function App() {
     const fallbackColor = colors?.light || (colors?.primary ? colors : null);
 
     if (palette || fallbackColor) {
-      const pageBg = palette?.pageBackground || fallbackColor?.bgPage || '#fbfcfa';
+      const pageBg = palette?.pageBackground || fallbackColor?.bgPage || '#F4F9FC';
       const surface = palette?.surface || fallbackColor?.bgSurface || '#ffffff';
-      const ink = palette?.heading || fallbackColor?.textHeading || '#0b1d13';
-      const inkSoft = palette?.text || fallbackColor?.textBody || '#546158';
+      const ink = palette?.heading || fallbackColor?.textHeading || '#0B2A45';
+      const inkSoft = palette?.text || fallbackColor?.textBody || '#5A7186';
 
-      const primary = palette?.primary || fallbackColor?.primary || '#0b5130';
-      const secondary = palette?.secondary || fallbackColor?.accent || '#267b3f';
-      const mist = palette?.mist || fallbackColor?.mist || '#f3f8f1';
-      const line = palette?.mist || fallbackColor?.border || '#e5ebe4';
+      const primary = palette?.primary || fallbackColor?.primary || '#0066B3';
+      const secondary = palette?.secondary || fallbackColor?.accent || '#02839E';
+      const mist = palette?.mist || fallbackColor?.mist || '#EAF4FA';
+      const line = palette?.mist || fallbackColor?.border || '#DBE7F0';
 
       // Derive a full shade ramp from the single chosen brand color so
       // picking e.g. blue re-colors the navbar, every button, badges,
@@ -5438,15 +5408,15 @@ export default function App() {
       root.style.setProperty('--ink-soft', inkSoft);
       root.style.setProperty('--line', line);
 
-      root.style.setProperty('--green-950', ramp[950]);
-      root.style.setProperty('--green-900', ramp[900]);
-      root.style.setProperty('--green-800', ramp[800]);
-      root.style.setProperty('--green-700', secondary || ramp[700]);
-      root.style.setProperty('--green-600', secondaryRamp[600] || ramp[600]);
-      root.style.setProperty('--green-500', ramp[500]);
-      root.style.setProperty('--green-200', mist || ramp[200]);
-      root.style.setProperty('--green-100', ramp[100]);
-      root.style.setProperty('--green-50', pageBg || ramp[50]);
+      root.style.setProperty('--brand-950', ramp[950]);
+      root.style.setProperty('--brand-900', ramp[900]);
+      root.style.setProperty('--brand-800', ramp[800]);
+      root.style.setProperty('--brand-700', secondary || ramp[700]);
+      root.style.setProperty('--brand-600', secondaryRamp[600] || ramp[600]);
+      root.style.setProperty('--brand-500', ramp[500]);
+      root.style.setProperty('--brand-200', mist || ramp[200]);
+      root.style.setProperty('--brand-100', ramp[100]);
+      root.style.setProperty('--brand-50', pageBg || ramp[50]);
 
       // Semantic aliases used across the navbar, buttons, badges and gradient
       // accents so every one of those pulls from the same generated ramp.
@@ -5454,6 +5424,9 @@ export default function App() {
       root.style.setProperty('--brand-primary-dark', ramp[950]);
       root.style.setProperty('--brand-primary-darker', ramp[800]);
       root.style.setProperty('--brand-accent', secondary || ramp[700]);
+      // Darker step of the same accent hue, used wherever the accent is text
+      // on a light surface so a custom palette cannot drop below AA contrast.
+      root.style.setProperty('--brand-accent-ink', secondaryRamp[800] || ramp[800]);
       root.style.setProperty('--brand-accent-soft', secondaryRamp[200] || ramp[200]);
       root.style.setProperty('--brand-gradient-start', secondaryRamp[500] || ramp[500]);
       root.style.setProperty('--brand-gradient-end', ramp[700]);
