@@ -2463,7 +2463,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
         dark: { pageBackground: '#090d16', surface: '#111827', text: '#94a3b8', heading: '#f8fafc', primary: '#3b82f6', secondary: '#60a5fa', mist: '#1f2937' }
       }
     };
-    const nextSettings = { ...settingsData };
+    const nextSettings = JSON.parse(JSON.stringify(settingsData));
+    if (!nextSettings.design) nextSettings.design = {};
     nextSettings.design.palettes = presets[presetName];
     setSettingsData(nextSettings);
     localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4033,7 +4034,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       value={selectedFont}
                       onChange={(e) => {
                         setSelectedFont(e.target.value);
-                        const nextSettings = { ...settingsData };
+                        const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                        if (!nextSettings.design) nextSettings.design = {};
                         nextSettings.design.fontFamily = e.target.value;
                         setSettingsData(nextSettings);
                         localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4106,7 +4108,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                             type="color"
                             value={settingsData.design.palettes[themeMode][key] || '#10b981'}
                             onChange={(e) => {
-                              const nextSettings = { ...settingsData };
+                              const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                              if (!nextSettings.design) nextSettings.design = {};
+                              if (!nextSettings.design.palettes) nextSettings.design.palettes = {};
+                              if (!nextSettings.design.palettes[themeMode]) nextSettings.design.palettes[themeMode] = {};
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
                               localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4116,7 +4121,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                             type="text"
                             value={settingsData.design.palettes[themeMode][key] || '#10b981'}
                             onChange={(e) => {
-                              const nextSettings = { ...settingsData };
+                              const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                              if (!nextSettings.design) nextSettings.design = {};
+                              if (!nextSettings.design.palettes) nextSettings.design.palettes = {};
+                              if (!nextSettings.design.palettes[themeMode]) nextSettings.design.palettes[themeMode] = {};
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
                               localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4167,7 +4175,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     <select
                       value={settingsData.design?.layout?.buttonShape || 'pill'}
                       onChange={(e) => {
-                        const nextSettings = { ...settingsData };
+                        const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                        if (!nextSettings.design) nextSettings.design = {};
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), buttonShape: e.target.value };
                         setSettingsData(nextSettings);
                         localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4185,7 +4194,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     <select
                       value={settingsData.design?.layout?.shadowIntensity || 'medium'}
                       onChange={(e) => {
-                        const nextSettings = { ...settingsData };
+                        const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                        if (!nextSettings.design) nextSettings.design = {};
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), shadowIntensity: e.target.value };
                         setSettingsData(nextSettings);
                         localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
@@ -4206,7 +4216,8 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       max="40"
                       value={settingsData.design?.layout?.cardRadius ?? 22}
                       onChange={(e) => {
-                        const nextSettings = { ...settingsData };
+                        const nextSettings = JSON.parse(JSON.stringify(settingsData));
+                        if (!nextSettings.design) nextSettings.design = {};
                         nextSettings.design.layout = { ...(nextSettings.design.layout || {}), cardRadius: Number(e.target.value) };
                         setSettingsData(nextSettings);
                         localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
