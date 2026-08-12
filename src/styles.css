@@ -3928,27 +3928,27 @@ p {
 }
 
 .new-btn-primary {
-  background: var(--brand-900);
+  background: var(--brand-primary);
   color: #ffffff !important;
   border: none;
-  box-shadow: 0 8px 24px rgba(1, 86, 143, 0.15);
+  box-shadow: 0 8px 24px var(--brand-glow-soft, rgba(0, 0, 0, 0.15));
 }
 
 .new-btn-primary:hover {
-  background: #01568F;
+  background: var(--brand-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(1, 86, 143, 0.25);
+  box-shadow: 0 12px 30px var(--brand-glow, rgba(0, 0, 0, 0.25));
 }
 
 .new-btn-secondary {
   background: #ffffff;
-  color: var(--brand-900) !important;
-  border: 1.5px solid rgba(1, 86, 143, 0.3);
+  color: var(--brand-primary) !important;
+  border: 1.5px solid var(--line);
 }
 
 .new-btn-secondary:hover {
-  background: rgba(1, 86, 143, 0.03);
-  border-color: var(--brand-900);
+  background: var(--brand-tint);
+  border-color: var(--brand-primary);
   transform: translateY(-2px);
 }
 
