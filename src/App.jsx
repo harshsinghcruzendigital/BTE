@@ -2226,6 +2226,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     }
     if (settingsData) {
       localStorage.setItem('bte_site_settings', JSON.stringify(settingsData));
+      localStorage.setItem('bte_theme_customized', 'true');
     }
 
     await Promise.all([
@@ -2247,12 +2248,15 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
   const handleResetSettings = async () => {
     if (!window.confirm('Reset theme settings to defaults?')) return;
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('bte_theme_customized');
+      localStorage.removeItem('bte_site_settings');
+    }
     let defaults = await apiFetch('/api/settings/defaults');
     if (!defaults) {
       defaults = initialSiteSettings;
     }
     setSettingsData(defaults);
-    localStorage.setItem('bte_site_settings', JSON.stringify(defaults));
     flashStatus('Theme settings reset to defaults');
   };
 
@@ -2467,7 +2471,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     if (!nextSettings.design) nextSettings.design = {};
     nextSettings.design.palettes = presets[presetName];
     setSettingsData(nextSettings);
-    localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+      localStorage.setItem('bte_theme_customized', 'true');
+    }
     flashStatus(`Palette "${presetName.toUpperCase()}" loaded & saved!`);
   };
 
@@ -4038,7 +4045,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                         if (!nextSettings.design) nextSettings.design = {};
                         nextSettings.design.fontFamily = e.target.value;
                         setSettingsData(nextSettings);
-                        localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                        if (typeof window !== 'undefined') {
+                          localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                          localStorage.setItem('bte_theme_customized', 'true');
+                        }
                       }}
                       className="s-select"
                     >
@@ -4114,7 +4124,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                               if (!nextSettings.design.palettes[themeMode]) nextSettings.design.palettes[themeMode] = {};
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
-                              localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                              if (typeof window !== 'undefined') {
+                                localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                                localStorage.setItem('bte_theme_customized', 'true');
+                              }
                             }}
                           />
                           <input
@@ -4127,7 +4140,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                               if (!nextSettings.design.palettes[themeMode]) nextSettings.design.palettes[themeMode] = {};
                               nextSettings.design.palettes[themeMode][key] = e.target.value;
                               setSettingsData(nextSettings);
-                              localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                              if (typeof window !== 'undefined') {
+                                localStorage.setItem('bte_site_settings', JSON.stringify(nextSettings));
+                                localStorage.setItem('bte_theme_customized', 'true');
+                              }
                             }}
                             className="s-color-input"
                             placeholder="#HEXCODE"
@@ -5379,6 +5395,16 @@ export default function App() {
   };
 
   const fetchSettings = async () => {
+    if (typeof window !== 'undefined' && localStorage.getItem('bte_theme_customized') === 'true') {
+      const stored = localStorage.getItem('bte_site_settings');
+      if (stored) {
+        try {
+          setSettingsData(JSON.parse(stored));
+          return;
+        } catch (e) {}
+      }
+    }
+
     try {
       const response = await fetch(API_BASE + '/api/settings');
       if (!response.ok) throw new Error();
