@@ -3967,8 +3967,7 @@ p {
 }
 
 .new-btn-primary,
-.button--primary,
-.nav-cta-btn {
+.button--primary {
   background: linear-gradient(100deg, #0067B9 0%, #008FC3 40%, #16A83A 100%);
   color: #FFFFFF !important;
   border: none;
@@ -3982,8 +3981,7 @@ p {
 }
 
 .new-btn-primary:hover,
-.button--primary:hover,
-.nav-cta-btn:hover {
+.button--primary:hover {
   transform: translateY(-2px);
   filter: brightness(1.06);
   box-shadow: 0 12px 30px rgba(0, 103, 185, 0.24), 0 6px 16px rgba(22, 168, 58, 0.14);
@@ -4294,6 +4292,48 @@ p {
 
   .new-hero-decor-leaf {
     display: none;
+  }
+}
+
+/* Mobile Header CTA Button Arrow Fix */
+@media (max-width: 990px) {
+  .nav-actions {
+    gap: 8px !important;
+  }
+
+  .nav-cta-btn {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(100deg, #0067B9 0%, #008FC3 40%, #16A83A 100%) !important;
+  }
+
+  .nav-cta-btn span {
+    display: none !important;
+  }
+
+  .nav-cta-btn svg,
+  .nav-cta-btn .nav-cta-arrow {
+    display: block !important;
+    margin: 0 auto !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    stroke-width: 2.5px !important;
+    fill: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
