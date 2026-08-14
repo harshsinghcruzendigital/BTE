@@ -572,7 +572,7 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
+    <div className="site-header-group">
       <div className="top-announcement-bar">
         <div className="announcement-shell">
           <div className="announcement-left">
@@ -655,7 +655,7 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
           </button>
         </nav>
       </header>
-    </>
+    </div>
   );
 }
 
