@@ -572,66 +572,90 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="site-header">
-      <div className="nav-shell">
-        <div className="nav-brand-wrap">
-          <Brand onNavigate={onNavigate} logoSrc={logoSrc} logoAlt={logoAlt} />
-        </div>
-
-        <nav className="desktop-nav" aria-label="Main navigation">
-          {items.map((item) => {
-            const isActive = currentPath === item.href;
-            return (
-              <AppLink
-                className={`nav-link ${isActive ? 'active' : ''}`}
-                to={item.href}
-                onNavigate={onNavigate}
-                key={item.href}
-              >
-                <span>{item.label}</span>
-                {isActive && <span className="nav-active-bar" />}
-              </AppLink>
-            );
-          })}
-        </nav>
-
-        <div className="nav-actions">
-          <span className="nav-divider" aria-hidden="true" />
-          <button type="button" className="nav-cta-btn" onClick={onOpenProjectModal}>
-            <span>Start a Project</span>
-            <ArrowRight size={16} />
-          </button>
-          <button
-            className="menu-button"
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            aria-label="Toggle navigation"
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
+    <>
+      <div className="top-announcement-bar">
+        <div className="announcement-shell">
+          <div className="announcement-left">
+            <Leaf size={14} />
+            <span>Driving a sustainable future with clean energy solutions.</span>
+          </div>
+          <div className="announcement-right">
+            <a href="mailto:info@biotrendenergy.com" className="announcement-link">
+              <Mail size={13} />
+              <span>info@biotrendenergy.com</span>
+            </a>
+            <a href="tel:+919876543210" className="announcement-link">
+              <Phone size={13} />
+              <span>+91 98765 43210</span>
+            </a>
+            <div className="announcement-socials">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={13} /></a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={13} /></a>
+            </div>
+          </div>
         </div>
       </div>
+      <header className="site-header">
+        <div className="nav-shell">
+          <div className="nav-brand-wrap">
+            <Brand onNavigate={onNavigate} logoSrc={logoSrc} logoAlt={logoAlt} />
+          </div>
 
-      <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label="Mobile navigation">
-        {items.map((item, index) => (
-          <AppLink
-            to={item.href}
-            onNavigate={(to) => { onNavigate(to); closeMenu(); }}
-            key={item.href}
-          >
-            <span>0{index + 1}</span>
-            {item.label}
-            <ArrowUpRight size={18} />
-          </AppLink>
-        ))}
-        <button type="button" onClick={() => { onVideoOpen(); closeMenu(); }}>
-          <Play size={17} fill="currentColor" />
-          Watch Our Story
-        </button>
-      </nav>
-    </header>
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {items.map((item) => {
+              const isActive = currentPath === item.href;
+              return (
+                <AppLink
+                  className={`nav-link ${isActive ? 'active' : ''}`}
+                  to={item.href}
+                  onNavigate={onNavigate}
+                  key={item.href}
+                >
+                  <span>{item.label}</span>
+                  {isActive && <span className="nav-active-bar" />}
+                </AppLink>
+              );
+            })}
+          </nav>
+
+          <div className="nav-actions">
+            <span className="nav-divider" aria-hidden="true" />
+            <button type="button" className="nav-cta-btn" onClick={onOpenProjectModal}>
+              <span>Start a Project</span>
+              <ArrowRight size={16} />
+            </button>
+            <button
+              className="menu-button"
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              aria-label="Toggle navigation"
+            >
+              {menuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+
+        <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label="Mobile navigation">
+          {items.map((item, index) => (
+            <AppLink
+              to={item.href}
+              onNavigate={(to) => { onNavigate(to); closeMenu(); }}
+              key={item.href}
+            >
+              <span>0{index + 1}</span>
+              {item.label}
+              <ArrowUpRight size={18} />
+            </AppLink>
+          ))}
+          <button type="button" onClick={() => { onVideoOpen(); closeMenu(); }}>
+            <Play size={17} fill="currentColor" />
+            Watch Our Story
+          </button>
+        </nav>
+      </header>
+    </>
   );
 }
 
@@ -704,27 +728,22 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
             </div>
             <h1 className="new-hero-headline">
               Powering tomorrow <br />
-              <span className="green-highlight">with Net-Zero Fuels</span>
+              <span className="green-highlight">sustainably.</span>
             </h1>
-            <div className="new-headline-divider">
-              <span className="divider-line" />
-              <Leaf size={12} className="divider-leaf" />
-              <span className="divider-line" />
-            </div>
             <p className="new-hero-description">
-              Transforming agricultural residue into clean, renewable energy and building a greener, healthier planet for generations to come.
+              Bio Trend Energy develops innovative, scalable and eco-friendly energy solutions that drive progress while protecting our planet.
             </p>
             <div className="new-hero-actions">
+              <AppLink className="new-btn new-btn-primary" to="/solutions" onNavigate={onNavigate}>
+                Explore Solutions <ArrowRight size={16} />
+              </AppLink>
               <button
                 type="button"
-                className="new-btn new-btn-primary"
+                className="new-btn new-btn-secondary"
                 onClick={onOpenProjectModal}
               >
                 Start a Project <ArrowRight size={16} />
               </button>
-              <AppLink className="new-btn new-btn-secondary" to="/solutions" onNavigate={onNavigate}>
-                Explore Solutions
-              </AppLink>
             </div>
             <div className="new-hero-proof">
               <div className="proof-avatars">
@@ -784,6 +803,46 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 3. Dark Brand Feature / Impact Bar */}
+        <div className="new-feature-impact-bar" data-reveal>
+          <div className="feature-impact-item">
+            <div className="feature-icon-box icon-blue">
+              <Leaf size={20} />
+            </div>
+            <div className="feature-info">
+              <h4>Sustainable Solutions</h4>
+              <p>Clean energy for a better tomorrow</p>
+            </div>
+          </div>
+          <div className="feature-impact-item">
+            <div className="feature-icon-box icon-teal">
+              <TrendingUp size={20} />
+            </div>
+            <div className="feature-info">
+              <h4>Measurable Impact</h4>
+              <p>Data-driven results for real change</p>
+            </div>
+          </div>
+          <div className="feature-impact-item">
+            <div className="feature-icon-box icon-blue-deep">
+              <ShieldCheck size={20} />
+            </div>
+            <div className="feature-info">
+              <h4>Reliable & Scalable</h4>
+              <p>Solutions built for today and the future</p>
+            </div>
+          </div>
+          <div className="feature-impact-item">
+            <div className="feature-icon-box icon-green">
+              <Users size={20} />
+            </div>
+            <div className="feature-info">
+              <h4>Global Responsibility</h4>
+              <p>Committed to communities and our planet</p>
             </div>
           </div>
         </div>
@@ -2037,6 +2096,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
   const getCurrentPresetName = () => {
     const p = (settingsData?.design?.palettes?.[themeMode]?.primary || '').toLowerCase();
+    if (p === '#0067b9' || p === '#087fc4') return 'biotrend';
     if (p === '#10b981' || p === '#059669') return 'emerald';
     if (p === '#0891b2' || p === '#06b6d4') return 'ocean';
     if (p === '#d97706' || p === '#f59e0b') return 'ochre';
@@ -2450,9 +2510,13 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
   const handleApplyPreset = (presetName) => {
     if (!settingsData) return;
     const presets = {
+      biotrend: {
+        light: { pageBackground: '#F7FAFC', surface: '#ffffff', text: '#44546A', heading: '#071B33', primary: '#0067B9', secondary: '#16A83A', mist: '#EFF7FC' },
+        dark: { pageBackground: '#071B33', surface: '#0d223a', text: '#dbeafe', heading: '#ffffff', primary: '#0067B9', secondary: '#16A83A', mist: '#0e2d4d' }
+      },
       emerald: {
         light: { pageBackground: '#f7faf6', surface: '#ffffff', text: '#1e293b', heading: '#020617', primary: '#10b981', secondary: '#059669', mist: '#f1f5f9' },
-        dark: { pageBackground: '#070b12', surface: '#0d1422', text: '#f8fafc', heading: '#ffffff', primary: '#10b981', secondary: '#34d399', mist: '#162238' }
+        dark: { pageBackground: '#071B33', surface: '#0d223a', text: '#dbeafe', heading: '#ffffff', primary: '#10b981', secondary: '#34d399', mist: '#162238' }
       },
       ocean: {
         light: { pageBackground: '#f0f7f9', surface: '#ffffff', text: '#334155', heading: '#0f172a', primary: '#0891b2', secondary: '#0e7490', mist: '#e0f2fe' },
@@ -3976,6 +4040,19 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     <span className="s-badge">Instant Palette</span>
                   </div>
                   <div className="s-presets-swatch-list">
+                    <button type="button" onClick={() => handleApplyPreset('biotrend')} className={`s-swatch-btn biotrend ${getCurrentPresetName() === 'biotrend' ? 'active' : ''}`}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        <strong>Bio Trend Signature</strong>
+                        {getCurrentPresetName() === 'biotrend' && <span className="s-active-badge">✓ Active</span>}
+                      </div>
+                      <span>Official Logo Blue-Teal-Green</span>
+                      <div className="s-swatch-bars">
+                        <div className="s-swatch-bar" style={{ background: '#0067B9' }} />
+                        <div className="s-swatch-bar" style={{ background: '#009FA3' }} />
+                        <div className="s-swatch-bar" style={{ background: '#16A83A' }} />
+                      </div>
+                    </button>
+
                     <button type="button" onClick={() => handleApplyPreset('emerald')} className={`s-swatch-btn emerald ${getCurrentPresetName() === 'emerald' ? 'active' : ''}`}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                         <strong>Emerald Forest</strong>

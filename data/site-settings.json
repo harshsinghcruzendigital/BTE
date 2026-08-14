@@ -30,22 +30,22 @@
     },
     "palettes": {
       "light": {
-        "pageBackground": "#faf8f5",
+        "pageBackground": "#F7FAFC",
         "surface": "#ffffff",
-        "text": "#44403c",
-        "heading": "#1c1917",
-        "primary": "#d97706",
-        "secondary": "#b45309",
-        "mist": "#fef3c7"
+        "text": "#44546A",
+        "heading": "#071B33",
+        "primary": "#0067B9",
+        "secondary": "#16A83A",
+        "mist": "#EFF7FC"
       },
       "dark": {
-        "pageBackground": "#120f0a",
-        "surface": "#1c1710",
-        "text": "#fde68a",
+        "pageBackground": "#071B33",
+        "surface": "#0d223a",
+        "text": "#dbeafe",
         "heading": "#ffffff",
-        "primary": "#f59e0b",
-        "secondary": "#fbbf24",
-        "mist": "#292115"
+        "primary": "#0067B9",
+        "secondary": "#16A83A",
+        "mist": "#0e2d4d"
       }
     }
   },
