@@ -620,9 +620,9 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
 
           <div className="nav-actions">
             <span className="nav-divider" aria-hidden="true" />
-            <button type="button" className="nav-cta-btn" onClick={onOpenProjectModal}>
+            <button type="button" className="nav-cta-btn" onClick={onOpenProjectModal} aria-label="Start a Project">
               <span>Start a Project</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={20} color="#ffffff" strokeWidth={2.5} className="nav-cta-arrow" />
             </button>
             <button
               className="menu-button"
