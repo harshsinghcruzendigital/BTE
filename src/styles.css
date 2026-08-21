@@ -513,29 +513,30 @@ p {
   background: var(--brand-tint);
   border-color: var(--brand-primary-darker);
 }
-
 .nav-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--brand-primary-darker);
+  background: var(--primary-cta-gradient, linear-gradient(100deg, #0067B9 0%, #008FC3 40%, #16A83A 100%));
   color: #ffffff !important;
   font-size: 14px;
   font-weight: 600;
   padding: 11px 22px;
   border: none;
-  border-radius: var(--btn-radius);
+  border-radius: 99px;
   text-decoration: none;
   cursor: pointer;
   flex-shrink: 0;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 103, 185, 0.12), 0 3px 8px rgba(22, 168, 58, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
 
 .nav-cta-btn:hover {
-  background: var(--brand-primary-dark);
-  box-shadow: var(--btn-shadow);
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 24px rgba(0, 103, 185, 0.20), 0 5px 12px rgba(22, 168, 58, 0.10);
 }
 
 .menu-button {
