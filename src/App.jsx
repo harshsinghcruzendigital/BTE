@@ -5322,6 +5322,11 @@ export default function App() {
   const [siteData, setSiteData] = useState(() => mapContentStructure(initialSiteData));
   const [settingsData, setSettingsData] = useState(() => {
     if (typeof window !== 'undefined') {
+      if (localStorage.getItem('bte_theme_default_version') !== 'v2') {
+        localStorage.removeItem('bte_site_settings');
+        localStorage.removeItem('bte_theme_customized');
+        localStorage.setItem('bte_theme_default_version', 'v2');
+      }
       const stored = localStorage.getItem('bte_site_settings');
       if (stored) {
         try {
