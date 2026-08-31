@@ -71,17 +71,17 @@ async function getDb() {
 }
 
 const FALLBACKS = {
-  content: () => { try { return require("./data/site-content.json"); } catch (e) { return null; } },
-  defaultContent: () => { try { return require("./data/default-site-content.json"); } catch (e) { return null; } },
-  settings: () => { try { return require("./data/site-settings.json"); } catch (e) { return null; } },
-  defaultSettings: () => { try { return require("./data/default-site-settings.json"); } catch (e) { return null; } },
-  blog: () => { try { return require("./data/blog-posts.json"); } catch (e) { return null; } },
-  users: () => { try { return require("./data/users.json"); } catch (e) { return null; } },
-  contact: () => { try { return require("./data/contact-submissions.json"); } catch (e) { return null; } },
-  project: () => { try { return require("./data/project-submissions.json"); } catch (e) { return null; } },
-  newsletter: () => { try { return require("./data/newsletter-signups.json"); } catch (e) { return null; } },
-  analytics: () => { try { return require("./data/analytics.json"); } catch (e) { return null; } },
-  audit: () => { try { return require("./data/audit-log.json"); } catch (e) { return null; } },
+  content: () => { try { return require("./data/site-content.json"); } catch (e) { console.error("req content:", e.message); return null; } },
+  defaultContent: () => { try { return require("./data/default-site-content.json"); } catch (e) { console.error("req defaultContent:", e.message); return null; } },
+  settings: () => { try { return require("./data/site-settings.json"); } catch (e) { console.error("req settings:", e.message); return null; } },
+  defaultSettings: () => { try { return require("./data/default-site-settings.json"); } catch (e) { console.error("req defaultSettings:", e.message); return null; } },
+  blog: () => { try { return require("./data/blog-posts.json"); } catch (e) { console.error("req blog:", e.message); return null; } },
+  users: () => { try { return require("./data/users.json"); } catch (e) { console.error("req users:", e.message); return null; } },
+  contact: () => { try { return require("./data/contact-submissions.json"); } catch (e) { console.error("req contact:", e.message); return null; } },
+  project: () => { try { return require("./data/project-submissions.json"); } catch (e) { console.error("req project:", e.message); return null; } },
+  newsletter: () => { try { return require("./data/newsletter-signups.json"); } catch (e) { console.error("req newsletter:", e.message); return null; } },
+  analytics: () => { try { return require("./data/analytics.json"); } catch (e) { console.error("req analytics:", e.message); return null; } },
+  audit: () => { try { return require("./data/audit-log.json"); } catch (e) { console.error("req audit:", e.message); return null; } },
 };
 
 function getFallback(key) {
