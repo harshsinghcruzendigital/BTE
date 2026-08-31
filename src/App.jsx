@@ -90,11 +90,14 @@ import aboutPhotoFive from '../About/b5.jpg';
 import aboutPhotoSix from '../About/b8.jpg';
 import './admin.css';
 
-// API base URL. In production set VITE_API_BASE to your deployed backend's URL
-// (e.g. https://bte-api.onrender.com). Falls back to the local dev backend.
+// API base URL. Automatically connects to same-origin (/api/*) in production
+// on Vercel, or falls back to port 8787 during local development.
 const API_BASE =
-  (import.meta.env && import.meta.env.VITE_API_BASE) ||
-  (typeof window !== 'undefined' ? `http://${window.location.hostname}:8787` : '');
+  (import.meta.env && import.meta.env.VITE_API_BASE) !== undefined
+    ? import.meta.env.VITE_API_BASE
+    : (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? `http://${window.location.hostname}:8787`
+        : '');
 
 // Stable per-browser id used to count live/active visitors on the backend.
 function getVisitorId() {

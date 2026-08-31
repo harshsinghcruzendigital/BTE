@@ -4,6 +4,7 @@ const http = require("http");
 const fs = require("fs/promises");
 const path = require("path");
 const crypto = require("crypto");
+const db = require("./db.cjs");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DASHBOARD_DIR = path.join(ROOT_DIR, "dashboard");
@@ -396,12 +397,38 @@ function seedBlogPosts() {
 }
 
 async function readJson(filePath) {
-  const raw = await fs.readFile(filePath, "utf8");
-  return JSON.parse(raw);
+  if (filePath === FILES.content) return await db.getContent();
+  if (filePath === FILES.settings) return await db.getSettings();
+  if (filePath === FILES.blog) return await db.getBlogs();
+  if (filePath === FILES.users) return await db.getUsers();
+  if (filePath === FILES.contact) return await db.getSubmissions("contact");
+  if (filePath === FILES.project) return await db.getSubmissions("project");
+  if (filePath === FILES.newsletter) return await db.getSubmissions("newsletter");
+  if (filePath === FILES.analytics) return await db.getAnalytics();
+  if (filePath === FILES.audit) return await db.getAudit();
+
+  try {
+    const raw = await fs.readFile(filePath, "utf8");
+    return JSON.parse(raw);
+  } catch (e) {
+    return null;
+  }
 }
 
 async function writeJson(filePath, value) {
-  await fs.writeFile(filePath, JSON.stringify(value, null, 2));
+  if (filePath === FILES.content) return await db.saveContent(value);
+  if (filePath === FILES.settings) return await db.saveSettings(value);
+  if (filePath === FILES.blog) return await db.saveBlogList(value);
+  if (filePath === FILES.users) return await db.saveUsers(value);
+  if (filePath === FILES.contact) return await db.saveSubmissions("contact", value);
+  if (filePath === FILES.project) return await db.saveSubmissions("project", value);
+  if (filePath === FILES.newsletter) return await db.saveSubmissions("newsletter", value);
+  if (filePath === FILES.analytics) return await db.saveAnalytics(value);
+  if (filePath === FILES.audit) return await db.saveAudit(value);
+
+  try {
+    await fs.writeFile(filePath, JSON.stringify(value, null, 2));
+  } catch (e) {}
 }
 
 async function parseBody(request) {
@@ -580,6 +607,16 @@ async function saveUploadedMedia(body) {
 
   if (!match) {
     throw new Error("Invalid media payload");
+  }
+
+  // If Cloudinary is configured, upload directly to Cloudinary CDN
+  if (process.env.CLOUDINARY_CLOUD_NAME) {
+    try {
+      const secureUrl = await db.uploadToCloudinary(data, fileName);
+      return secureUrl;
+    } catch (e) {
+      console.warn("Cloudinary upload failed, falling back to local disk:", e.message);
+    }
   }
 
   const extension = extensionFromUpload(fileName, mimeType || match[1]);
@@ -996,20 +1033,24 @@ async function handleApi(request, response, url) {
     const body = await parseBody(request);
     const assetPath = String(body.path || "");
 
-    // Only allow deleting files we actually saved to /uploads — never the
-    // bundled /assets/* defaults shipped with the site.
-    if (!assetPath.startsWith("/uploads/") || assetPath.includes("..")) {
-      sendJson(response, 400, { error: "Only uploaded assets can be deleted" });
-      return;
-    }
-
-    const targetPath = path.join(PUBLIC_DIR, assetPath);
-    try {
-      await fs.unlink(targetPath);
-    } catch (err) {
-      if (err.code !== "ENOENT") {
-        sendJson(response, 500, { error: "Could not delete file" });
+    if (assetPath.includes("cloudinary.com")) {
+      await db.deleteFromCloudinary(assetPath);
+    } else {
+      // Only allow deleting files we actually saved to /uploads — never the
+      // bundled /assets/* defaults shipped with the site.
+      if (!assetPath.startsWith("/uploads/") || assetPath.includes("..")) {
+        sendJson(response, 400, { error: "Only uploaded assets can be deleted" });
         return;
+      }
+
+      const targetPath = path.join(PUBLIC_DIR, assetPath);
+      try {
+        await fs.unlink(targetPath);
+      } catch (err) {
+        if (err.code !== "ENOENT") {
+          sendJson(response, 500, { error: "Could not delete file" });
+          return;
+        }
       }
     }
 
@@ -1260,7 +1301,11 @@ async function start() {
   });
 }
 
-start().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (require.main === module) {
+  start().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+module.exports = requestHandler;
