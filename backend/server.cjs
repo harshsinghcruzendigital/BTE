@@ -312,13 +312,31 @@ function withCors(response) {
 
 function sendJson(response, statusCode, payload) {
   withCors(response);
-  response.writeHead(statusCode, { "Content-Type": "application/json; charset=utf-8" });
+  if (typeof response.status === "function" && typeof response.json === "function") {
+    response.status(statusCode).json(payload);
+    return;
+  }
+  if (typeof response.writeHead === "function") {
+    response.writeHead(statusCode, { "Content-Type": "application/json; charset=utf-8" });
+  } else {
+    response.statusCode = statusCode;
+    response.setHeader("Content-Type", "application/json; charset=utf-8");
+  }
   response.end(JSON.stringify(payload, null, 2));
 }
 
 function sendText(response, statusCode, text) {
   withCors(response);
-  response.writeHead(statusCode, { "Content-Type": "text/plain; charset=utf-8" });
+  if (typeof response.status === "function" && typeof response.send === "function") {
+    response.status(statusCode).send(text);
+    return;
+  }
+  if (typeof response.writeHead === "function") {
+    response.writeHead(statusCode, { "Content-Type": "text/plain; charset=utf-8" });
+  } else {
+    response.statusCode = statusCode;
+    response.setHeader("Content-Type", "text/plain; charset=utf-8");
+  }
   response.end(text);
 }
 
