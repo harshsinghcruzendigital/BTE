@@ -31,17 +31,20 @@ const FILES = {
   blog: path.join(LOCAL_DATA_DIR, "blog-posts.json"),
 };
 
+const cloudName = (process.env.CLOUDINARY_CLOUD_NAME || "").replace(/^["']|["']$/g, "").trim();
+const cloudApiKey = (process.env.CLOUDINARY_API_KEY || "").replace(/^["']|["']$/g, "").trim();
+const cloudApiSecret = (process.env.CLOUDINARY_API_SECRET || "").replace(/^["']|["']$/g, "").trim();
+const mongoUri = (process.env.MONGODB_URI || "").replace(/^["']|["']$/g, "").trim();
+
 // Configure Cloudinary
-if (process.env.CLOUDINARY_CLOUD_NAME) {
+if (cloudName && cloudApiKey && cloudApiSecret) {
   cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+    cloud_name: cloudName,
+    api_key: cloudApiKey,
+    api_secret: cloudApiSecret,
     secure: true,
   });
 }
-
-const mongoUri = process.env.MONGODB_URI;
 let client = null;
 let db = null;
 let isConnected = false;
