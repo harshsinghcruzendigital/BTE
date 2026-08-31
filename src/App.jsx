@@ -2488,8 +2488,6 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
     }
   };
 
-  const token = sessionStorage.getItem('dashboard_token') || '';
-
   const flashStatus = (text, ok = true) => {
     setStatusText(text);
     setStatusOnline(ok);
@@ -2500,9 +2498,10 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
   };
 
   const apiFetch = async (path, options = {}) => {
+    const currentToken = sessionStorage.getItem('dashboard_token') || '';
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      ...(currentToken ? { 'Authorization': `Bearer ${currentToken}` } : {}),
       ...(options.headers || {})
     };
     try {
@@ -2790,18 +2789,18 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
         })
       });
       if (res?.path) {
-        setMediaList([res.path, ...mediaList]);
-        flashStatus('Media asset uploaded successfully!');
+        setMediaList((prev) => Array.from(new Set([res.path, ...prev])));
+        flashStatus('Media asset uploaded to Cloudinary successfully!');
       } else {
-        setMediaList([reader.result, ...mediaList]);
-        flashStatus('Upload not saved on the server (added locally only) — check that the backend is running.', false);
+        setMediaList((prev) => Array.from(new Set([reader.result, ...prev])));
+        flashStatus('Upload added locally', false);
       }
     };
   };
 
   const handleDeleteMedia = async (url) => {
     if (!window.confirm('Remove this asset from the library?')) return;
-    if (url.startsWith('/uploads/')) {
+    if (url.startsWith('/uploads/') || url.includes('cloudinary.com')) {
       const result = await apiFetch('/api/media', {
         method: 'DELETE',
         body: JSON.stringify({ path: url })
@@ -2811,17 +2810,36 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
         return;
       }
     }
-    setMediaList(mediaList.filter((item) => item !== url));
+    setMediaList((prev) => prev.filter((item) => item !== url));
     flashStatus('Asset removed from the library');
   };
 
   // --- Blog Studio handlers ---
   const loadBlogPosts = async () => {
     const data = await apiFetch('/api/blog/all');
-    if (data?.posts) setBlogPosts(data.posts);
+    if (data?.posts && Array.isArray(data.posts) && data.posts.length > 0) {
+      setBlogPosts(data.posts);
+    } else {
+      setBlogPosts(originalLegacyBlogPosts);
+    }
   };
 
-  useEffect(() => { loadBlogPosts(); }, []);
+  const loadMedia = async () => {
+    const res = await apiFetch('/api/media');
+    if (res?.media && Array.isArray(res.media) && res.media.length > 0) {
+      setMediaList(res.media);
+    }
+  };
+
+  useEffect(() => {
+    loadBlogPosts();
+    loadMedia();
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === 'blog') loadBlogPosts();
+    if (activeTab === 'media') loadMedia();
+  }, [activeTab]);
 
   const editBlogPost = (post) => {
     setBlogError('');
@@ -4866,22 +4884,27 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                     </div>
                   </div>
 
-                  <div style={{ width: '240px' }}>
-                    <input
-                      type="text"
-                      placeholder="Filter media assets..."
-                      value={mediaSearch}
-                      onChange={(e) => setMediaSearch(e.target.value)}
-                      style={{
-                        width: '100%',
-                        padding: '8px 12px',
-                        borderRadius: '6px',
-                        border: '1px solid var(--s-line)',
-                        background: 'var(--s-panel-subtle)',
-                        color: 'var(--s-text)',
-                        fontSize: '0.85rem'
-                      }}
-                    />
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <button type="button" onClick={loadMedia} className="s-btn s-btn-ghost s-btn-sm" title="Refresh Media Assets">
+                      <RefreshCw size={14} /> Refresh
+                    </button>
+                    <div style={{ width: '220px' }}>
+                      <input
+                        type="text"
+                        placeholder="Filter media assets..."
+                        value={mediaSearch}
+                        onChange={(e) => setMediaSearch(e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '8px 12px',
+                          borderRadius: '6px',
+                          border: '1px solid var(--s-line)',
+                          background: 'var(--s-panel-subtle)',
+                          color: 'var(--s-text)',
+                          fontSize: '0.85rem'
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -5018,9 +5041,14 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
                       <h3>All Posts</h3>
                       <span>{blogPosts.filter((p) => p.status === 'published').length} live · {blogPosts.filter((p) => p.status === 'draft').length} drafts</span>
                     </div>
-                    <a href={`${window.location.origin}/blog`} target="_blank" rel="noopener noreferrer" className="s-btn s-btn-ghost s-btn-sm">
-                      <ExternalLink size={14} /> View Journal
-                    </a>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                      <button type="button" onClick={loadBlogPosts} className="s-btn s-btn-ghost s-btn-sm" title="Refresh Blog Posts">
+                        <RefreshCw size={14} /> Refresh
+                      </button>
+                      <a href={`${window.location.origin}/blog`} target="_blank" rel="noopener noreferrer" className="s-btn s-btn-ghost s-btn-sm">
+                        <ExternalLink size={14} /> View Journal
+                      </a>
+                    </div>
                   </div>
 
                   {blogPosts.length === 0 && (

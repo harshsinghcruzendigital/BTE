@@ -186,8 +186,37 @@ function normalizeAnalytics(analytics) {
   };
 }
 
-// --- Sessions: persisted to disk so a backend restart doesn't sign everyone
-// out, with a TTL so tokens don't live forever. ------------------------------
+const SESSION_SECRET = process.env.SESSION_SECRET || "bio-trend-secret-token-key-2026";
+
+function createSessionToken(user) {
+  const payload = Buffer.from(
+    JSON.stringify({
+      userId: user.id,
+      username: user.username,
+      role: user.role,
+      exp: Date.now() + 14 * 24 * 60 * 60 * 1000,
+    })
+  ).toString("base64url");
+  const signature = crypto.createHmac("sha256", SESSION_SECRET).update(payload).digest("base64url");
+  return `${payload}.${signature}`;
+}
+
+function verifySessionToken(token) {
+  if (!token || typeof token !== "string" || !token.includes(".")) return null;
+  const parts = token.split(".");
+  if (parts.length !== 2) return null;
+  const [payloadStr, sig] = parts;
+  if (!payloadStr || !sig) return null;
+  const expectedSig = crypto.createHmac("sha256", SESSION_SECRET).update(payloadStr).digest("base64url");
+  if (sig !== expectedSig) return null;
+  try {
+    const payload = JSON.parse(Buffer.from(payloadStr, "base64url").toString("utf8"));
+    if (payload.exp && Date.now() > payload.exp) return null;
+    return payload;
+  } catch {
+    return null;
+  }
+}
 
 function isSessionExpired(session) {
   const created = Date.parse(session?.createdAt || "");
@@ -200,7 +229,7 @@ async function persistSessions() {
   try {
     await writeJson(FILES.sessions, serialized);
   } catch {
-    // Non-fatal: a missing sessions file just means logins reset on restart.
+    // Non-fatal
   }
 }
 
@@ -216,9 +245,8 @@ async function loadSessions() {
       }
     }
   } catch {
-    // No sessions file yet — start empty.
+    // Start empty
   }
-  await persistSessions();
 }
 
 // --- Live traffic: real-time visitor + page-view figures. --------------------
@@ -519,27 +547,34 @@ function getBearerToken(request) {
 
 async function getSessionContext(request) {
   const token = getBearerToken(request);
-  if (!token || !sessions.has(token)) return null;
+  if (!token) return null;
 
-  const session = sessions.get(token);
-
-  if (isSessionExpired(session)) {
-    sessions.delete(token);
-    await persistSessions();
-    return null;
+  const payload = verifySessionToken(token);
+  if (payload) {
+    const users = await readJson(FILES.users);
+    const user = (Array.isArray(users) ? users : []).find(
+      (item) => (item.id === payload.userId || item.username === payload.username) && item.active
+    );
+    if (user) {
+      return { token, session: { userId: user.id, role: user.role }, user, users };
+    }
   }
 
-  const users = await readJson(FILES.users);
-  const user = users.find((item) => item.id === session.userId && item.active);
-
-  if (!user) {
-    sessions.delete(token);
-    await persistSessions();
-    return null;
+  if (sessions.has(token)) {
+    const session = sessions.get(token);
+    if (isSessionExpired(session)) {
+      sessions.delete(token);
+      return null;
+    }
+    const users = await readJson(FILES.users);
+    const user = (Array.isArray(users) ? users : []).find((item) => item.id === session.userId && item.active);
+    if (user) {
+      session.lastSeenAt = nowIso();
+      return { token, session, user, users };
+    }
   }
 
-  session.lastSeenAt = nowIso();
-  return { token, session, user, users };
+  return null;
 }
 
 async function requireAuth(request, response) {
@@ -921,7 +956,7 @@ async function handleApi(request, response, url) {
     user.lastLoginAt = nowIso();
     await writeJson(FILES.users, users);
 
-    const token = crypto.randomBytes(32).toString("hex");
+    const token = createSessionToken(user);
     sessions.set(token, {
       userId: user.id,
       createdAt: nowIso(),
@@ -1044,12 +1079,53 @@ async function handleApi(request, response, url) {
     return;
   }
 
+  if (request.method === "GET" && url.pathname === "/api/media") {
+    const context = await requireAuth(request, response);
+    if (!context) return;
+
+    const [settings, blogs] = await Promise.all([
+      readJson(FILES.settings),
+      readJson(FILES.blog),
+    ]);
+
+    const defaultAssets = [
+      "/assets/hero-bioenergy.jpg",
+      "/assets/leaf-dew.jpg",
+      "/assets/leaf-glow.jpg",
+      "/assets/bte-video-17-02-2026.mp4",
+      "/assets/bio-trend-film.mp4",
+      "/assets/bio-trend-logo.png",
+      "/assets/biomass-process.jpg",
+      "/assets/project-biogas.jpg",
+    ];
+
+    const collected = new Set(defaultAssets);
+    if (Array.isArray(settings?.media)) {
+      settings.media.forEach((m) => collected.add(m));
+    }
+    if (Array.isArray(blogs)) {
+      blogs.forEach((b) => {
+        if (b.coverImage) collected.add(b.coverImage);
+      });
+    }
+
+    sendJson(response, 200, { ok: true, media: Array.from(collected) });
+    return;
+  }
+
   if (request.method === "POST" && url.pathname === "/api/media/upload") {
     const context = await requireAuth(request, response);
     if (!context) return;
 
     const body = await parseBody(request);
     const assetPath = await saveUploadedMedia(body);
+
+    try {
+      const settings = (await readJson(FILES.settings)) || {};
+      settings.media = Array.from(new Set([assetPath, ...(settings.media || [])]));
+      await writeJson(FILES.settings, settings);
+    } catch {}
+
     await recordActivity(
       "media-upload",
       `Media uploaded: ${body.fileName || "asset"}`,

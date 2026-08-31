@@ -149,6 +149,12 @@ async function getBlogs() {
 async function saveBlogList(list) {
   const database = await getDb();
   if (database && Array.isArray(list)) {
+    const currentIds = list.map((p) => p.id).filter(Boolean);
+    if (currentIds.length > 0) {
+      await database.collection("blogs").deleteMany({ id: { $nin: currentIds } });
+    } else {
+      await database.collection("blogs").deleteMany({});
+    }
     for (const post of list) {
       await database.collection("blogs").updateOne(
         { id: post.id },
