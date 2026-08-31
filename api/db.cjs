@@ -70,26 +70,20 @@ async function getDb() {
   }
 }
 
-const FALLBACKS = {
-  content: () => { try { return require("./data/site-content.json"); } catch (e) { console.error("req content:", e.message); return null; } },
-  defaultContent: () => { try { return require("./data/default-site-content.json"); } catch (e) { console.error("req defaultContent:", e.message); return null; } },
-  settings: () => { try { return require("./data/site-settings.json"); } catch (e) { console.error("req settings:", e.message); return null; } },
-  defaultSettings: () => { try { return require("./data/default-site-settings.json"); } catch (e) { console.error("req defaultSettings:", e.message); return null; } },
-  blog: () => { try { return require("./data/blog-posts.json"); } catch (e) { console.error("req blog:", e.message); return null; } },
-  users: () => { try { return require("./data/users.json"); } catch (e) { console.error("req users:", e.message); return null; } },
-  contact: () => { try { return require("./data/contact-submissions.json"); } catch (e) { console.error("req contact:", e.message); return null; } },
-  project: () => { try { return require("./data/project-submissions.json"); } catch (e) { console.error("req project:", e.message); return null; } },
-  newsletter: () => { try { return require("./data/newsletter-signups.json"); } catch (e) { console.error("req newsletter:", e.message); return null; } },
-  analytics: () => { try { return require("./data/analytics.json"); } catch (e) { console.error("req analytics:", e.message); return null; } },
-  audit: () => { try { return require("./data/audit-log.json"); } catch (e) { console.error("req audit:", e.message); return null; } },
-};
+let initialData = {};
+try {
+  initialData = require("./data/initial-data.cjs");
+} catch (e) {
+  console.warn("Could not load initial-data.cjs:", e.message);
+}
 
 function getFallback(key) {
-  const getter = FALLBACKS[key];
-  if (getter) {
-    const res = getter();
-    if (res) return JSON.parse(JSON.stringify(res));
-  }
+  if (key === "content") return initialData.content ? JSON.parse(JSON.stringify(initialData.content)) : null;
+  if (key === "settings") return initialData.settings ? JSON.parse(JSON.stringify(initialData.settings)) : null;
+  if (key === "blog") return initialData.blogs ? JSON.parse(JSON.stringify(initialData.blogs)) : [];
+  if (key === "users") return initialData.users ? JSON.parse(JSON.stringify(initialData.users)) : [];
+  if (key === "project") return initialData.projects ? JSON.parse(JSON.stringify(initialData.projects)) : [];
+  if (key === "contact") return initialData.contacts ? JSON.parse(JSON.stringify(initialData.contacts)) : [];
   return null;
 }
 
