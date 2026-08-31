@@ -2318,7 +2318,7 @@ function AdminLogin({ onLoginSuccess }) {
               type="text"
               required
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => { setUsername(e.target.value); setError(''); }}
               placeholder="Enter username (e.g. admin)"
             />
           </div>
@@ -2334,7 +2334,7 @@ function AdminLogin({ onLoginSuccess }) {
                 type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => { setPassword(e.target.value); setError(''); }}
                 placeholder="Enter password"
                 style={{ width: '100%', paddingRight: '42px' }}
               />
