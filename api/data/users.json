@@ -1,14 +1,26 @@
 [
   {
-    "id": "usr_d609ef691ede0c504227",
+    "id": "usr_bte_admin",
+    "username": "bte",
+    "displayName": "Bio Trend Admin",
+    "role": "admin",
+    "active": true,
+    "passwordSalt": "3195deece7b3afdfef11866f7cda9734",
+    "passwordHash": "c21d23f2b5c870e5f2d9e7fdb7e38db4e8a72e3cec3a9ac52e7f353f4049bdea1be7f03e0fca67d37cac8ef08396c7eb0221316444ef7a5b10e7f771eb05e8ba",
+    "createdAt": "2026-08-31T20:20:59.644Z",
+    "updatedAt": "2026-08-31T20:20:59.646Z",
+    "_id": "6a95e22c1bedfdc69d631049"
+  },
+  {
+    "id": "usr_admin",
     "username": "admin",
     "displayName": "Primary Admin",
     "role": "admin",
-    "passwordSalt": "719b05c2d6fdfd251bd436e76f80882f",
-    "passwordHash": "64341f8bd54302cc54d3f1d2739ef09a3f231ab9a70f38ce4f92357816762c017f12aa993238fcd3e3e4aa633e45fb1b08f748d6836045e2c6d40abb87a3de3a",
     "active": true,
-    "createdAt": "2026-07-10T15:42:43.609Z",
-    "createdBy": "system",
-    "lastLoginAt": "2026-08-05T11:09:50.916Z"
+    "passwordSalt": "3195deece7b3afdfef11866f7cda9734",
+    "passwordHash": "c21d23f2b5c870e5f2d9e7fdb7e38db4e8a72e3cec3a9ac52e7f353f4049bdea1be7f03e0fca67d37cac8ef08396c7eb0221316444ef7a5b10e7f771eb05e8ba",
+    "createdAt": "2026-08-31T20:20:59.646Z",
+    "updatedAt": "2026-08-31T20:20:59.646Z",
+    "_id": "6a95e22c1bedfdc69d63104a"
   }
 ]

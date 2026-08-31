@@ -2319,7 +2319,7 @@ function AdminLogin({ onLoginSuccess }) {
               required
               value={username}
               onChange={(e) => { setUsername(e.target.value); setError(''); }}
-              placeholder="Enter username (e.g. admin)"
+              placeholder="Enter username (e.g. bte or admin)"
             />
           </div>
 
