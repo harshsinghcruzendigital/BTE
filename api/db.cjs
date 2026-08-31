@@ -72,7 +72,7 @@ async function getDb() {
 
 let initialData = {};
 try {
-  initialData = require("./data/initial-data.cjs");
+  initialData = require("./initial-data.cjs");
 } catch (e) {
   console.warn("Could not load initial-data.cjs:", e.message);
 }
