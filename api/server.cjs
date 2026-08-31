@@ -397,15 +397,16 @@ function seedBlogPosts() {
 }
 
 async function readJson(filePath) {
-  if (filePath === FILES.content) return await db.getContent();
-  if (filePath === FILES.settings) return await db.getSettings();
-  if (filePath === FILES.blog) return await db.getBlogs();
-  if (filePath === FILES.users) return await db.getUsers();
-  if (filePath === FILES.contact) return await db.getSubmissions("contact");
-  if (filePath === FILES.project) return await db.getSubmissions("project");
-  if (filePath === FILES.newsletter) return await db.getSubmissions("newsletter");
-  if (filePath === FILES.analytics) return await db.getAnalytics();
-  if (filePath === FILES.audit) return await db.getAudit();
+  const base = path.basename(filePath);
+  if (base === "site-content.json") return await db.getContent();
+  if (base === "site-settings.json") return await db.getSettings();
+  if (base === "blog-posts.json") return await db.getBlogs();
+  if (base === "users.json") return await db.getUsers();
+  if (base === "contact-submissions.json") return await db.getSubmissions("contact");
+  if (base === "project-submissions.json") return await db.getSubmissions("project");
+  if (base === "newsletter-signups.json") return await db.getSubmissions("newsletter");
+  if (base === "analytics.json") return await db.getAnalytics();
+  if (base === "audit-log.json") return await db.getAudit();
 
   try {
     const raw = await fs.readFile(filePath, "utf8");
@@ -416,15 +417,16 @@ async function readJson(filePath) {
 }
 
 async function writeJson(filePath, value) {
-  if (filePath === FILES.content) return await db.saveContent(value);
-  if (filePath === FILES.settings) return await db.saveSettings(value);
-  if (filePath === FILES.blog) return await db.saveBlogList(value);
-  if (filePath === FILES.users) return await db.saveUsers(value);
-  if (filePath === FILES.contact) return await db.saveSubmissions("contact", value);
-  if (filePath === FILES.project) return await db.saveSubmissions("project", value);
-  if (filePath === FILES.newsletter) return await db.saveSubmissions("newsletter", value);
-  if (filePath === FILES.analytics) return await db.saveAnalytics(value);
-  if (filePath === FILES.audit) return await db.saveAudit(value);
+  const base = path.basename(filePath);
+  if (base === "site-content.json") return await db.saveContent(value);
+  if (base === "site-settings.json") return await db.saveSettings(value);
+  if (base === "blog-posts.json") return await db.saveBlogList(value);
+  if (base === "users.json") return await db.saveUsers(value);
+  if (base === "contact-submissions.json") return await db.saveSubmissions("contact", value);
+  if (base === "project-submissions.json") return await db.saveSubmissions("project", value);
+  if (base === "newsletter-signups.json") return await db.saveSubmissions("newsletter", value);
+  if (base === "analytics.json") return await db.saveAnalytics(value);
+  if (base === "audit-log.json") return await db.saveAudit(value);
 
   try {
     await fs.writeFile(filePath, JSON.stringify(value, null, 2));
