@@ -1274,10 +1274,14 @@ async function requestHandler(request, response) {
     return;
   }
 
-  const url = new URL(request.url, `http://127.0.0.1:${PORT}`);
+  let reqUrl = request.url || "/";
+  if (!reqUrl.startsWith("/api") && !reqUrl.startsWith("/dashboard") && reqUrl !== "/") {
+    reqUrl = `/api${reqUrl.startsWith("/") ? "" : "/"}${reqUrl}`;
+  }
+  const url = new URL(reqUrl, `http://127.0.0.1:${PORT}`);
 
   try {
-    if (url.pathname.startsWith("/api/")) {
+    if (url.pathname.startsWith("/api")) {
       await handleApi(request, response, url);
       return;
     }
