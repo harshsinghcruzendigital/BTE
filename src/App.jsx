@@ -2258,22 +2258,42 @@ function AdminLogin({ onLoginSuccess }) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const cleanStr = (s) => String(s || '').replace(/[\u200B-\u200D\uFEFF\u00A0\r\n\t]/g, '').trim();
+
   const completeLogin = (userObj, tokenVal) => {
-    sessionStorage.setItem('dashboard_token', tokenVal);
-    sessionStorage.setItem('admin_user', JSON.stringify(userObj));
+    try {
+      sessionStorage.setItem('dashboard_token', tokenVal);
+      sessionStorage.setItem('admin_user', JSON.stringify(userObj));
+      localStorage.setItem('dashboard_token', tokenVal);
+      localStorage.setItem('admin_user', JSON.stringify(userObj));
+    } catch (e) {}
     onLoginSuccess(userObj);
   };
 
   const performLogin = async (u, p) => {
+    const cleanU = cleanStr(u);
+    const cleanP = cleanStr(p);
     let response;
     try {
-      response = await fetch(API_BASE + '/api/auth/login', {
+      response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: String(u || '').trim(), password: String(p || '').trim() })
+        body: JSON.stringify({ username: cleanU, password: cleanP })
       });
     } catch (networkErr) {
-      throw new Error("Can't reach the backend server. Please try again.");
+      if (API_BASE) {
+        try {
+          response = await fetch(`${API_BASE}/api/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: cleanU, password: cleanP })
+          });
+        } catch (e) {
+          throw new Error("Can't reach the backend server. Please check your internet connection.");
+        }
+      } else {
+        throw new Error("Can't reach the backend server. Please check your internet connection.");
+      }
     }
 
     const data = await response.json().catch(() => ({}));
