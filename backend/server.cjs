@@ -255,6 +255,7 @@ function normalizeBlogPost(input, existing = {}) {
     title,
     excerpt: String(input.excerpt ?? existing.excerpt ?? "").trim(),
     content: String(input.content ?? existing.content ?? "").trim(),
+    contentHtml: String(input.contentHtml ?? existing.contentHtml ?? "").trim(),
     coverImage: String(input.coverImage ?? existing.coverImage ?? "").trim(),
     author: String(input.author ?? existing.author ?? "Bio Trend Energy").trim(),
     tags: Array.isArray(input.tags)

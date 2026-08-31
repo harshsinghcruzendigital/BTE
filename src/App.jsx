@@ -2416,7 +2416,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
   const [isRefreshingLeads, setIsRefreshingLeads] = useState(false);
 
   // Blog Studio state
-  const emptyBlogDraft = { id: null, title: '', excerpt: '', content: '', coverImage: '', author: user?.displayName || 'Bio Trend Energy', tags: '', status: 'draft' };
+  const emptyBlogDraft = { id: null, title: '', excerpt: '', content: '', contentHtml: '', coverImage: '', author: user?.displayName || 'Bio Trend Energy', tags: '', status: 'draft' };
   const [blogPosts, setBlogPosts] = useState([]);
   const [blogDraft, setBlogDraft] = useState(emptyBlogDraft);
   const [blogError, setBlogError] = useState('');
@@ -2807,6 +2807,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
       title: post.title || '',
       excerpt: post.excerpt || '',
       content: post.content || '',
+      contentHtml: post.contentHtml || '',
       coverImage: post.coverImage || '',
       author: post.author || (user?.displayName || 'Bio Trend Energy'),
       tags: (post.tags || []).join(', '),
@@ -2826,6 +2827,7 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
       title: blogDraft.title,
       excerpt: blogDraft.excerpt,
       content: blogDraft.content,
+      contentHtml: blogDraft.contentHtml || '',
       coverImage: blogDraft.coverImage,
       author: blogDraft.author,
       tags: blogDraft.tags.split(',').map((t) => t.trim()).filter(Boolean),
@@ -4941,9 +4943,16 @@ function AdminDashboard({ user, onLogout, siteData, setSiteData, settingsData, s
 
                   <div className="s-field">
                     <label><span>Body</span><span style={{ fontSize: '0.72rem', color: 'var(--s-text-subtle)' }}>Blank line = new paragraph</span></label>
-                    <textarea rows={9} value={blogDraft.content}
+                    <textarea rows={6} value={blogDraft.content}
                       onChange={(e) => setBlogDraft({ ...blogDraft, content: e.target.value })}
-                      placeholder="Write the full article here…" />
+                      placeholder="Write the plain text description here..." />
+                  </div>
+
+                  <div className="s-field">
+                    <label><span>Body (HTML / Rich Layout)</span><span style={{ fontSize: '0.72rem', color: 'var(--s-text-subtle)' }}>Optional: Supports full HTML grids, formatting and multiple images</span></label>
+                    <textarea rows={10} value={blogDraft.contentHtml}
+                      onChange={(e) => setBlogDraft({ ...blogDraft, contentHtml: e.target.value })}
+                      placeholder="e.g. <p>Write rich HTML layout here...</p>" />
                   </div>
 
                   <div className="s-field-row">
