@@ -51,14 +51,19 @@ let isConnected = false;
 
 async function getDb() {
   if (db && isConnected) return db;
-  if (!mongoUri) return null;
+  if (!mongoUri) {
+    console.log("getDb: mongoUri is empty!");
+    return null;
+  }
   try {
     if (!client) {
+      console.log("getDb: creating MongoClient with uri:", mongoUri ? mongoUri.replace(/:([^:@]+)@/, ":****@") : "none");
       client = new MongoClient(mongoUri, { serverSelectionTimeoutMS: 8000 });
     }
     await client.connect();
     db = client.db("bte");
     isConnected = true;
+    console.log("getDb: connected successfully to bte!");
     return db;
   } catch (err) {
     console.warn("MongoDB connection warning:", err.message);
@@ -142,8 +147,10 @@ async function getBlogs() {
   const database = await getDb();
   if (database) {
     const list = await database.collection("blogs").find({}).toArray();
+    console.log("getBlogs: found", list.length, "blogs in MongoDB");
     return list.map(({ _id, ...rest }) => rest);
   }
+  console.log("getBlogs: no database, falling back to disk");
   return (await readFallbackJson(FILES.blog)) || [];
 }
 
