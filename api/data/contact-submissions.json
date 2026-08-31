@@ -1,0 +1,16 @@
+[
+  {
+    "id": "contact_1783886053903",
+    "type": "contact",
+    "payload": {
+      "name": "Ritik Kumar",
+      "email": "ritikkumar898644@gmail.com",
+      "phone": "09102233327",
+      "service": "Biogas Solutions",
+      "message": "fhgvhg"
+    },
+    "ip": "127.0.0.1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+    "createdAt": "2026-07-12T19:54:13.905Z"
+  }
+]

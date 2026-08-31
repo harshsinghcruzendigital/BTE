@@ -1,0 +1,122 @@
+{
+  "api": {
+    "baseUrl": "http://127.0.0.1:8787",
+    "contentEndpoint": "/api/content",
+    "settingsEndpoint": "/api/settings",
+    "analyticsEndpoint": "/api/analytics",
+    "formsEndpoint": "/api/forms"
+  },
+  "branding": {
+    "fontFamily": "\"Poppins\", system-ui, -apple-system, sans-serif"
+  },
+  "design": {
+    "fontFamily": "\"Poppins\", system-ui, -apple-system, sans-serif",
+    "fontOptions": [
+      "\"Poppins\", system-ui, -apple-system, sans-serif",
+      "\"Inter\", system-ui, -apple-system, sans-serif",
+      "\"Manrope\", system-ui, -apple-system, sans-serif",
+      "\"DM Sans\", system-ui, -apple-system, sans-serif",
+      "\"Nunito Sans\", system-ui, -apple-system, sans-serif"
+    ],
+    "typography": {
+      "navScale": 1,
+      "buttonScale": 1,
+      "eyebrowScale": 1,
+      "bodyScale": 1,
+      "heroTitleScale": 1,
+      "pageTitleScale": 1,
+      "sectionTitleScale": 1,
+      "cardTitleScale": 1
+    },
+    "palettes": {
+      "light": {
+        "pageBackground": "#F7FAFC",
+        "surface": "#ffffff",
+        "text": "#44546A",
+        "heading": "#071B33",
+        "primary": "#0067B9",
+        "secondary": "#16A83A",
+        "mist": "#EFF7FC"
+      },
+      "dark": {
+        "pageBackground": "#071B33",
+        "surface": "#0d223a",
+        "text": "#dbeafe",
+        "heading": "#ffffff",
+        "primary": "#0067B9",
+        "secondary": "#16A83A",
+        "mist": "#0e2d4d"
+      }
+    }
+  },
+  "themeTokens": {
+    "light": {
+      "--paper": "#ffffff",
+      "--ink": "#4E6478",
+      "--navy": "#0B2A45",
+      "--green": "#0066B3",
+      "--lime": "#02839E",
+      "--mist": "#D7ECF7",
+      "--line": "rgba(2, 116, 181, 0.1)",
+      "--shadow": "rgba(11, 42, 69, 0.04)",
+      "--hero-shade": "rgba(11, 42, 69, 0.5)",
+      "--card-bg": "#ffffff",
+      "--section-light-bg": "linear-gradient(180deg, #E6F1F8, #F4F9FC 72%)",
+      "--offering-bg": "linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(237, 243, 239, 0.94))",
+      "--offering-border": "rgba(2, 116, 181, 0.06)",
+      "--body-grad-1": "rgba(2, 116, 181, 0.04)",
+      "--body-grad-2": "rgba(1, 86, 143, 0.03)",
+      "--body-grad-bg": "linear-gradient(180deg, #F4F9FC 0%, #E8F3F9 48%, #DCEBF5 100%)",
+      "--grad-emerald-mint": "linear-gradient(135deg, #0066B3 0%, #8FD9EE 100%)",
+      "--grad-pine-emerald": "linear-gradient(135deg, #0B2A45 0%, #0066B3 100%)",
+      "--grad-soft-green": "linear-gradient(135deg, #D7ECF7 0%, #EAF4FA 100%)",
+      "--header-scrolled-bg": "rgba(255, 255, 255, 0.88)",
+      "--header-scrolled-border": "rgba(2, 116, 181, 0.06)",
+      "--header-scrolled-shadow": "0 8px 32px rgba(11, 42, 69, 0.04)",
+      "--header-brand-color": "#0B2A45",
+      "--header-nav-color": "rgba(11, 42, 69, 0.88)",
+      "--header-toggle-color": "#0B2A45"
+    },
+    "dark": {
+      "--paper": "#050D16",
+      "--ink": "#DCEAF5",
+      "--navy": "#38BDF8",
+      "--green": "#1FA8C4",
+      "--lime": "#59BE34",
+      "--mist": "#08192A",
+      "--line": "rgba(255, 255, 255, 0.06)",
+      "--shadow": "rgba(0, 0, 0, 0.6)",
+      "--hero-shade": "rgba(0, 0, 0, 0.74)",
+      "--card-bg": "#091810",
+      "--section-light-bg": "linear-gradient(180deg, #06110a, #050D16 72%)",
+      "--offering-bg": "linear-gradient(180deg, rgba(9, 24, 16, 0.82), rgba(6, 17, 11, 0.92))",
+      "--offering-border": "rgba(255, 255, 255, 0.06)",
+      "--body-grad-1": "rgba(74, 222, 128, 0.02)",
+      "--body-grad-2": "rgba(38, 194, 129, 0.02)",
+      "--body-grad-bg": "linear-gradient(180deg, #050D16 0%, #020604 48%, #010302 100%)",
+      "--grad-emerald-mint": "linear-gradient(135deg, #1FA8C4 0%, #38BDF8 100%)",
+      "--grad-pine-emerald": "linear-gradient(135deg, #091810 0%, #1FA8C4 100%)",
+      "--grad-soft-green": "linear-gradient(135deg, #08192A 0%, #0c1a12 100%)",
+      "--header-scrolled-bg": "rgba(4, 10, 6, 0.82)",
+      "--header-scrolled-border": "rgba(255, 255, 255, 0.06)",
+      "--header-scrolled-shadow": "0 8px 32px rgba(0, 0, 0, 0.5)",
+      "--header-brand-color": "#DCEAF5",
+      "--header-nav-color": "rgba(226, 239, 230, 0.88)",
+      "--header-toggle-color": "#DCEAF5"
+    }
+  },
+  "analytics": {
+    "dashboardRefreshSeconds": 30,
+    "leadGoals": [
+      "contact-form-submit",
+      "project-modal-submit",
+      "newsletter-signup"
+    ],
+    "trafficSources": [
+      "Direct",
+      "Search",
+      "Social",
+      "Referral"
+    ]
+  }
+}

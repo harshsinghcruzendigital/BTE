@@ -1,0 +1,263 @@
+{
+  "theme": {
+    "darkMode": false,
+    "fontFamily": "Poppins",
+    "colors": {
+      "light": {
+        "primary": "#154E33",
+        "accent": "#2D8A4E",
+        "bgPage": "#F7FAF6",
+        "bgSurface": "#FFFFFF",
+        "textBody": "#58655F",
+        "textHeading": "#122018",
+        "border": "#E2EDE4",
+        "mist": "#EEF7F2"
+      },
+      "dark": {
+        "primary": "#2D8A4E",
+        "accent": "#42C673",
+        "bgPage": "#09150F",
+        "bgSurface": "#102119",
+        "textBody": "#A9B9AD",
+        "textHeading": "#EFF8EF",
+        "border": "#263A2D",
+        "mist": "#102C1D"
+      }
+    },
+    "typography": {
+      "heroTitleScale": 1,
+      "pageTitleScale": 1,
+      "sectionTitleScale": 1,
+      "cardTitleScale": 1,
+      "bodyScale": 1,
+      "eyebrowScale": 1,
+      "navScale": 1,
+      "buttonScale": 1
+    }
+  },
+  "hero": {
+    "eyebrow": "Clean energy. Green future.",
+    "title": "Innovative Bioenergy Solutions for a Sustainable Tomorrow",
+    "description": "We transform biomass waste into clean energy and valuable resources, creating a positive impact on people and the planet.",
+    "buttonPrimary": "Our Solutions",
+    "buttonSecondary": "Get in Touch",
+    "proofText": "50+ successful projects delivered across India",
+    "image": "/assets/hero-bioenergy.jpg",
+    "videoLink": "/assets/bio-trend-film.mp4"
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Driving the Transition Towards a Cleaner, Greener Future",
+    "description": "Bio Trend Energy is at the forefront of clean-energy innovation. We design, build and operate advanced bioenergy systems that convert biomass waste into renewable energy and sustainable by-products.",
+    "story": "Our approach combines engineering excellence with local insight. Every project is developed around resource efficiency, measurable impact and long-term operational reliability.",
+    "bullets": [
+      "Innovative, tailored solutions",
+      "Proven conversion technology",
+      "Environmental responsibility",
+      "Customer-centric delivery"
+    ],
+    "image": "/assets/leaf-dew.jpg",
+    "noteYears": "8 years",
+    "noteText": "of purposeful growth",
+    "missionTitle": "Our Mission",
+    "missionText": "Deliver sustainable bioenergy solutions that empower communities, protect the environment and drive economic growth.",
+    "visionTitle": "Our Vision",
+    "visionText": "A world where waste is a resource and clean energy is accessible to all."
+  },
+  "solutions": {
+    "eyebrow": "What we do",
+    "title": "Our Solutions",
+    "description": "End-to-end bioenergy solutions built around your resources, requirements and long-term goals.",
+    "items": [
+      {
+        "title": "Biomass Power Plants",
+        "description": "High-efficiency biomass power plants for reliable and renewable energy.",
+        "icon": "Leaf"
+      },
+      {
+        "title": "Waste to Energy",
+        "description": "Converting agricultural and industrial waste into clean energy.",
+        "icon": "Recycle"
+      },
+      {
+        "title": "Biogas Solutions",
+        "description": "Advanced biogas systems for industry, communities and agriculture.",
+        "icon": "Droplets"
+      },
+      {
+        "title": "Biochar Production",
+        "description": "Turning biomass into biochar for soil health and carbon capture.",
+        "icon": "Sprout"
+      },
+      {
+        "title": "Energy Consulting",
+        "description": "Expert consulting for feasibility, design and project implementation.",
+        "icon": "CircleGauge"
+      },
+      {
+        "title": "Operation & Maintenance",
+        "description": "Reliable operational performance and long-term plant care.",
+        "icon": "Settings"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How it works",
+    "title": "Our Process",
+    "description": "A proven process that converts waste into clean energy, built for consistent performance from source to supply.",
+    "badgeTitle": "Zero waste mindset",
+    "badgeText": "Maximum value from every resource",
+    "image": "/assets/biomass-process.jpg",
+    "steps": [
+      {
+        "title": "Feedstock Collection",
+        "description": "We source biomass waste from agriculture, industries and forestry.",
+        "icon": "Trash2"
+      },
+      {
+        "title": "Processing",
+        "description": "The biomass is sorted, dried and processed to ensure maximum efficiency.",
+        "icon": "Factory"
+      },
+      {
+        "title": "Conversion",
+        "description": "Advanced technology converts biomass into clean, usable energy.",
+        "icon": "Recycle"
+      },
+      {
+        "title": "Energy Generation",
+        "description": "Reliable renewable energy is generated for industries and communities.",
+        "icon": "Zap"
+      },
+      {
+        "title": "By-Products",
+        "description": "Valuable by-products such as biochar and organic fertilizer are produced.",
+        "icon": "PackageCheck"
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Our work",
+    "title": "Projects That Perform",
+    "description": "Delivering successful bioenergy projects that create lasting environmental and economic value.",
+    "summaryValue": "50+",
+    "summaryText": "projects delivered across India",
+    "items": [
+      {
+        "title": "6 MW Biomass Power Plant",
+        "location": "Punjab, India",
+        "capacity": "6 MW Capacity",
+        "category": "Biomass Power",
+        "image": "/assets/biomass-process.jpg"
+      },
+      {
+        "title": "Waste to Energy Plant",
+        "location": "Maharashtra, India",
+        "capacity": "15 TPD Capacity",
+        "category": "Waste to Energy",
+        "image": "/assets/project-waste-to-energy.jpg"
+      },
+      {
+        "title": "Community Biogas Plant",
+        "location": "Gujarat, India",
+        "capacity": "500 m3/day",
+        "category": "Biogas",
+        "image": "/assets/project-biogas.jpg"
+      },
+      {
+        "title": "Biomass Recovery Plant",
+        "location": "Karnataka, India",
+        "capacity": "10 MW Capacity",
+        "category": "Biomass Power",
+        "image": "/assets/hero-bioenergy.jpg"
+      },
+      {
+        "title": "Industrial Waste to Energy",
+        "location": "Tamil Nadu, India",
+        "capacity": "20 TPD Capacity",
+        "category": "Waste to Energy",
+        "image": "/assets/project-biochar.jpg"
+      },
+      {
+        "title": "Large-Scale Biogas Plant",
+        "location": "Uttar Pradesh, India",
+        "capacity": "750 m3/day",
+        "category": "Biogas",
+        "image": "/assets/project-biogas.jpg"
+      }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Measurable change",
+    "title": "Our Impact",
+    "description": "Creating a positive impact on the environment, economy and society with every project we deliver.",
+    "image": "/assets/wind-impact.jpg",
+    "sdgTitle": "Sustainable Development Goals",
+    "sdgText": "Contributing to a cleaner environment and resilient communities.",
+    "items": [
+      {
+        "label": "CO2 Emissions Reduced",
+        "value": "250K+",
+        "detail": "Tons Annually",
+        "icon": "Leaf"
+      },
+      {
+        "label": "Renewable Energy Generated",
+        "value": "180+",
+        "detail": "GWh Annually",
+        "icon": "Zap"
+      },
+      {
+        "label": "Waste Processed",
+        "value": "120K+",
+        "detail": "Tons Annually",
+        "icon": "PackageCheck"
+      },
+      {
+        "label": "Jobs Created",
+        "value": "350+",
+        "detail": "Direct & Indirect",
+        "icon": "Users"
+      }
+    ]
+  },
+  "footer": {
+    "description": "Transforming biomass waste into clean energy for a healthier planet and a more resilient future.",
+    "quickLinksTitle": "Quick Links",
+    "solutionsTitle": "Our Solutions",
+    "resourcesTitle": "Resources",
+    "contactTitle": "Contact Info",
+    "phone": "+91 98765 43210",
+    "email": "info@biotrendenergy.com",
+    "office": "Gurugram, Haryana, India",
+    "copyright": "Copyright 2026 Bio Trend Energy. All rights reserved.",
+    "policies": [
+      {
+        "label": "Privacy Policy",
+        "href": "#home"
+      },
+      {
+        "label": "Terms of Use",
+        "href": "#home"
+      }
+    ]
+  },
+  "site": {
+    "name": "Bio Trend Energy",
+    "logo": "/assets/bio-trend-logo.png",
+    "facebook": "https://facebook.com",
+    "instagram": "https://instagram.com",
+    "linkedin": "https://linkedin.com"
+  },
+  "forms": {
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "Have a question? We would love to hear from you.",
+      "namePlaceholder": "Your Name",
+      "emailPlaceholder": "Your Email",
+      "messagePlaceholder": "Your Message",
+      "buttonText": "Send Message",
+      "successMessage": "Thank you! Your message has been received."
+    }
+  }
+}

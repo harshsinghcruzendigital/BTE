@@ -12,23 +12,21 @@ const cloudinary = require("cloudinary").v2;
 const fs = require("fs/promises");
 const path = require("path");
 
-const ROOT_DIR = path.resolve(__dirname, "..");
-const SHARED_DATA_DIR = path.join(ROOT_DIR, "data");
-const LOCAL_DATA_DIR = path.join(ROOT_DIR, "backend", "data");
+const DATA_DIR = path.join(__dirname, "data");
 
 const FILES = {
-  content: path.join(SHARED_DATA_DIR, "site-content.json"),
-  defaultContent: path.join(SHARED_DATA_DIR, "default-site-content.json"),
-  settings: path.join(SHARED_DATA_DIR, "site-settings.json"),
-  defaultSettings: path.join(SHARED_DATA_DIR, "default-site-settings.json"),
-  analytics: path.join(LOCAL_DATA_DIR, "analytics.json"),
-  contact: path.join(LOCAL_DATA_DIR, "contact-submissions.json"),
-  project: path.join(LOCAL_DATA_DIR, "project-submissions.json"),
-  newsletter: path.join(LOCAL_DATA_DIR, "newsletter-signups.json"),
-  users: path.join(LOCAL_DATA_DIR, "users.json"),
-  audit: path.join(LOCAL_DATA_DIR, "audit-log.json"),
-  sessions: path.join(LOCAL_DATA_DIR, "sessions.json"),
-  blog: path.join(LOCAL_DATA_DIR, "blog-posts.json"),
+  content: path.join(DATA_DIR, "site-content.json"),
+  defaultContent: path.join(DATA_DIR, "default-site-content.json"),
+  settings: path.join(DATA_DIR, "site-settings.json"),
+  defaultSettings: path.join(DATA_DIR, "default-site-settings.json"),
+  analytics: path.join(DATA_DIR, "analytics.json"),
+  contact: path.join(DATA_DIR, "contact-submissions.json"),
+  project: path.join(DATA_DIR, "project-submissions.json"),
+  newsletter: path.join(DATA_DIR, "newsletter-signups.json"),
+  users: path.join(DATA_DIR, "users.json"),
+  audit: path.join(DATA_DIR, "audit-log.json"),
+  sessions: path.join(DATA_DIR, "sessions.json"),
+  blog: path.join(DATA_DIR, "blog-posts.json"),
 };
 
 const cloudName = (process.env.CLOUDINARY_CLOUD_NAME || "").replace(/^["']|["']$/g, "").trim();

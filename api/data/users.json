@@ -1,0 +1,14 @@
+[
+  {
+    "id": "usr_d609ef691ede0c504227",
+    "username": "admin",
+    "displayName": "Primary Admin",
+    "role": "admin",
+    "passwordSalt": "719b05c2d6fdfd251bd436e76f80882f",
+    "passwordHash": "64341f8bd54302cc54d3f1d2739ef09a3f231ab9a70f38ce4f92357816762c017f12aa993238fcd3e3e4aa633e45fb1b08f748d6836045e2c6d40abb87a3de3a",
+    "active": true,
+    "createdAt": "2026-07-10T15:42:43.609Z",
+    "createdBy": "system",
+    "lastLoginAt": "2026-08-05T11:09:50.916Z"
+  }
+]

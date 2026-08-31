@@ -1,0 +1,115 @@
+{
+  "site": {
+    "name": "Bio Trend Energy",
+    "legalName": "Bio Trend Energy Private Limited",
+    "logo": { "src": "/assets/bio-trend-logo.png", "alt": "Bio Trend Energy" },
+    "navigation": [
+      { "label": "Home", "path": "/" },
+      { "label": "About Us", "path": "/about-us" },
+      { "label": "Portfolio", "path": "/portfolio" },
+      { "label": "Services", "path": "/services" },
+      { "label": "Outreach", "path": "/outreach" },
+      { "label": "Blog", "path": "/blog" }
+    ]
+  },
+  "hero": {
+    "eyebrow": "ADVANCED BIOMASS & WASTE CLEAN ENERGY",
+    "title": "CREATING SUSTAINABLE ENERGY OF TOMORROW",
+    "description": "Bio Trend Energy Private Limited (BTE) is an Indian company working on advanced biomass pellets, waste clean-energy solutions and innovations that aim to reduce GHG emissions and improve the environment. Our long-term goal is a cleaner environment through the replacement of fossil fuel in industrial and other sectors.",
+    "image": "/assets/hero-bioenergy.jpg",
+    "videoLink": "/assets/bio-trend-film.mp4"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "Bio Trend Energy Private Limited",
+    "description": "In a continuous effort toward the global sustainable-energy transition, Bio Trend Energy has partnered with energy enthusiasts around the world and continues to build new partnerships.",
+    "story": "In the renewable-energy domain, BTE undertakes farmer and stakeholder training, works with partners, and carries out activities including biomass-pellet manufacturing.",
+    "bullets": ["Advanced biomass-pellet solutions", "Waste clean-energy solutions and innovation", "Reducing GHG emissions", "Replacing fossil fuel in industrial and other sectors"],
+    "image": "/assets/biomass-pellets.webp",
+    "noteYears": "BTE",
+    "noteText": "creating sustainable energy of tomorrow",
+    "missionTitle": "Our Long-Term Goal",
+    "missionText": "Achieve a cleaner environment by replacing fossil fuel in industrial and other sectors.",
+    "visionTitle": "Our Approach",
+    "visionText": "Build the sustainable-energy transition through biomass, partnerships, training and innovation."
+  },
+  "solutions": {
+    "eyebrow": "Services",
+    "title": "A Complete Biomass Solutions Package",
+    "description": "All functions—including supply chain, value chain, project scheduling, manufacturing, services and spares, technology and R&D—are integrated to provide a complete solutions package.",
+    "items": [
+      { "title": "Advanced Biomass Pellets", "description": "Biomass-pellet manufacturing and clean-fuel solutions that support fossil-fuel replacement.", "icon": "Leaf" },
+      { "title": "Waste Clean-Energy Solutions", "description": "Advanced biomass and waste clean-energy solutions and innovations aimed at reducing GHG emissions.", "icon": "Recycle" },
+      { "title": "Supply & Value Chain", "description": "Integrated supply-chain, value-chain and project-scheduling support.", "icon": "Factory" },
+      { "title": "Manufacturing, Services & Spares", "description": "Manufacturing, services and spares coordinated within one complete package.", "icon": "Settings" },
+      { "title": "Technology & R&D", "description": "Technology, research and development integrated into clean-energy implementation.", "icon": "CircleGauge" },
+      { "title": "Training & Stakeholder Support", "description": "Training for farmers, prospective stakeholders and partners across the biomass ecosystem.", "icon": "Users" }
+    ]
+  },
+  "process": {
+    "eyebrow": "Outreach",
+    "title": "Working With Farmers, Stakeholders and Partners",
+    "description": "Bio Trend Energy undertakes farmer training, prospective-stakeholder engagement and partner activities alongside biomass-pellet manufacturing.",
+    "badgeTitle": "Sustainable energy transition",
+    "badgeText": "Building participation across the biomass value chain",
+    "image": "/assets/biomass-process.jpg",
+    "steps": [
+      { "title": "Farmer Training", "description": "Training farmers to participate in biomass aggregation and the renewable-energy value chain.", "icon": "Users" },
+      { "title": "Stakeholder Engagement", "description": "Working with prospective stakeholders interested in biomass and clean energy.", "icon": "Handshake" },
+      { "title": "Partner Development", "description": "Partnering with energy enthusiasts in India and around the world.", "icon": "Globe2" },
+      { "title": "Biomass-Pellet Manufacturing", "description": "Carrying out biomass-pellet manufacturing as a practical renewable-energy activity.", "icon": "Factory" }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Portfolio",
+    "title": "Projects & Publications",
+    "description": "Bio Trend Energy integrates supply chain, value chain, project scheduling, manufacturing, services and spares, technology and R&D into a complete solutions package.",
+    "summaryValue": "4",
+    "summaryText": "verified publications and project reports",
+    "items": [
+      { "title": "Green Energy Transition", "description": "Director Sunil Dhingra’s article on expanding solid biofuel, featured in Edition 3 of the PPAC Journal.", "location": "PPAC Journal — Edition 3", "capacity": "Read publication", "category": "Publication", "image": "/assets/PRAC JOURNEL.jpg", "href": "/assets/PRAC JOURNEL.pdf" },
+      { "title": "Agriculture as a Source of Sustainable Energy", "description": "A publication on crop residues, agricultural waste, farmer income and rural development.", "location": "Bio Trend Energy Publication", "capacity": "Read publication", "category": "Publication", "image": "/assets/AKSHAY URJA.png", "href": "/assets/AKSHAY URJA.pdf" },
+      { "title": "Biomass Demand-Supply & Pellet Entrepreneurship", "description": "Assessment of the biomass value chain and pellet-production entrepreneurship in selected districts.", "location": "Skill Council for Green Jobs", "capacity": "Read report", "category": "Report", "image": "/assets/SKILL-COUNCIL-FINAL-REPORT-01.04.23-_Bareilly-Indore.png", "href": "/assets/SKILL-COUNCIL-FINAL-REPORT-01.04.23-_Bareilly-Indore.pdf" },
+      { "title": "1.2 MW Biomass Gasification Project DPR", "description": "Detailed project report for a grid-connected biomass-gasification facility proposed at Kangra, Himachal Pradesh.", "location": "Kangra, Himachal Pradesh", "capacity": "Read DPR", "category": "Project Report", "image": "/assets/DPR-Anagram-Himachal-2.0.png", "href": "/assets/DPR-Anagram-Himachal-2.0.pdf" }
+    ]
+  },
+  "footer": {
+    "description": "Advanced biomass pellets and waste clean-energy solutions for a cleaner environment and a sustainable energy future.",
+    "quickLinksTitle": "Quick Links",
+    "solutionsTitle": "Services",
+    "resourcesTitle": "Resources",
+    "contactTitle": "Get in Touch",
+    "phone": "+91-7678578185",
+    "email": "info@biotrendenergy.com",
+    "office": "Bio Trend Energy Private Limited, India",
+    "copyright": "Copyright 2026 Bio Trend Energy. All rights reserved.",
+    "policies": [],
+    "quickLinks": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "/about-us" },
+      { "label": "Portfolio", "href": "/portfolio" },
+      { "label": "Contact Us", "href": "/contact" }
+    ],
+    "solutionsLinks": [
+      { "label": "Services", "href": "/services" },
+      { "label": "Biomass Pellets", "href": "/services" },
+      { "label": "Technology & R&D", "href": "/services" }
+    ],
+    "resourceLinks": [
+      { "label": "Outreach", "href": "/outreach" },
+      { "label": "Publications", "href": "/portfolio" },
+      { "label": "Blog", "href": "/blog" }
+    ],
+    "socialLinks": [
+      { "platform": "linkedin", "url": "https://www.linkedin.com/company/biotrendenergy/?originalSubdomain=in" },
+      { "platform": "instagram", "url": "https://www.instagram.com/biotrendenergy/?hl=en" }
+    ]
+  },
+  "seo": {
+    "metaTitle": "Bio Trend Energy — Biomass Pellets & Clean Energy",
+    "metaDescription": "Advanced biomass pellets and waste clean-energy solutions aimed at reducing GHG emissions and replacing fossil fuel.",
+    "keywords": "Bio Trend Energy, biomass pellets, biomass aggregation, clean energy, renewable energy, India",
+    "ogImage": "/assets/hero-bioenergy.jpg"
+  },
+  "testimonials": []
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1783695314805jgsyg",
+    "timestamp": "2026-07-10T14:55:14.805Z",
+    "email": "admin@biotrend.com",
+    "name": "Admin Ritik",
+    "action": "Logged in to the Dashboard"
+  },
+  {
+    "id": "1783694815666ban5o",
+    "timestamp": "2026-07-10T14:46:55.666Z",
+    "email": "admin@biotrend.com",
+    "name": "Admin Ritik",
+    "action": "Updated website copy and customization settings"
+  },
+  {
+    "id": "17836947157550ocdp",
+    "timestamp": "2026-07-10T14:45:15.755Z",
+    "email": "admin@biotrend.com",
+    "name": "Admin Ritik",
+    "action": "Logged in to the Dashboard"
+  }
+]

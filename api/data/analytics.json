@@ -1,0 +1,672 @@
+{
+  "dashboardViews": 6,
+  "siteViews": 422,
+  "contentSaves": 6,
+  "settingsSaves": 12,
+  "formSubmissions": 8,
+  "teamChanges": 0,
+  "authLogins": 14,
+  "events": [
+    {
+      "id": "evt_0bf4ed1318a9be91e3ab",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-08-05T11:09:50.922Z"
+    },
+    {
+      "id": "evt_a002a8114c8cc3e727de",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T12:02:27.435Z"
+    },
+    {
+      "id": "evt_6e25fe07b1e78e08788f",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T12:02:16.183Z"
+    },
+    {
+      "id": "evt_550e4cac7e9a564a9b50",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T12:01:57.238Z"
+    },
+    {
+      "id": "evt_07cf9effb7d6faa71129",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T12:01:38.867Z"
+    },
+    {
+      "id": "evt_66ad66e995a6aa7b73ab",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T12:01:05.176Z"
+    },
+    {
+      "id": "evt_61e8b4c405032d3ff6f9",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1784030449407",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-14T12:00:49.425Z"
+    },
+    {
+      "id": "evt_aeda53fbeae36fb29463",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T07:05:26.326Z"
+    },
+    {
+      "id": "evt_ca90abb2a1da1485fd6a",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T07:04:40.986Z"
+    },
+    {
+      "id": "evt_12b9254862e92d0b463c",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:43:55.276Z"
+    },
+    {
+      "id": "evt_52cebc51a60c9052b07f",
+      "type": "blog-delete",
+      "label": "Blog post removed: UI Test: Biochar and Soil Health",
+      "meta": {
+        "id": "post_980096ae5cad629bc12b"
+      },
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:25:18.070Z"
+    },
+    {
+      "id": "evt_45e1dcb06439afd48f9f",
+      "type": "blog-create",
+      "label": "Blog post created: UI Test: Biochar and Soil Health",
+      "meta": {
+        "id": "post_980096ae5cad629bc12b",
+        "status": "published"
+      },
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:24:45.146Z"
+    },
+    {
+      "id": "evt_f1c4521345cc286e074a",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:23:52.941Z"
+    },
+    {
+      "id": "evt_ea1a64e1b37f5cad11f8",
+      "type": "blog-delete",
+      "label": "Blog post removed: Test Draft Post",
+      "meta": {
+        "id": "post_d9128704a798bc0a98d8"
+      },
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:21:16.742Z"
+    },
+    {
+      "id": "evt_d132d9fef5b0123644bd",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:21:16.642Z"
+    },
+    {
+      "id": "evt_dc1af27f837fc01c4c3f",
+      "type": "blog-create",
+      "label": "Blog post created: Test Draft Post",
+      "meta": {
+        "id": "post_d9128704a798bc0a98d8",
+        "status": "draft"
+      },
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:21:04.420Z"
+    },
+    {
+      "id": "evt_359bb11455002d7d2071",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T06:21:04.289Z"
+    },
+    {
+      "id": "evt_34e8e08c5903bd824fe8",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T05:24:46.371Z"
+    },
+    {
+      "id": "evt_ad94898f92ab2bc91e50",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T05:24:24.309Z"
+    },
+    {
+      "id": "evt_06e591fd475fa8650652",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T05:24:03.996Z"
+    },
+    {
+      "id": "evt_83c344d0088d1ec8a075",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T05:22:23.786Z"
+    },
+    {
+      "id": "evt_4ed5ae99c8d09364d07e",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-14T05:22:00.393Z"
+    },
+    {
+      "id": "evt_54cc059fe8f6782c4048",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T20:24:29.973Z"
+    },
+    {
+      "id": "evt_a2e465b80eb34886fab8",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T20:18:06.804Z"
+    },
+    {
+      "id": "evt_880e634d5a68a57fadea",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T20:17:32.222Z"
+    },
+    {
+      "id": "evt_b05427ce84bb63e35b5a",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783887402687",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:16:42.690Z"
+    },
+    {
+      "id": "evt_d2a5f370e44b84ff72b3",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783887353154",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:15:53.157Z"
+    },
+    {
+      "id": "evt_a6e1ae3635c53304eb4c",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783887254614",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:14:14.617Z"
+    },
+    {
+      "id": "evt_781529ad102998d8307a",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783887220215",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:13:40.218Z"
+    },
+    {
+      "id": "evt_d83b2a7509153507d911",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783886697654",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:04:57.657Z"
+    },
+    {
+      "id": "evt_405f77151cfd1be4ea44",
+      "type": "form-submit",
+      "label": "project form submitted",
+      "meta": {
+        "id": "project_1783886671864",
+        "type": "project"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T20:04:31.867Z"
+    },
+    {
+      "id": "evt_93867df6345b9ec6dbbd",
+      "type": "form-submit",
+      "label": "contact form submitted",
+      "meta": {
+        "id": "contact_1783886053903",
+        "type": "contact"
+      },
+      "actor": null,
+      "createdAt": "2026-07-12T19:54:13.911Z"
+    },
+    {
+      "id": "evt_b7df2adaac39943cf327",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:53:21.057Z"
+    },
+    {
+      "id": "evt_abbabfc970514130b74c",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:52:48.845Z"
+    },
+    {
+      "id": "evt_c721aff7aae6fc36c177",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:16:13.777Z"
+    },
+    {
+      "id": "evt_cbc94847963eef51d79d",
+      "type": "content-save",
+      "label": "Website content saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:15:38.219Z"
+    },
+    {
+      "id": "evt_32db1d43e97bf9ab9f46",
+      "type": "media-upload",
+      "label": "Media uploaded: Screenshot 2026-07-12 133553.png",
+      "meta": {
+        "path": "/uploads/1783883720423-screenshot-2026-07-12-133553.png",
+        "mimeType": "image/png"
+      },
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:15:20.432Z"
+    },
+    {
+      "id": "evt_7519ea3f74f3a839c875",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:14:56.096Z"
+    },
+    {
+      "id": "evt_1a690d16b186ffd7ab64",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-12T19:14:45.456Z"
+    },
+    {
+      "id": "evt_660dd3a702b68396f9d4",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-11T20:40:47.244Z"
+    },
+    {
+      "id": "evt_df9610fb00dacb428112",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T16:07:12.747Z"
+    },
+    {
+      "id": "evt_bb73d2b08f9d5e6449ed",
+      "type": "settings-save",
+      "label": "Theme settings saved",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T16:06:53.336Z"
+    },
+    {
+      "id": "evt_ba78ef8848a5c2160a6e",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T16:03:33.676Z"
+    },
+    {
+      "id": "evt_076f81c51fdf35f9fbf3",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T16:00:19.846Z"
+    },
+    {
+      "id": "evt_871ea4b25ca1056c96e3",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T16:00:02.791Z"
+    },
+    {
+      "id": "evt_5050687b995a94b5856b",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:55:13.219Z"
+    },
+    {
+      "id": "evt_c6166eac505040be9261",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:55:13.143Z"
+    },
+    {
+      "id": "evt_bb6681d71cb231c901ba",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:49:54.281Z"
+    },
+    {
+      "id": "evt_8ecb3001ba8ecac77550",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:49:49.104Z"
+    },
+    {
+      "id": "evt_5c3e04404d9cbea6d484",
+      "type": "dashboard-view",
+      "label": "Dashboard opened",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:45:26.651Z"
+    },
+    {
+      "id": "evt_80dc99c3f7597606a42d",
+      "type": "auth-login",
+      "label": "Primary Admin signed in",
+      "meta": {},
+      "actor": {
+        "id": "usr_d609ef691ede0c504227",
+        "username": "admin",
+        "displayName": "Primary Admin",
+        "role": "admin"
+      },
+      "createdAt": "2026-07-10T15:45:26.573Z"
+    }
+  ],
+  "updatedAt": "2026-08-31T16:40:13.347Z"
+}

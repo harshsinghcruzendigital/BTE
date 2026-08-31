@@ -1,0 +1,14 @@
+[
+  {
+    "email": "admin@biotrend.com",
+    "password": "adminpassword",
+    "role": "admin",
+    "name": "Admin Ritik"
+  },
+  {
+    "email": "staff@biotrend.com",
+    "password": "staffpassword",
+    "role": "staff",
+    "name": "Staff John"
+  }
+]
