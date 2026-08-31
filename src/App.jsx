@@ -81,6 +81,13 @@ import {
 } from './data';
 import initialSiteData from '../data/site-content.json';
 import initialSiteSettings from '../data/site-settings.json';
+import originalLegacyBlogPosts from './legacy-blog-posts.json';
+import aboutPhotoOne from '../About/b1.webp';
+import aboutPhotoTwo from '../About/b2.webp';
+import aboutPhotoThree from '../About/b3.webp';
+import aboutPhotoFour from '../About/b4.jpg';
+import aboutPhotoFive from '../About/b5.jpg';
+import aboutPhotoSix from '../About/b8.jpg';
 import './admin.css';
 
 // API base URL. In production set VITE_API_BASE to your deployed backend's URL
@@ -230,6 +237,19 @@ function ScrollUtilities() {
   return (
     <>
       <div className="scroll-progress" style={{ transform: `scaleX(${progress / 100})` }} aria-hidden="true" />
+      
+      <a
+        href="https://wa.me/917678578185"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-float"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M12.004 2C6.5 2 2.014 6.5 2.014 12c0 2.13.67 4.103 1.81 5.73L2.03 22l4.414-1.755A9.927 9.927 0 0 0 12.004 22c5.502 0 9.982-4.5 9.982-10S17.506 2 12.004 2zm0 18.294c-1.92 0-3.704-.572-5.204-1.558l-.372-.224-2.83.18.258-2.616-.27-.41A8.258 8.258 0 0 1 3.73 12c0-4.57 3.714-8.29 8.274-8.29 4.56 0 8.274 3.72 8.274 8.29 0 4.57-3.714 8.294-8.274 8.294zm4.496-5.945c-.244-.12-.444-.22-1.116-.56-.164-.08-.282-.12-.404.06-.122.18-.472.56-.578.68-.106.12-.212.14-.456.02a5.753 5.753 0 0 1-1.688-1.04 6.342 6.342 0 0 1-1.168-1.455c-.144-.24-.016-.37.106-.49.11-.11.244-.28.366-.42.122-.14.162-.24.244-.4.08-.16.04-.3-.02-.42-.06-.12-.52-1.25-.712-1.72-.188-.45-.378-.39-.518-.4-.134-.01-.288-.01-.444-.01a.853.853 0 0 0-.618.29c-.214.23-.816.8-.816 1.95 0 1.15.836 2.26.952 2.42.116.16 1.644 2.51 3.982 3.52.556.24.99.382 1.328.49.56.177 1.07.152 1.472.092.448-.066 1.38-.564 1.576-1.11.196-.547.196-1.017.136-1.117-.06-.1-.22-.16-.464-.28z"/>
+        </svg>
+      </a>
+
       <button
         type="button"
         className={`back-to-top ${showTop ? 'visible' : ''}`}
@@ -374,7 +394,7 @@ function generateShadeRamp(baseHex) {
 const IconMap = {
   Leaf, Zap, PackageCheck, Users, Flame, Trash2, Factory, Recycle, Zap, 
   PackageCheck, Sparkles, Wrench, BadgeCheck, Droplets, Sprout, CircleGauge, 
-  Settings, Building2, BriefcaseBusiness, Target, Eye
+  Settings, Building2, BriefcaseBusiness, Target, Eye, Handshake, Globe2
 };
 
 
@@ -422,7 +442,7 @@ function ProjectModal({ isOpen, onClose }) {
     name: '',
     email: '',
     company: '',
-    interest: 'Biomass Briquettes & Pellets Supply',
+    interest: 'Industrial Biomass Project',
     timeline: 'Immediate / Within 3 Months',
     message: ''
   });
@@ -437,7 +457,7 @@ function ProjectModal({ isOpen, onClose }) {
       org: formData.company,
       interest: formData.interest,
       timeline: formData.timeline,
-      message: formData.message || `Project inquiry for ${formData.interest} (${formData.timeline})`
+      message: formData.message || `Project inquiry for ${formData.company}`
     };
 
     try {
@@ -511,29 +531,15 @@ function ProjectModal({ isOpen, onClose }) {
                 </div>
               </div>
 
-              <div className="modal-form-row">
-                <div className="modal-field">
-                  <label>Company / Industrial Plant *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Organization Name"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  />
-                </div>
-                <div className="modal-field">
-                  <label>Biomass Fuel Application</label>
-                  <select
-                    value={formData.interest}
-                    onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                  >
-                    <option>Biomass Briquettes & Pellets Supply</option>
-                    <option>Boiler Conversion & Fuel Switching</option>
-                    <option>Long-term Bioenergy Procurement</option>
-                    <option>Industrial Waste-to-Energy Consulting</option>
-                  </select>
-                </div>
+              <div className="modal-field">
+                <label>Company / Industrial Plant *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Organization Name"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                />
               </div>
 
               <div className="modal-field">
@@ -577,21 +583,17 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
         <div className="announcement-shell">
           <div className="announcement-left">
             <Leaf size={14} />
-            <span>Driving a sustainable future with clean energy solutions.</span>
+            <span>Creating Sustainable Energy of Tomorrow.</span>
           </div>
           <div className="announcement-right">
             <a href="mailto:info@biotrendenergy.com" className="announcement-link">
               <Mail size={13} />
               <span>info@biotrendenergy.com</span>
             </a>
-            <a href="tel:+919876543210" className="announcement-link">
+            <a href="tel:+917678578185" className="announcement-link">
               <Phone size={13} />
-              <span>+91 98765 43210</span>
+              <span>+91-7678578185</span>
             </a>
-            <div className="announcement-socials">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={13} /></a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={13} /></a>
-            </div>
           </div>
         </div>
       </div>
@@ -620,8 +622,8 @@ function Header({ darkMode, onThemeToggle, onVideoOpen, onNavigate, onOpenProjec
 
           <div className="nav-actions">
             <span className="nav-divider" aria-hidden="true" />
-            <button type="button" className="nav-cta-btn" onClick={onOpenProjectModal} aria-label="Start a Project">
-              <span>Start a Project</span>
+            <button type="button" className="nav-cta-btn" onClick={() => onNavigate('/contact')} aria-label="Contact Bio Trend Energy">
+              <span>Contact Us</span>
               <ArrowRight size={20} color="#ffffff" strokeWidth={2.5} className="nav-cta-arrow" />
             </button>
             <button
@@ -695,24 +697,26 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
       </div>
 
       {/* 1. Full-Width Video */}
-      <div className="new-hero-video-container" data-reveal>
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="new-hero-video"
-        >
-          <source src="/assets/bio-trend-film.mp4" type="video/mp4" />
-        </video>
-        
-        {/* Minimal controls overlay */}
-        <div className="new-hero-video-controls">
-          <div className="controls-right">
-            <button type="button" className="control-btn-mute" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
-              {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
+      <div className="new-hero-video-stage">
+        <div className="new-hero-video-container" data-reveal>
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="new-hero-video"
+          >
+            <source src="/assets/bio-trend-film.mp4" type="video/mp4" />
+          </video>
+
+          {/* Minimal controls overlay */}
+          <div className="new-hero-video-controls">
+            <div className="controls-right">
+              <button type="button" className="control-btn-mute" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -724,36 +728,29 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
           <div className="content-left">
             <div className="new-esg-label">
               <Leaf size={12} className="esg-leaf-icon" />
-              <span>MEASURABLE ESG & CARBON REDUCTION</span>
+              <span>{heroData.eyebrow}</span>
             </div>
             <h1 className="new-hero-headline">
-              Powering tomorrow <br />
-              <span className="green-highlight">sustainably.</span>
+              {heroData.title}
             </h1>
             <p className="new-hero-description">
-              Bio Trend Energy develops innovative, scalable and eco-friendly energy solutions that drive progress while protecting our planet.
+              {heroData.description}
             </p>
             <div className="new-hero-actions">
-              <AppLink className="new-btn new-btn-primary" to="/solutions" onNavigate={onNavigate}>
-                Explore Solutions <ArrowRight size={16} />
+              <AppLink className="new-btn new-btn-primary" to="/services" onNavigate={onNavigate}>
+                Explore Services <ArrowRight size={16} />
               </AppLink>
               <button
                 type="button"
                 className="new-btn new-btn-secondary"
-                onClick={onOpenProjectModal}
+                onClick={() => onNavigate('/contact')}
               >
-                Start a Project <ArrowRight size={16} />
+                Contact Us <ArrowRight size={16} />
               </button>
             </div>
             <div className="new-hero-proof">
-              <div className="proof-avatars">
-                <img src="/assets/avatar-1.jpg" alt="Sustainability Manager" className="avatar-img" />
-                <img src="/assets/avatar-2.jpg" alt="Energy Engineer" className="avatar-img" />
-                <img src="/assets/avatar-3.jpg" alt="Clean Energy Analyst" className="avatar-img" />
-                <img src="/assets/avatar-4.jpg" alt="Operations Director" className="avatar-img" />
-              </div>
               <p className="proof-text">
-                <span className="bold-green">50+</span> successful projects delivered across India
+                <span className="bold-green">BTE</span> creating sustainable energy of tomorrow
               </p>
             </div>
           </div>
@@ -768,8 +765,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
                     <Leaf size={20} />
                   </div>
                   <div className="stat-data">
-                    <h3>150K+</h3>
-                    <p>Tons Biomass Processed</p>
+                    <h3>Biomass</h3>
+                    <p>Advanced biomass-pellet solutions</p>
                   </div>
                 </div>
                 {/* Stat 2 */}
@@ -778,8 +775,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
                     <Globe2 size={20} />
                   </div>
                   <div className="stat-data">
-                    <h3>85%</h3>
-                    <p>Net CO₂ Reduction</p>
+                    <h3>GHG</h3>
+                    <p>Solutions aimed at reducing emissions</p>
                   </div>
                 </div>
                 {/* Stat 3 */}
@@ -788,8 +785,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
                     <Factory size={20} />
                   </div>
                   <div className="stat-data">
-                    <h3>120+</h3>
-                    <p>Industrial Plants</p>
+                    <h3>Training</h3>
+                    <p>Farmers, stakeholders and partners</p>
                   </div>
                 </div>
                 {/* Stat 4 */}
@@ -798,8 +795,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
                     <Zap size={20} />
                   </div>
                   <div className="stat-data">
-                    <h3>50+</h3>
-                    <p>Projects Across India</p>
+                    <h3>Integrated</h3>
+                    <p>Supply chain, manufacturing and R&amp;D</p>
                   </div>
                 </div>
               </div>
@@ -814,8 +811,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
               <Leaf size={20} />
             </div>
             <div className="feature-info">
-              <h4>Sustainable Solutions</h4>
-              <p>Clean energy for a better tomorrow</p>
+              <h4>Fossil-Fuel Replacement</h4>
+              <p>Working toward a cleaner environment</p>
             </div>
           </div>
           <div className="feature-impact-item">
@@ -823,8 +820,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
               <TrendingUp size={20} />
             </div>
             <div className="feature-info">
-              <h4>Measurable Impact</h4>
-              <p>Data-driven results for real change</p>
+              <h4>Biomass Manufacturing</h4>
+              <p>Biomass pellets and clean-energy activities</p>
             </div>
           </div>
           <div className="feature-impact-item">
@@ -832,8 +829,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
               <ShieldCheck size={20} />
             </div>
             <div className="feature-info">
-              <h4>Reliable & Scalable</h4>
-              <p>Solutions built for today and the future</p>
+              <h4>Complete Solutions</h4>
+              <p>Supply chain, scheduling, services and spares</p>
             </div>
           </div>
           <div className="feature-impact-item">
@@ -841,8 +838,8 @@ function Hero({ heroData, onVideoOpen, onNavigate, onOpenProjectModal }) {
               <Users size={20} />
             </div>
             <div className="feature-info">
-              <h4>Global Responsibility</h4>
-              <p>Committed to communities and our planet</p>
+              <h4>Technology &amp; R&amp;D</h4>
+              <p>Clean-energy innovation for lower emissions</p>
             </div>
           </div>
         </div>
@@ -878,7 +875,7 @@ function About({ aboutData }) {
           </div>
 
           <div className="about-image-wrap" data-reveal>
-            <img src={aboutData.image} alt="Fresh green leaf with morning dew" loading="lazy" decoding="async" />
+            <img src={aboutData.image} alt="Biomass pellets ready for clean-energy use" loading="lazy" decoding="async" />
             <div className="image-note">
               <strong>{aboutData.noteYears}</strong>
               <span>{aboutData.noteText}</span>
@@ -895,6 +892,232 @@ function About({ aboutData }) {
             <span className="mission-icon"><Eye /></span>
             <span><strong>{aboutData.visionTitle}</strong><small>{aboutData.visionText}</small></span>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const aboutGalleryItems = [
+  {
+    src: aboutPhotoOne,
+    eyebrow: 'New perspectives',
+    title: 'Collaboration at our New Delhi office',
+    alt: 'Bio Trend Energy representatives welcoming industry visitors at the company office',
+  },
+  {
+    src: aboutPhotoTwo,
+    eyebrow: 'Industry dialogue',
+    title: 'Conversations that move clean energy forward',
+    alt: 'Bio Trend Energy team members with an industry partner after a meeting',
+  },
+  {
+    src: aboutPhotoThree,
+    eyebrow: 'Knowledge exchange',
+    title: 'Experience and ideas brought together',
+    alt: 'Energy professionals meeting at the Bio Trend Energy office',
+  },
+  {
+    src: aboutPhotoFour,
+    eyebrow: 'Global collaboration',
+    title: 'Building connections beyond boundaries',
+    alt: 'Bio Trend Energy representatives with an international industry visitor',
+  },
+  {
+    src: aboutPhotoFive,
+    eyebrow: 'Shared purpose',
+    title: 'Leadership aligned around sustainable progress',
+    alt: 'A group of energy-sector leaders gathered at the Bio Trend Energy office',
+  },
+  {
+    src: aboutPhotoSix,
+    eyebrow: 'Project teams',
+    title: 'The people behind practical implementation',
+    alt: 'A project team visiting the Bio Trend Energy office',
+  },
+];
+
+const aboutFocusAreas = [
+  {
+    icon: Recycle,
+    number: '01',
+    title: 'Biomass Solutions',
+    text: 'Advanced pellets and clean solid-fuel solutions designed to reduce dependence on fossil fuels.',
+  },
+  {
+    icon: Sprout,
+    number: '02',
+    title: 'Farmer Engagement',
+    text: 'Training and collaboration that connect agricultural residues with meaningful energy applications.',
+  },
+  {
+    icon: Factory,
+    number: '03',
+    title: 'Industrial Transition',
+    text: 'Practical pathways for industries to adopt cleaner fuels and lower greenhouse-gas emissions.',
+  },
+  {
+    icon: Handshake,
+    number: '04',
+    title: 'Global Partnerships',
+    text: 'Knowledge, technology, and market partnerships that accelerate the sustainable-energy transition.',
+  },
+];
+
+function AboutGallery() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const activeItem = aboutGalleryItems[activeIndex];
+  const selectPrevious = () => setActiveIndex((index) => (index - 1 + aboutGalleryItems.length) % aboutGalleryItems.length);
+  const selectNext = () => setActiveIndex((index) => (index + 1) % aboutGalleryItems.length);
+
+  useEffect(() => {
+    if (!lightboxOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setLightboxOpen(false);
+      if (event.key === 'ArrowLeft') selectPrevious();
+      if (event.key === 'ArrowRight') selectNext();
+    };
+
+    document.body.classList.add('modal-open');
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [lightboxOpen]);
+
+  const openPhoto = (index) => {
+    setActiveIndex(index);
+    setLightboxOpen(true);
+  };
+
+  return (
+    <>
+      <div className="about-gallery-grid" data-reveal>
+        {aboutGalleryItems.map((item, index) => (
+          <button
+            type="button"
+            className={`about-gallery-card ${index === 0 || index === 4 ? 'about-gallery-card--wide' : ''}`}
+            key={item.src}
+            onClick={() => openPhoto(index)}
+            aria-label={`Open photo: ${item.title}`}
+          >
+            <img src={item.src} alt={item.alt} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
+            <span className="about-gallery-card__shade" />
+            <span className="about-gallery-card__copy">
+              <small>{item.eyebrow}</small>
+              <strong>{item.title}</strong>
+            </span>
+            <span className="about-gallery-card__expand"><Minimize2 aria-hidden="true" /></span>
+          </button>
+        ))}
+      </div>
+
+      {lightboxOpen ? (
+        <div className="about-lightbox" role="dialog" aria-modal="true" aria-label="About us photo gallery">
+          <button type="button" className="about-lightbox__backdrop" onClick={() => setLightboxOpen(false)} aria-label="Close gallery backdrop" />
+          <button type="button" className="about-lightbox__close" onClick={() => setLightboxOpen(false)} aria-label="Close gallery" autoFocus><X /></button>
+          <button type="button" className="about-lightbox__nav about-lightbox__nav--prev" onClick={selectPrevious} aria-label="Previous photo"><ChevronRight /></button>
+          <figure>
+            <img src={activeItem.src} alt={activeItem.alt} />
+            <figcaption><span>{activeItem.eyebrow}</span>{activeItem.title}</figcaption>
+          </figure>
+          <button type="button" className="about-lightbox__nav about-lightbox__nav--next" onClick={selectNext} aria-label="Next photo"><ChevronRight /></button>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
+function AboutPage({ aboutData, onNavigate }) {
+  return (
+    <section className="about-page">
+      <div className="about-page__hero">
+        <div className="page-shell about-page__hero-grid">
+          <div className="about-page__hero-copy" data-reveal>
+            <div className="eyebrow"><Leaf size={13} /> About Bio Trend Energy</div>
+            <h1>Clean energy shaped by <em>practical action.</em></h1>
+            <p>{aboutData.description}</p>
+            <div className="about-page__actions">
+              <AppLink className="button" to="/services" onNavigate={onNavigate}>Explore our work <ArrowRight /></AppLink>
+              <AppLink className="about-page__text-link" to="/contact" onNavigate={onNavigate}>Talk to our team <ArrowUpRight /></AppLink>
+            </div>
+            <div className="about-page__proof" aria-label="Our focus">
+              <span><strong>India</strong><small>Rooted locally</small></span>
+              <span><strong>Biomass</strong><small>Focused expertise</small></span>
+              <span><strong>Impact</strong><small>Built to scale</small></span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="about-page__hero-visual"
+            data-reveal
+            style={{ '--delay': '90ms' }}
+            onClick={() => document.getElementById('about-gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            aria-label="Explore the Bio Trend Energy photo gallery"
+          >
+            <img src={aboutPhotoFive} alt="Bio Trend Energy leadership and partners at the New Delhi office" />
+            <span className="about-page__hero-image-action"><Image aria-hidden="true" /> Explore our gallery <ArrowRight aria-hidden="true" /></span>
+          </button>
+        </div>
+      </div>
+
+      <div className="about-page__story">
+        <div className="page-shell">
+          <div className="about-page__story-grid">
+            <div data-reveal>
+              <span className="about-page__kicker">Who we are</span>
+              <h2>From agricultural residue to reliable clean energy.</h2>
+            </div>
+            <div data-reveal style={{ '--delay': '70ms' }}>
+              <p>{aboutData.story}</p>
+              <p>Our long-term goal is clear: replace fossil fuels in industrial and other sectors with cleaner, commercially practical alternatives that support a healthier environment.</p>
+            </div>
+          </div>
+
+          <div className="about-page__focus-grid">
+            {aboutFocusAreas.map(({ icon: Icon, number, title, text }, index) => (
+              <article key={title} data-reveal style={{ '--delay': `${index * 55}ms` }}>
+                <span className="about-page__focus-number">{number}</span>
+                <span className="about-page__focus-icon"><Icon /></span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="about-page__gallery-section" id="about-gallery">
+        <div className="page-shell">
+          <div className="about-page__gallery-heading" data-reveal>
+            <div>
+              <span className="about-page__kicker">Inside Bio Trend Energy</span>
+              <h2>People and partnerships powering progress.</h2>
+            </div>
+            <p>Explore moments from our office, industry conversations, and collaborations. Select any photograph to view it fullscreen.</p>
+          </div>
+          <AboutGallery />
+        </div>
+      </div>
+
+      <div className="about-page__purpose">
+        <div className="page-shell about-page__purpose-grid">
+          <article data-reveal>
+            <span><Target /></span>
+            <small>Our mission</small>
+            <h2>{aboutData.missionTitle}</h2>
+            <p>{aboutData.missionText}</p>
+          </article>
+          <article data-reveal style={{ '--delay': '70ms' }}>
+            <span><Eye /></span>
+            <small>Our approach</small>
+            <h2>{aboutData.visionTitle}</h2>
+            <p>{aboutData.visionText}</p>
+          </article>
         </div>
       </div>
     </section>
@@ -981,6 +1204,7 @@ function Process({ processData }) {
 function Projects({ projectsData, onNavigate, onOpenProjectModal }) {
   const [filter, setFilter] = useState('All');
   const visibleProjects = filter === 'All' ? projectsData.items : projectsData.items.filter((p) => p.category === filter);
+  const projectFilters = ['All', ...new Set(projectsData.items.map((item) => item.category).filter(Boolean))];
 
   return (
     <section id="projects" className="section projects-section">
@@ -997,7 +1221,7 @@ function Projects({ projectsData, onNavigate, onOpenProjectModal }) {
         </div>
 
         <div className="filter-row" data-reveal role="group" aria-label="Filter projects">
-          {['All', 'Biomass Power', 'Biogas', 'Waste to Energy'].map((item) => (
+          {projectFilters.map((item) => (
             <button
               type="button"
               className={filter === item ? 'active' : ''}
@@ -1026,19 +1250,31 @@ function Projects({ projectsData, onNavigate, onOpenProjectModal }) {
                     }
                   }}
                 />
-                <span>{project.category}</span>
-                <button type="button" onClick={onOpenProjectModal || (() => onNavigate('/contact'))} aria-label={`Enquire about ${project.title}`} style={{ background: 'var(--panel-subtle)', border: 'none', cursor: 'pointer', borderRadius: '50%', width: '42px', height: '42px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><ArrowUpRight /></button>
+                <span className="project-category-badge">{project.category}</span>
+                {project.href ? (
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" className="project-arrow-btn" aria-label={`Open ${project.title}`}>
+                    <ArrowUpRight size={24} />
+                  </a>
+                ) : (
+                  <button type="button" onClick={onOpenProjectModal || (() => onNavigate('/contact'))} className="project-arrow-btn" aria-label={`Enquire about ${project.title}`}>
+                    <ArrowUpRight size={24} />
+                  </button>
+                )}
               </div>
-              <div className="project-meta">
-                <div><h3>{project.title}</h3><p><MapPin />{project.location}</p></div>
-                <small>{project.capacity}</small>
+              <div className="project-content">
+                <h3>{project.title}</h3>
+                {project.description && <p className="project-desc">{project.description}</p>}
+                <div className="project-location-row">
+                  <MapPin size={14} />
+                  <span>{project.location}</span>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
         <div className="center-action" data-reveal>
-          <button type="button" className="button" onClick={onOpenProjectModal || (() => onNavigate('/contact'))}>Plan a Project <ArrowRight /></button>
+          <AppLink className="button" to="/contact" onNavigate={onNavigate}>Have questions? Contact us <ArrowRight /></AppLink>
         </div>
       </div>
     </section>
@@ -1097,8 +1333,7 @@ function Contact({ footerData }) {
     const payload = {
       name: formData.get('name'),
       email: formData.get('email'),
-      phone: formData.get('phone'),
-      service: formData.get('service'),
+      website: formData.get('website'),
       message: formData.get('message'),
     };
 
@@ -1120,7 +1355,7 @@ function Contact({ footerData }) {
   const contactDetails = [
     { label: 'Phone', value: footerData.phone, href: `tel:${footerData.phone.replace(/\s+/g, '')}`, icon: Building2 },
     { label: 'Email', value: footerData.email, href: `mailto:${footerData.email}`, icon: BriefcaseBusiness },
-    { label: 'Office', value: footerData.office, href: '#contact', icon: Flame },
+    { label: 'Company', value: footerData.office, href: '#contact', icon: Flame },
   ];
 
   return (
@@ -1128,16 +1363,16 @@ function Contact({ footerData }) {
       <div className="page-shell">
         <SectionIntro
           eyebrow="Contact us"
-          title="Let's Build a Greener Future Together"
-          description="Tell us what you are working on. Our specialists will help shape the right solution for your resources and goals."
+          title="Have Questions? We Are Here to Help You"
+          description="Send Bio Trend Energy a message about biomass pellets, clean-energy solutions, training, partnerships or publications."
         />
 
         <div className="contact-grid">
           <div className="contact-panel" data-reveal>
             <div className="contact-photo"><img src="/assets/leaf-dew.jpg" alt="Green leaf detail" loading="lazy" decoding="async" /></div>
             <div className="contact-copy">
-              <h3>Start with a conversation.</h3>
-              <p>Whether you have a defined project or an early idea, we are ready to listen.</p>
+              <h3>Bio Trend Energy Private Limited</h3>
+              <p>Connect with the team working on advanced biomass and waste clean-energy solutions in India.</p>
               <div className="contact-details">
                 {contactDetails.map(({ label, value, href, icon: Icon }) => (
                   <a href={href} key={label}>
@@ -1152,36 +1387,28 @@ function Contact({ footerData }) {
           <form className="contact-form" onSubmit={handleSubmit} data-reveal>
             <div className="form-row">
               <label>
-                Your name
-                <input type="text" name="name" placeholder="Full name" required />
+                Your Name
+                <input type="text" name="name" placeholder="Your Name *" required />
               </label>
               <label>
-                Work email
-                <input type="email" name="email" placeholder="name@company.com" required />
+                Your Email
+                <input type="email" name="email" placeholder="Your Email *" required />
               </label>
             </div>
             <div className="form-row">
               <label>
-                Phone number
-                <input type="tel" name="phone" placeholder="+91 00000 00000" />
-              </label>
-              <label>
-                Interested in
-                <select name="service" defaultValue="">
-                  <option value="" disabled>Select a solution</option>
-                  {defaultSolutions.map((solution) => <option key={solution.title}>{solution.title}</option>)}
-                </select>
+                Website
+                <input type="text" name="website" placeholder="Website" />
               </label>
             </div>
             <label>
-              Tell us about your project
-              <textarea name="message" rows="5" placeholder="A few details about the opportunity, location and timeline..." required />
+              Comment
+              <textarea name="message" rows="5" placeholder="Comment" required />
             </label>
             <div className="form-footer">
               <button className="button" type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Enquiry"} <Send size={16} />
+                {isSubmitting ? "Sending..." : "Send Message"} <Send size={16} />
               </button>
-              <p>We usually respond within one business day.</p>
             </div>
             {submitted && (
               <div className="form-success" role="status"><Check /> Thank you. Your enquiry has been recorded.</div>
@@ -1201,14 +1428,14 @@ function ClosingCta({ onNavigate, onOpenProjectModal }) {
         <div className="cta-copy">
           <span className="cta-icon"><Leaf /></span>
           <div>
-            <h2>Ready to Make<br />a Positive Impact?</h2>
-            <p>Partner with Bio Trend Energy for sustainable and innovative bioenergy solutions.</p>
+            <h2>Have Questions?<br />We Are Here to Help.</h2>
+            <p>Connect with Bio Trend Energy about biomass pellets, clean-energy solutions, training, partnerships and publications.</p>
             <button
               type="button"
               className="button"
-              onClick={onOpenProjectModal || (() => onNavigate('/contact'))}
+              onClick={() => onNavigate('/contact')}
             >
-              Start a Project <ArrowRight />
+              Contact Us <ArrowRight />
             </button>
           </div>
         </div>
@@ -1251,12 +1478,24 @@ function FeaturedProjects({ projectsData, onNavigate, onOpenProjectModal }) {
                     if (e.currentTarget.src !== window.location.origin + next) e.currentTarget.src = next;
                   }}
                 />
-                <span>{project.category}</span>
-                <button type="button" onClick={onOpenProjectModal || (() => onNavigate('/contact'))} aria-label={`Enquire about ${project.title}`} style={{ background: 'var(--panel-subtle)', border: 'none', cursor: 'pointer', borderRadius: '50%', width: '42px', height: '42px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><ArrowUpRight /></button>
+                <span className="project-category-badge">{project.category}</span>
+                {project.href ? (
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" className="project-arrow-btn" aria-label={`Open ${project.title}`}>
+                    <ArrowUpRight size={24} />
+                  </a>
+                ) : (
+                  <button type="button" onClick={onOpenProjectModal || (() => onNavigate('/contact'))} className="project-arrow-btn" aria-label={`Enquire about ${project.title}`}>
+                    <ArrowUpRight size={24} />
+                  </button>
+                )}
               </div>
-              <div className="project-meta">
-                <div><h3>{project.title}</h3><p><MapPin />{project.location}</p></div>
-                <small>{project.capacity}</small>
+              <div className="project-content">
+                <h3>{project.title}</h3>
+                {project.description && <p className="project-desc">{project.description}</p>}
+                <div className="project-location-row">
+                  <MapPin size={14} />
+                  <span>{project.location}</span>
+                </div>
               </div>
             </article>
           ))}
@@ -1445,14 +1684,105 @@ function Testimonials({ items }) {
   );
 }
 
+const placeholderLegacyBlogPosts = [
+  {
+    id: 4129,
+    slug: 'biochar-the-carbon-negative-powerhouse-driving-indias-net-zero-future',
+    title: 'Biochar: The Carbon-Negative Powerhouse Driving India’s Net-Zero Future',
+    excerpt: 'Complementing India’s 2070 vision for net-zero emissions, biochar has emerged as an important carbon-negative biofuel system with applications in renewable energy and industrial carbon sequestration.',
+    content: 'Complementing India’s 2070 vision for net-zero emissions, biochar has emerged as an important carbon-negative biofuel system. From renewable-energy production to industrial carbon sequestration, biochar has many applications that can help offset carbon footprints. The original Bio Trend Energy article is available through the source link below.',
+    coverImage: '/assets/project-biochar.jpg',
+    author: 'Bio Trend Energy', tags: ['Biochar', 'Carbon Negative'], publishedAt: '2025-07-22T09:28:38',
+    originalUrl: 'http://www.biotrendenergy.com/biochar-the-carbon-negative-powerhouse-driving-indias-net-zero-future/'
+  },
+  {
+    id: 4108,
+    slug: 'torrefied-biomass-pellets',
+    title: 'TORREFIED BIOMASS PELLETS',
+    excerpt: 'As climate goals tighten and industrial emissions come under greater scrutiny, heavy industries across India are rethinking how they generate heat and energy.',
+    content: 'Boilers, thermic-fluid heaters and furnaces traditionally fired by coal, furnace oil or diesel contribute to carbon emissions, air pollution and fuel costs. This Bio Trend Energy article examines torrefied biomass pellets as an alternative for industrial energy users.',
+    coverImage: '/assets/biomass-process.jpg',
+    author: 'Bio Trend Energy', tags: ['Biomass Energy', 'Pellets'], publishedAt: '2025-06-24T05:21:58',
+    originalUrl: 'http://www.biotrendenergy.com/torrefied-biomass-pellets/'
+  },
+  {
+    id: 4092,
+    slug: 'napier-grass-benefits-to-farmers-and-its-potential-as-an-energy-crop',
+    title: 'Napier Grass: The Green Giant Fueling a Sustainable Future',
+    excerpt: 'Napier grass is a high-yielding, fast-growing perennial grass gaining attention as both a fodder crop and a potential energy crop.',
+    content: 'Napier grass, also known as elephant grass, can thrive across varied agro-climatic conditions. Bio Trend Energy’s article explores its benefits to farmers and its potential role in more sustainable agricultural and energy practices.',
+    coverImage: '/assets/leaf-dew.jpg',
+    author: 'Bio Trend Energy', tags: ['Napier Grass', 'Renewable Energy'], publishedAt: '2025-06-12T08:38:51',
+    originalUrl: 'http://www.biotrendenergy.com/napier-grass-benefits-to-farmers-and-its-potential-as-an-energy-crop/'
+  },
+  {
+    id: 4018,
+    slug: 'carbon-farming',
+    title: 'Carbon Farming',
+    excerpt: 'Turning agriculture into a climate solution through practices that help move farming from an emissions source toward an active part of the response.',
+    content: 'As the world faces climate change, carbon farming is emerging as a way to make agriculture part of the solution. The Bio Trend Energy article introduces this approach and its relevance to more climate-positive land management.',
+    coverImage: '/assets/seedling-cta.jpg',
+    author: 'Bio Trend Energy', tags: ['Carbon Farming', 'Climate Solutions'], publishedAt: '2025-05-05T10:07:53',
+    originalUrl: 'http://www.biotrendenergy.com/carbon-farming/'
+  },
+  {
+    id: 3644,
+    slug: 'a-future-focused-strategy-for-sustainable-biofuel-production-using-bamboo',
+    title: 'A Future-Focused Strategy for Sustainable Biofuel Production Using Bamboo',
+    excerpt: 'A look at bamboo as a future-focused resource for sustainable biofuel production in India’s transition to cleaner and more inclusive energy.',
+    content: 'Energy is central to sustainability, growth and development. This Bio Trend Energy article considers bamboo in the context of India’s work to expand access to sustainable, equitable and inclusive energy.',
+    coverImage: '/assets/hero-bioenergy.jpg',
+    author: 'Bio Trend Energy', tags: ['Biofuel', 'Bamboo'], publishedAt: '2024-09-05T06:16:04',
+    originalUrl: 'http://www.biotrendenergy.com/a-future-focused-strategy-for-sustainable-biofuel-production-using-bamboo/'
+  },
+  {
+    id: 223,
+    slug: 'farmers-training-biomass-aggregation',
+    title: 'Farmers Training on Biomass Aggregation',
+    excerpt: 'Bio Trend Energy’s outreach work includes training farmers and prospective stakeholders across the biomass-aggregation value chain.',
+    content: 'Farmer training and biomass aggregation are part of Bio Trend Energy’s renewable-energy outreach activities. The original archive entry is linked below.',
+    coverImage: '/assets/project-waste-to-energy.jpg',
+    author: 'Bio Trend Energy', tags: ['Farmers Training', 'Biomass Aggregation'], publishedAt: '2023-06-05T13:56:00',
+    originalUrl: 'http://www.biotrendenergy.com/farmers-training-biomass-aggregation/'
+  },
+  {
+    id: 192,
+    slug: 'wind-energy-india',
+    title: 'Wind Energy in Indian Scenario',
+    excerpt: 'Wind energy in India supports renewable generation, job creation, energy security, environmental sustainability and the clean-energy transition.',
+    content: 'The article reviews wind energy in India through the lenses of cost competitiveness, employment, energy security, environmental sustainability and government support.',
+    coverImage: '/assets/wind-impact.jpg',
+    author: 'Bio Trend Energy', tags: ['Wind Energy', 'India'], publishedAt: '2023-05-30T12:46:00',
+    originalUrl: 'http://www.biotrendenergy.com/wind-energy-india/'
+  },
+  {
+    id: 282,
+    slug: 'what-is-biomass-aggregation',
+    title: 'What Is Biomass Aggregation',
+    excerpt: 'An introduction to biomass aggregation and its renewable-energy, rural-development, waste-management and energy-security benefits in India.',
+    content: 'Biomass aggregation can support decentralized renewable energy, lower emissions, rural development, waste management and greater energy security. This archive entry introduces the role of aggregation in India’s biomass ecosystem.',
+    coverImage: '/assets/biomass-process.jpg',
+    author: 'Bio Trend Energy', tags: ['Biomass Aggregation', 'Biomass Energy'], publishedAt: '2023-05-15T15:50:00',
+    originalUrl: 'http://www.biotrendenergy.com/what-is-biomass-aggregation/'
+  }
+];
+
+const legacyBlogPosts = originalLegacyBlogPosts;
+
 function LatestJournal({ onNavigate }) {
   const [posts, setPosts] = useState(null);
   useEffect(() => {
     let active = true;
     fetch(`${API_BASE}/api/blog`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((d) => { if (active) setPosts((d.posts || []).slice(0, 3)); })
-      .catch(() => { if (active) setPosts([]); });
+      .then((d) => {
+        if (!active) return;
+        const legacySlugs = new Set(legacyBlogPosts.map((post) => post.slug));
+        const obsoleteSeedSlugs = new Set(['turning-agricultural-waste-into-clean-power', 'why-biogas-is-the-quiet-workhorse-of-renewables']);
+        const customPosts = (d.posts || []).filter((post) => !legacySlugs.has(post.slug) && !obsoleteSeedSlugs.has(post.slug));
+        setPosts([...customPosts, ...legacyBlogPosts].slice(0, 3));
+      })
+      .catch(() => { if (active) setPosts(legacyBlogPosts.slice(0, 3)); });
     return () => { active = false; };
   }, []);
 
@@ -1464,12 +1794,12 @@ function LatestJournal({ onNavigate }) {
       <div className="page-shell">
         <div className="section-title-row">
           <SectionIntro
-            eyebrow="Insights & stories"
-            title="Latest from the Journal"
-            description="Field notes and deep-dives from the frontline of the clean-energy transition."
+            eyebrow="Bio Trend Energy Blog"
+            title="Recent Posts"
+            description="The latest verified articles from the previous Bio Trend Energy website."
           />
           <button type="button" className="button button--ghost desktop-only" data-reveal onClick={() => onNavigate('/blog')}>
-            Read the Journal <ArrowRight size={16} />
+            Read the Blog <ArrowRight size={16} />
           </button>
         </div>
 
@@ -1527,26 +1857,24 @@ const SOCIAL_ICON_MAP = {
 const defaultFooterLinks = {
   quickLinks: [
     { label: 'Home', href: '/' },
-    { label: 'About us', href: '/about' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Impact', href: '/impact' }
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Contact Us', href: '/contact' }
   ],
   solutionsLinks: [
-    { label: 'Biomass Power', href: '/solutions' },
-    { label: 'Waste to Energy', href: '/solutions' },
-    { label: 'Biogas', href: '/solutions' },
-    { label: 'Consulting', href: '/solutions' }
+    { label: 'Services', href: '/services' },
+    { label: 'Biomass Pellets', href: '/services' },
+    { label: 'Waste Clean Energy', href: '/services' },
+    { label: 'Technology & R&D', href: '/services' }
   ],
   resourceLinks: [
-    { label: 'Case Studies', href: '/projects' },
-    { label: 'Our Process', href: '/process' },
-    { label: 'FAQs', href: '/contact' },
-    { label: 'Careers', href: '/contact' }
+    { label: 'Outreach', href: '/outreach' },
+    { label: 'Publications', href: '/portfolio' },
+    { label: 'Blog', href: '/blog' }
   ],
   socialLinks: [
-    { platform: 'linkedin', url: '#home' },
-    { platform: 'instagram', url: '#home' },
-    { platform: 'facebook', url: '#home' }
+    { platform: 'linkedin', url: 'https://www.linkedin.com/company/biotrendenergy/?originalSubdomain=in' },
+    { platform: 'instagram', url: 'https://www.instagram.com/biotrendenergy/?hl=en' }
   ]
 };
 
@@ -1665,6 +1993,77 @@ function formatBlogDate(value) {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+function BlogArticleContent({ post }) {
+  const contentRef = useRef(null);
+  const [viewerImage, setViewerImage] = useState(null);
+
+  useEffect(() => {
+    if (!contentRef.current || !post.contentHtml) return undefined;
+    const images = contentRef.current.querySelectorAll('img');
+    images.forEach((image) => {
+      image.tabIndex = 0;
+      image.setAttribute('role', 'button');
+      image.setAttribute('aria-label', `Open image: ${image.alt || post.title}`);
+      if (!image.alt) image.alt = `${post.title} article image`;
+    });
+    return undefined;
+  }, [post.contentHtml, post.title]);
+
+  useEffect(() => {
+    if (!viewerImage) return undefined;
+    const closeViewer = (event) => {
+      if (event.key === 'Escape') setViewerImage(null);
+    };
+    document.body.classList.add('modal-open');
+    window.addEventListener('keydown', closeViewer);
+    return () => {
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', closeViewer);
+    };
+  }, [viewerImage]);
+
+  const openTargetImage = (target) => {
+    const image = target?.closest?.('img');
+    if (!image) return;
+    setViewerImage({ src: image.currentSrc || image.src, alt: image.alt || post.title });
+  };
+
+  if (!post.contentHtml) {
+    return String(post.content || '').split(/\n\n+/).map((paragraph, index) => <p key={index}>{paragraph}</p>);
+  }
+
+  return (
+    <>
+      <div
+        ref={contentRef}
+        className="blog-rich-content"
+        onClick={(event) => openTargetImage(event.target)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            const image = event.target?.closest?.('img');
+            if (image) {
+              event.preventDefault();
+              openTargetImage(image);
+            }
+          }
+        }}
+        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+      />
+
+      {viewerImage ? (
+        <div className="about-lightbox blog-image-lightbox" role="dialog" aria-modal="true" aria-label="Blog image viewer">
+          <button type="button" className="about-lightbox__backdrop" onClick={() => setViewerImage(null)} aria-label="Close image backdrop" />
+          <button type="button" className="about-lightbox__close" onClick={() => setViewerImage(null)} aria-label="Close image" autoFocus><X /></button>
+          <figure>
+            <img src={viewerImage.src} alt={viewerImage.alt} />
+            <figcaption>{viewerImage.alt}</figcaption>
+          </figure>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function Blog({ onNavigate }) {
   const [posts, setPosts] = useState(null);
   const [error, setError] = useState(false);
@@ -1676,9 +2075,14 @@ function Blog({ onNavigate }) {
         const res = await fetch(`${API_BASE}/api/blog`);
         if (!res.ok) throw new Error();
         const data = await res.json();
-        if (active) setPosts(data.posts || []);
+        if (active) {
+          const legacySlugs = new Set(legacyBlogPosts.map((post) => post.slug));
+          const obsoleteSeedSlugs = new Set(['turning-agricultural-waste-into-clean-power', 'why-biogas-is-the-quiet-workhorse-of-renewables']);
+          const customPosts = (data.posts || []).filter((post) => !legacySlugs.has(post.slug) && !obsoleteSeedSlugs.has(post.slug));
+          setPosts([...customPosts, ...legacyBlogPosts]);
+        }
       } catch (e) {
-        if (active) { setError(true); setPosts([]); }
+        if (active) { setError(false); setPosts(legacyBlogPosts); }
       }
     })();
     return () => { active = false; };
@@ -1690,9 +2094,9 @@ function Blog({ onNavigate }) {
     <section className="blog-page section-block">
       <div className="page-shell">
         <div className="section-intro section-intro--center" data-reveal>
-          <div className="eyebrow"><Leaf size={13} /> Insights & Stories</div>
-          <h2>The Bio Trend Journal</h2>
-          <p>Field notes, technology deep-dives and impact stories from the frontline of the clean-energy transition.</p>
+          <div className="eyebrow"><Leaf size={13} /> Bio Trend Energy Blog</div>
+          <h2>Articles from Bio Trend Energy</h2>
+          <p>The complete post archive identified on the previous website, from biomass aggregation and wind energy to biochar, carbon farming and torrefied pellets.</p>
         </div>
 
         {posts === null && (
@@ -1778,7 +2182,7 @@ function BlogPost({ slug, onNavigate }) {
         const data = await res.json();
         if (active) setPost(data.post || null);
       } catch (e) {
-        if (active) setPost(null);
+        if (active) setPost(legacyBlogPosts.find((item) => item.slug === slug) || null);
       }
     })();
     return () => { active = false; };
@@ -1824,9 +2228,10 @@ function BlogPost({ slug, onNavigate }) {
           </div>
         )}
         <div className="blog-article-body" data-reveal>
-          {String(post.content || '').split(/\n\n+/).map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+          <BlogArticleContent post={post} />
+          {post.originalUrl && (
+            <p><a href={post.originalUrl} target="_blank" rel="noopener noreferrer">Read the original article on the previous Bio Trend Energy website <ExternalLink size={15} /></a></p>
+          )}
         </div>
       </div>
     </article>
@@ -5203,6 +5608,7 @@ function mapContentStructure(data) {
       image: missingMap[rawImg] || rawImg,
       imagePosition: project.imagePosition || fallback.imagePosition || 'center',
       fallbackImage: fallback.image,
+      href: project.href || '',
     };
   });
 
@@ -5235,9 +5641,9 @@ function mapContentStructure(data) {
     },
     // Solutions mapping
     solutions: {
-      eyebrow: data.pages?.solutions?.eyebrow || 'What we do',
-      title: data.pages?.solutions?.title || 'Our Solutions',
-      description: data.pages?.solutions?.description || 'End-to-end bioenergy solutions built around your resources, requirements and long-term goals.',
+      eyebrow: data.pages?.solutions?.eyebrow || data.solutions?.eyebrow || 'Services',
+      title: data.pages?.solutions?.title || data.solutions?.title || 'A Complete Biomass Solutions Package',
+      description: data.pages?.solutions?.description || data.solutions?.description || 'Integrated biomass and clean-energy services from supply chain through technology and R&D.',
       items: (data.pages?.solutions?.items || data.solutions?.items || defaultSolutions || []).map(s => ({
         title: s.title,
         description: s.description,
@@ -5246,12 +5652,12 @@ function mapContentStructure(data) {
     },
     // Process mapping
     process: {
-      eyebrow: data.pages?.process?.eyebrow || 'How it works',
-      title: data.pages?.process?.title || 'Our Process',
-      description: data.pages?.process?.description || 'A proven process that converts waste into clean energy, built for consistent performance from source to supply.',
-      badgeTitle: data.pages?.process?.badgeTitle || 'Zero waste mindset',
-      badgeText: data.pages?.process?.badgeText || 'Maximum value from every resource',
-      image: data.pages?.process?.image || '/assets/biomass-process.jpg',
+      eyebrow: data.pages?.process?.eyebrow || data.process?.eyebrow || 'Outreach',
+      title: data.pages?.process?.title || data.process?.title || 'Working With Farmers, Stakeholders and Partners',
+      description: data.pages?.process?.description || data.process?.description || 'Training and stakeholder engagement across the biomass value chain.',
+      badgeTitle: data.pages?.process?.badgeTitle || data.process?.badgeTitle || 'Sustainable energy transition',
+      badgeText: data.pages?.process?.badgeText || data.process?.badgeText || 'Building participation across the biomass value chain',
+      image: data.pages?.process?.image || data.process?.image || '/assets/biomass-process.jpg',
       steps: (data.pages?.process?.steps || data.process?.steps || defaultProcessSteps || []).map(s => ({
         title: s.title,
         description: s.description,
@@ -5289,9 +5695,9 @@ function mapContentStructure(data) {
       solutionsTitle: data.footer?.solutionsTitle || 'Our Solutions',
       resourcesTitle: data.footer?.resourcesTitle || 'Resources',
       contactTitle: data.footer?.contactTitle || 'Contact Info',
-      phone: data.footer?.phone || '+91 98765 43210',
+      phone: data.footer?.phone || '+91-7678578185',
       email: data.footer?.email || 'info@biotrendenergy.com',
-      office: data.footer?.office || 'Gurugram, Haryana, India',
+      office: data.footer?.office || 'Bio Trend Energy Private Limited, India',
       copyright: data.footer?.copyright || 'Copyright 2026 Bio Trend Energy. All rights reserved.',
       policies: data.footer?.policies || [
         { label: 'Privacy Policy', href: '#home' },
@@ -5310,9 +5716,7 @@ function mapContentStructure(data) {
       ogImage: data.seo?.ogImage || '/assets/hero-bioenergy.jpg'
     },
     // Homepage testimonials (editable in the admin Testimonials tab)
-    testimonials: Array.isArray(data.testimonials) && data.testimonials.length
-      ? data.testimonials
-      : defaultTestimonials
+    testimonials: Array.isArray(data.testimonials) ? data.testimonials : []
   };
 }
 
@@ -5365,6 +5769,8 @@ export default function App() {
       }
     } catch (err) {
       console.warn("Connection to Node backend content API failed. Falling back to default static files.");
+      setSiteData(mapContentStructure(initialSiteData));
+      return;
       // Fallback content data generated from local data.js
       const fallbackContent = {
         theme: {
@@ -5656,14 +6062,13 @@ export default function App() {
 
   useEffect(() => {
     const pageTitles = {
-      '/': 'Bio Trend Energy | Turning Waste Into Clean Energy',
-      '/about': 'About Us | Bio Trend Energy',
-      '/solutions': 'Solutions | Bio Trend Energy',
-      '/process': 'Our Process | Bio Trend Energy',
-      '/impact': 'Our Impact | Bio Trend Energy',
-      '/projects': 'Projects | Bio Trend Energy',
-      '/blog': 'Journal | Bio Trend Energy',
-      '/contact': 'Contact | Bio Trend Energy',
+      '/': 'Bio Trend Energy | Biomass Pellets & Clean Energy',
+      '/about-us': 'About Us | Bio Trend Energy',
+      '/portfolio': 'Portfolio & Publications | Bio Trend Energy',
+      '/services': 'Services | Bio Trend Energy',
+      '/outreach': 'Outreach | Bio Trend Energy',
+      '/blog': 'Blog | Bio Trend Energy',
+      '/contact': 'Contact Us | Bio Trend Energy',
       '/admin': 'Admin Dashboard | Bio Trend Energy Studio'
     };
     if (pathname.startsWith('/admin')) {
@@ -5731,30 +6136,23 @@ export default function App() {
           <Hero heroData={siteData.hero} onVideoOpen={() => setVideoOpen(true)} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />
           <About aboutData={siteData.about} onOpenProjectModal={handleOpenModal} />
           <Solutions solutionsData={siteData.solutions} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />
-          <BiomassPellets onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />
+          <Projects projectsData={siteData.projects} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />
           <Process processData={siteData.process} onOpenProjectModal={handleOpenModal} />
-          <Impact impactData={siteData.impact} onOpenProjectModal={handleOpenModal} />
-          <FeaturedProjects projectsData={siteData.projects} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />
-          <WhyChooseUs />
-          <Testimonials items={siteData.testimonials} />
           <LatestJournal onNavigate={navigateTo} />
         </>
       );
       break;
-    case '/about':
-      publicPage = <About aboutData={siteData.about} onOpenProjectModal={handleOpenModal} />;
+    case '/about-us':
+      publicPage = <AboutPage aboutData={siteData.about} onNavigate={navigateTo} />;
       break;
-    case '/solutions':
+    case '/services':
       publicPage = <Solutions solutionsData={siteData.solutions} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />;
       break;
-    case '/process':
+    case '/outreach':
       publicPage = <Process processData={siteData.process} onOpenProjectModal={handleOpenModal} />;
       break;
-    case '/projects':
+    case '/portfolio':
       publicPage = <Projects projectsData={siteData.projects} onNavigate={navigateTo} onOpenProjectModal={handleOpenModal} />;
-      break;
-    case '/impact':
-      publicPage = <Impact impactData={siteData.impact} onOpenProjectModal={handleOpenModal} />;
       break;
     case '/contact':
       publicPage = <Contact footerData={siteData.footer} />;

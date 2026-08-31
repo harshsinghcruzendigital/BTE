@@ -5,18 +5,18 @@
    ========================================================================== */
 
 :root {
-  /* Core Brand Tokens */
-  --s-accent-primary: #10b981;
-  --s-accent-primary-hover: #059669;
-  --s-accent-secondary: #06b6d4;
-  --s-accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  --s-accent-soft: rgba(16, 185, 129, 0.12);
-  --s-accent-glow: rgba(16, 185, 129, 0.25);
+  /* Core Brand Tokens (Aligned with BTE Official Palette) */
+  --s-accent-primary: #0067B9; /* BTE Deep Brand Blue */
+  --s-accent-primary-hover: #087FC4; /* BTE Premium Blue */
+  --s-accent-secondary: #16A83A; /* BTE Brand Green */
+  --s-accent-gradient: linear-gradient(135deg, #0067B9 0%, #16A83A 100%);
+  --s-accent-soft: rgba(0, 103, 185, 0.12);
+  --s-accent-glow: rgba(0, 103, 185, 0.25);
 
   /* Light Theme Surfaces */
   --s-bg: #f4f7fb;
-  --s-bg-ambient: radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
-                  radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.06) 0%, transparent 40%);
+  --s-bg-ambient: radial-gradient(circle at 15% 15%, rgba(0, 103, 185, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 85%, rgba(22, 168, 58, 0.06) 0%, transparent 40%);
   --s-panel: #ffffff;
   --s-panel-elevated: #ffffff;
   --s-panel-subtle: #f8fafc;
@@ -27,8 +27,8 @@
   --s-text-subtle: #94a3b8;
 
   /* Status Colors */
-  --s-success: #10b981;
-  --s-success-bg: rgba(16, 185, 129, 0.12);
+  --s-success: #16A83A;
+  --s-success-bg: rgba(22, 168, 58, 0.12);
   --s-warning: #f59e0b;
   --s-warning-bg: rgba(245, 158, 11, 0.12);
   --s-danger: #ef4444;
@@ -38,7 +38,7 @@
   --s-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
   --s-shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
   --s-shadow-lg: 0 20px 50px -10px rgba(15, 23, 42, 0.12);
-  --s-shadow-glow: 0 0 25px rgba(16, 185, 129, 0.2);
+  --s-shadow-glow: 0 0 25px rgba(0, 103, 185, 0.15);
   --s-glass: rgba(255, 255, 255, 0.85);
   --s-glass-blur: blur(16px);
 
@@ -55,8 +55,8 @@
 /* Obsidian Dark Mode Theme Override */
 :root[data-admin-theme="dark"] {
   --s-bg: #070b12;
-  --s-bg-ambient: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
-                  radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
+  --s-bg-ambient: radial-gradient(circle at 10% 10%, rgba(0, 103, 185, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 90% 90%, rgba(22, 168, 58, 0.08) 0%, transparent 45%);
   --s-panel: #0d1422;
   --s-panel-elevated: #121c2e;
   --s-panel-subtle: #162238;
@@ -74,8 +74,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --s-bg: #070b12;
-    --s-bg-ambient: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
-                    radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
+    --s-bg-ambient: radial-gradient(circle at 10% 10%, rgba(0, 103, 185, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 90% 90%, rgba(22, 168, 58, 0.08) 0%, transparent 45%);
     --s-panel: #0d1422;
     --s-panel-elevated: #121c2e;
     --s-panel-subtle: #162238;
