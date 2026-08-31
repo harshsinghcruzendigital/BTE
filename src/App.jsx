@@ -1780,10 +1780,11 @@ function LatestJournal({ onNavigate }) {
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
         if (!active) return;
-        const legacySlugs = new Set(legacyBlogPosts.map((post) => post.slug));
-        const obsoleteSeedSlugs = new Set(['turning-agricultural-waste-into-clean-power', 'why-biogas-is-the-quiet-workhorse-of-renewables']);
-        const customPosts = (d.posts || []).filter((post) => !legacySlugs.has(post.slug) && !obsoleteSeedSlugs.has(post.slug));
-        setPosts([...customPosts, ...legacyBlogPosts].slice(0, 3));
+        if (Array.isArray(d.posts) && d.posts.length > 0) {
+          setPosts(d.posts.slice(0, 3));
+        } else {
+          setPosts(legacyBlogPosts.slice(0, 3));
+        }
       })
       .catch(() => { if (active) setPosts(legacyBlogPosts.slice(0, 3)); });
     return () => { active = false; };
@@ -2079,10 +2080,11 @@ function Blog({ onNavigate }) {
         if (!res.ok) throw new Error();
         const data = await res.json();
         if (active) {
-          const legacySlugs = new Set(legacyBlogPosts.map((post) => post.slug));
-          const obsoleteSeedSlugs = new Set(['turning-agricultural-waste-into-clean-power', 'why-biogas-is-the-quiet-workhorse-of-renewables']);
-          const customPosts = (data.posts || []).filter((post) => !legacySlugs.has(post.slug) && !obsoleteSeedSlugs.has(post.slug));
-          setPosts([...customPosts, ...legacyBlogPosts]);
+          if (Array.isArray(data.posts) && data.posts.length > 0) {
+            setPosts(data.posts);
+          } else {
+            setPosts(legacyBlogPosts);
+          }
         }
       } catch (e) {
         if (active) { setError(false); setPosts(legacyBlogPosts); }
