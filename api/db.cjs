@@ -70,9 +70,43 @@ async function getDb() {
   }
 }
 
+const FALLBACKS = {
+  content: () => { try { return require("./data/site-content.json"); } catch (e) { return null; } },
+  defaultContent: () => { try { return require("./data/default-site-content.json"); } catch (e) { return null; } },
+  settings: () => { try { return require("./data/site-settings.json"); } catch (e) { return null; } },
+  defaultSettings: () => { try { return require("./data/default-site-settings.json"); } catch (e) { return null; } },
+  blog: () => { try { return require("./data/blog-posts.json"); } catch (e) { return null; } },
+  users: () => { try { return require("./data/users.json"); } catch (e) { return null; } },
+  contact: () => { try { return require("./data/contact-submissions.json"); } catch (e) { return null; } },
+  project: () => { try { return require("./data/project-submissions.json"); } catch (e) { return null; } },
+  newsletter: () => { try { return require("./data/newsletter-signups.json"); } catch (e) { return null; } },
+  analytics: () => { try { return require("./data/analytics.json"); } catch (e) { return null; } },
+  audit: () => { try { return require("./data/audit-log.json"); } catch (e) { return null; } },
+};
+
+function getFallback(key) {
+  const getter = FALLBACKS[key];
+  if (getter) {
+    const res = getter();
+    if (res) return JSON.parse(JSON.stringify(res));
+  }
+  return null;
+}
+
 // Local file helpers for fallback
 async function readFallbackJson(filePath) {
   try {
+    const base = path.basename(filePath);
+    if (base === "site-content.json") return getFallback("content") || getFallback("defaultContent");
+    if (base === "site-settings.json") return getFallback("settings") || getFallback("defaultSettings");
+    if (base === "blog-posts.json") return getFallback("blog") || [];
+    if (base === "users.json") return getFallback("users") || [];
+    if (base === "contact-submissions.json") return getFallback("contact") || [];
+    if (base === "project-submissions.json") return getFallback("project") || [];
+    if (base === "newsletter-signups.json") return getFallback("newsletter") || [];
+    if (base === "analytics.json") return getFallback("analytics");
+    if (base === "audit-log.json") return getFallback("audit") || [];
+
     const raw = await fs.readFile(filePath, "utf8");
     return JSON.parse(raw);
   } catch (e) {
@@ -98,7 +132,7 @@ async function getContent() {
       return rest;
     }
   }
-  return (await readFallbackJson(FILES.content)) || (await readFallbackJson(FILES.defaultContent));
+  return getFallback("content") || getFallback("defaultContent");
 }
 
 async function saveContent(data) {
@@ -124,7 +158,7 @@ async function getSettings() {
       return rest;
     }
   }
-  return (await readFallbackJson(FILES.settings)) || (await readFallbackJson(FILES.defaultSettings));
+  return getFallback("settings") || getFallback("defaultSettings");
 }
 
 async function saveSettings(data) {
@@ -146,10 +180,10 @@ async function getBlogs() {
   if (database) {
     const list = await database.collection("blogs").find({}).toArray();
     console.log("getBlogs: found", list.length, "blogs in MongoDB");
-    return list.map(({ _id, ...rest }) => rest);
+    if (list.length > 0) return list.map(({ _id, ...rest }) => rest);
   }
-  console.log("getBlogs: no database, falling back to disk");
-  return (await readFallbackJson(FILES.blog)) || [];
+  console.log("getBlogs: no database/empty, falling back to static fallback");
+  return getFallback("blog") || [];
 }
 
 async function saveBlogList(list) {
@@ -183,7 +217,7 @@ async function getUsers() {
     const list = await database.collection("users").find({}).toArray();
     if (list.length > 0) return list.map(({ _id, ...rest }) => rest);
   }
-  return (await readFallbackJson(FILES.users)) || [];
+  return getFallback("users") || [];
 }
 
 async function saveUsers(users) {
@@ -200,13 +234,12 @@ async function saveUsers(users) {
 // --- Submissions (Contacts, Projects, Newsletters) ---
 async function getSubmissions(type) {
   const collName = type === "contact" ? "contacts" : type === "project" ? "projects" : "newsletters";
-  const filePath = FILES[type] || FILES.contact;
   const database = await getDb();
   if (database) {
     const list = await database.collection(collName).find({}).sort({ createdAt: -1 }).toArray();
-    return list.map(({ _id, ...rest }) => rest);
+    if (list.length > 0) return list.map(({ _id, ...rest }) => rest);
   }
-  return (await readFallbackJson(filePath)) || [];
+  return getFallback(type) || [];
 }
 
 async function saveSubmissions(type, list) {
