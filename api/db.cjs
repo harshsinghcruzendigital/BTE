@@ -2,12 +2,10 @@
 
 require("dotenv").config();
 
-if (process.platform === "win32") {
-  const dns = require("dns");
-  try {
-    dns.setServers(["8.8.8.8", "1.1.1.1"]);
-  } catch (e) {}
-}
+const dns = require("dns");
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch (e) {}
 
 const { MongoClient } = require("mongodb");
 const cloudinary = require("cloudinary").v2;
