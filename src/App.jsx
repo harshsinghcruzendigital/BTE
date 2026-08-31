@@ -7,6 +7,7 @@ import {
   CircleCheck,
   Droplets,
   Eye,
+  EyeOff,
   Facebook,
   Globe2,
   Instagram,
@@ -2253,6 +2254,7 @@ function BlogPost({ slug, onNavigate }) {
 function AdminLogin({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -2262,21 +2264,16 @@ function AdminLogin({ onLoginSuccess }) {
     onLoginSuccess(userObj);
   };
 
-  // Performs a REAL login against the backend. Never fabricates a session
-  // client-side — a fake token would pass the UI but every subsequent save
-  // (content, theme, media, team) would silently fail with 401 from the
-  // backend, which is why edits used to "work" in the dashboard but never
-  // show up on the live site.
   const performLogin = async (u, p) => {
     let response;
     try {
       response = await fetch(API_BASE + '/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p })
+        body: JSON.stringify({ username: String(u || '').trim(), password: String(p || '').trim() })
       });
     } catch (networkErr) {
-      throw new Error("Can't reach the backend server at " + API_BASE + ". Make sure it's running (npm run backend in a separate terminal), then try again.");
+      throw new Error("Can't reach the backend server. Please try again.");
     }
 
     const data = await response.json().catch(() => ({}));
@@ -2331,14 +2328,35 @@ function AdminLogin({ onLoginSuccess }) {
               <span>Password</span>
               <span style={{ fontSize: '0.72rem', color: 'var(--s-text-subtle)' }}>Minimum 8 chars</span>
             </label>
-            <input
-              id="auth-pass"
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-            />
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <input
+                id="auth-pass"
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                style={{ width: '100%', paddingRight: '42px' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? 'Hide password' : 'Show password'}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: 'var(--s-text-subtle, #94a3b8)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '4px'
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
 
           {error && (
